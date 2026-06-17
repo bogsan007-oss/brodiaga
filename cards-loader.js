@@ -1,9 +1,9 @@
 (async function() {
 
-  // 🔑 ВСТАВЬ СВОИ ДАННЫЕ
-  const YT_API_KEY = 'ТВОЙ_YOUTUBE_API_KEY';
-  const CHANNEL_ID = 'ТВОЙ_CHANNEL_ID';
-  const BLOG_ID = 'ТВОЙ_BLOG_ID';
+  // 🔑 ТВОИ ДАННЫЕ
+  const YT_API_KEY = 'AIzaSyDczpmgcrlq2cUQ8BY_i7jnxCaO2DHf5MI';
+  const CHANNEL_ID = 'UCIRgBQwdKyIY5Sr0JDn4uPQ';
+  const BLOG_ID = '3554078369689833510';
 
   const cardsRoot = document.getElementById('cards-root');
   if (!cardsRoot) return;
@@ -44,9 +44,7 @@
         date: new Date(v.snippet.publishedAt),
         title: v.snippet.title,
         desc: (v.snippet.description || '').substring(0, 120),
-        cover: v.snippet.thumbnails && v.snippet.thumbnails.medium
-          ? v.snippet.thumbnails.medium.url
-          : '',
+        cover: v.snippet.thumbnails?.medium?.url || '',
         url: 'https://www.youtube.com/watch?v=' + v.id.videoId
       }));
   }
