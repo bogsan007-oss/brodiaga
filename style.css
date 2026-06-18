@@ -6,10 +6,54 @@ body {
 }
 
 header {
-    background: #222;
-    padding: 20px;
-    text-align: center;
+   .site-header {
+    background: #111;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #222;
 }
+
+.header-left,
+.header-center,
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-left {
+    justify-content: flex-start;
+}
+
+.header-right {
+    justify-content: flex-end;
+}
+
+.site-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #eee;
+}
+
+.header-right a {
+    color: #ccc;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.header-right a:hover {
+    color: gold;
+}
+
+.mini-player {
+    width: 320px;
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+}}
 
 .logo {
     width: 80px;
