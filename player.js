@@ -1,44 +1,7 @@
-// === ТВОИ ДАННЫЕ ===
-const CHANNEL_ID = "UCIRgBQwdKyIY5Sr0JDn4uPQ";
-const API_KEY = "AIzaSyDczpmgcrlq2cUQ8BY_i7jnxCaO2DHf5MI";
-
-// === ФУНКЦИЯ: получить ID самого малопросматриваемого видео ===
 async function getLeastViewedVideoId() {
     try {
-        const searchUrl =
-            `https://www.googleapis.com/youtube/v3/search` +
-            `?key=${API_KEY}` +
-            `&channelId=${CHANNEL_ID}` +
-            `&part=snippet,id` +
-            `&maxResults=20` +
-            `&type=video`;
-
-        const res = await fetch(searchUrl);
-        const data = await res.json();
-
-        const videos = [];
-
-        for (const item of data.items) {
-            if (!item.id || !item.id.videoId) continue;
-
-            const statsUrl =
-                `https://www.googleapis.com/youtube/v3/videos` +
-                `?part=statistics` +
-                `&id=${item.id.videoId}` +
-                `&key=${API_KEY}`;
-
-            const statsRes = await fetch(statsUrl);
-            const statsData = await statsRes.json();
-
-            if (!statsData.items || !statsData.items[0]) continue;
-
-            const views = Number(statsData.items[0].statistics.viewCount || 0);
-
-            videos.push({
-                id: item.id.videoId,
-                views: views
-            });
-        }
+        const response = await fetch("https://script.google.com/macros/s/AKfycbz0y0g3Kp0t0g0g0g0g0g0g0g0g0g0g0g/exec");
+        const videos = await response.json();
 
         if (!videos.length) return null;
 
@@ -51,18 +14,25 @@ async function getLeastViewedVideoId() {
     }
 }
 
-// === ЗАПУСК ПЛЕЕРА ОДИН РАЗ ===
 getLeastViewedVideoId().then(videoId => {
     if (!videoId) {
         console.error("Видео не найдено");
         return;
     }
 
-    new Playerjs({
-        id: "mini-player",
-        file: "https://www.youtube.com/embed/" + videoId + "?controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3",
+    const playerContainer = document.getElementById("mini-player");
 
-        autoplay: 1
+    playerContainer.innerHTML = `
+        <iframe
+            src="https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3"
+            allowfullscreen
+            allow="autoplay"
+        ></iframe>
+    `;
+
+    new Plyr('#mini-player', {
+        autoplay: true,
+        controls: [],
+        muted: true
     });
 });
-
