@@ -1,12 +1,10 @@
 // === Мини-плеер: самое мало просматриваемое видео ===
-// === НАСТРОЙКИ ===
 const CHANNEL_ID = "UCIRgBQwdKyIY5Sr0JDn4uPQ";
 const API_KEY = "AIzaSyDczpmgcrlq2cUQ8BY_i7jnxCaO2DHf5MI";
 
 let leastViewedVideo = null;
 let player;
 
-// === 1. Получаем самое малопросматриваемое видео ===
 async function loadLeastViewedVideo() {
     const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&maxResults=20`;
 
@@ -31,11 +29,9 @@ async function loadLeastViewedVideo() {
     }
 
     videos.sort((a, b) => a.views - b.views);
-
     leastViewedVideo = videos[0].id;
 }
 
-// === 2. API YouTube вызывает эту функцию автоматически ===
 async function onYouTubeIframeAPIReady() {
     await loadLeastViewedVideo();
 
@@ -52,16 +48,7 @@ async function onYouTubeIframeAPIReady() {
             fs: 0,
             iv_load_policy: 3,
             playsinline: 1
-        },
-        events: {
-            onReady: onPlayerReady
         }
     });
-}
-
-// === 3. Когда плеер готов ===
-function onPlayerReady(event) {
-    // Можно автозапуск включить, если хочешь:
-    // event.target.playVideo();
 }
 
