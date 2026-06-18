@@ -1,7 +1,8 @@
 // === Мини-плеер: самое мало просматриваемое видео ===
 
 async function loadLeastViewedVideo() {
-    const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&maxResults=20`;
+    const url = `https://www.googleapis.com/youtube/v3/search?key=${AIzaSyDczpmgcrlq2cUQ8BY_i7jnxCaO2DHf5MI
+}&channelId=${UCIRgBQwdKyIY5Sr0JDn4uPQ}&part=snippet,id&maxResults=20`;
 
     try {
         const response = await fetch(url);
