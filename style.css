@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #eee;
+}
+
+header {
+    background: #222;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 80px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+nav {
+    background: #333;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: #ddd;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: gold;
+}
+
+main {
+    padding: 20px;
+}
+
+#video-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+footer {
+    background: #222;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+}
