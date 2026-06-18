@@ -5,14 +5,14 @@ body {
     color: #eee;
 }
 
-header {
-   .site-header {
-    background: #ffffff;
+/* === ШАПКА === */
+.site-header {
+    background: #ffffff; /* белая шапка */
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #222;
+    border-bottom: 2px solid #cc0000; /* красная линия */
 }
 
 .header-left,
@@ -35,32 +35,35 @@ header {
 .site-title {
     font-size: 22px;
     font-weight: bold;
-    color: #eee;
+    color: #cc0000; /* красный текст */
 }
 
 .header-right a {
-    color: #ccc;
+    color: #cc0000;
     margin-left: 20px;
     text-decoration: none;
 }
 
 .header-right a:hover {
-    color: gold;
+    color: #990000;
 }
 
+/* === МИНИ-ПЛЕЕР === */
 .mini-player {
     width: 320px;
     height: 180px;
     border-radius: 8px;
     overflow: hidden;
-}}
+}
 
+/* === ЛОГО === */
 .logo {
     width: 80px;
     display: block;
     margin: 0 auto 10px;
 }
 
+/* === НАВИГАЦИЯ (если нужна ниже) === */
 nav {
     background: #333;
     padding: 10px;
@@ -77,6 +80,7 @@ nav a:hover {
     color: gold;
 }
 
+/* === ОСНОВНОЙ КОНТЕНТ === */
 main {
     padding: 20px;
 }
@@ -87,6 +91,7 @@ main {
     gap: 20px;
 }
 
+/* === ПОДВАЛ === */
 footer {
     background: #222;
     padding: 20px;
