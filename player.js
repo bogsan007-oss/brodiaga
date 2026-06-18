@@ -1,8 +1,8 @@
-// === Мини-плеер: самое мало просматриваемое видео ===
 // === ТВОИ ДАННЫЕ ===
 const CHANNEL_ID = "UCIRgBQwdKyIY5Sr0JDn4uPQ";
 const API_KEY = "AIzaSyDczpmgcrlq2cUQ8BY_i7jnxCaO2DHf5MI";
 
+// === ФУНКЦИЯ: получить ID самого малопросматриваемого видео ===
 async function getLeastViewedVideoId() {
     try {
         const searchUrl =
@@ -51,6 +51,7 @@ async function getLeastViewedVideoId() {
     }
 }
 
+// === ЗАПУСК ПЛЕЕРА ОДИН РАЗ ===
 getLeastViewedVideoId().then(videoId => {
     if (!videoId) {
         console.error("Видео не найдено");
@@ -59,22 +60,6 @@ getLeastViewedVideoId().then(videoId => {
 
     new Playerjs({
         id: "player",
-        file: "https://www.youtube.com/watch?v=" + videoId,
-        autoplay: 1,
-        controls: 1
-    });
-});
-
-
-// === ЗАПУСК ПЛЕЕРА ===
-getLeastViewedVideoId().then(videoId => {
-    if (!videoId) {
-        console.error("Видео не найдено");
-        return;
-    }
-
-    new Playerjs({
-        id: "player", // ID контейнера в index.html
         file: "https://www.youtube.com/watch?v=" + videoId,
         autoplay: 1,
         controls: 1
