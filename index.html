@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radio Brodiaga</title>
+
+    <!-- Стили сайта -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Plyr CSS -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 </head>
 
 <body>
@@ -16,7 +21,7 @@
     </div>
 
     <div class="header-center">
-        <div id="mini-player"></div>
+        <div class="plyr__video-embed" id="mini-player"></div>
     </div>
 
     <nav class="header-right">
@@ -27,15 +32,16 @@
 
 </header>
 
-
-
-
-<!-- Здесь позже будет список видео -->
+<!-- Основной контент -->
 <div id="video-list"></div>
 
-<script src="playerjs.js"></script>
+<!-- Plyr JS -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+
+<!-- Твой скрипт -->
 <script src="player.js"></script>
 
 </body>
 </html>
+
 
