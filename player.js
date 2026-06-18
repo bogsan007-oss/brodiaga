@@ -34,7 +34,8 @@ async function loadLeastViewedVideo() {
         const leastViewed = videos[0].id;
 
         document.getElementById("mini-frame").src =
-            `https://www.youtube.com/embed/${leastViewed}`;
+           `https://www.youtube.com/embed/${leastViewed}?controls=0&modestbranding=1&rel=0&showinfo=0`;
+
 
     } catch (e) {
         console.error("Ошибка мини-плеера:", e);
