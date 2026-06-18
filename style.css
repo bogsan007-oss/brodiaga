@@ -31,6 +31,20 @@ body {
 .header-right {
     justify-content: flex-end;
 }
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mini-player {
+    width: 260px;
+    height: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+}
 
 .site-title {
     font-size: 22px;
