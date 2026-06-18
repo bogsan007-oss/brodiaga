@@ -2,6 +2,11 @@
 // === ТВОИ ДАННЫЕ ===
 const CHANNEL_ID = "UCIRgBQwdKyIY5Sr0JDn4uPQ";
 const API_KEY = "AIzaSyDczpmgcrlq2cUQ8BY_i7jnxCaO2DHf5MI";
+new Playerjs({
+    id: "player",
+    file: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    autoplay: 1
+});
 
 // === ФУНКЦИЯ: получить ID самого малопросматриваемого видео ===
 async function getLeastViewedVideoId() {
