@@ -61,6 +61,7 @@ getLeastViewedVideoId().then(videoId => {
     new Playerjs({
         id: "mini-player",
         file: "https://www.youtube.com/embed/" + videoId + "?controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3",
+
         autoplay: 1
     });
 });
