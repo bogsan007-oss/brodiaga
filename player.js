@@ -1,11 +1,14 @@
 // === Мини-плеер: самое мало просматриваемое видео ===
+// === НАСТРОЙКИ ===
+const CHANNEL_ID = "UCIRgBQwdKyIY5Sr0JDn4uPQ";
+const API_KEY = "AIzaSyDczpmgcrlq2cUQ8BY_i7jnxCaO2DHf5MI";
 
+// === Мини-плеер: выбирает самое мало просматриваемое видео ===
 async function loadLeastViewedVideo() {
-    const url = `https://www.googleapis.com/youtube/v3/search?key=${AIzaSyDczpmgcrlq2cUQ8BY_i7jnxCaO2DHf5MI
-}&channelId=${UCIRgBQwdKyIY5Sr0JDn4uPQ}&part=snippet,id&maxResults=20`;
+    const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&maxResults=20`;
 
     try {
-        const response = await fetch(url);
+        const response = await fetch(searchUrl);
         const data = await response.json();
 
         let videos = [];
@@ -25,7 +28,7 @@ async function loadLeastViewedVideo() {
             });
         }
 
-        // сортируем по просмотрам
+        // сортируем по просмотрам (меньше → больше)
         videos.sort((a, b) => a.views - b.views);
 
         const leastViewed = videos[0].id;
@@ -37,5 +40,7 @@ async function loadLeastViewedVideo() {
         console.error("Ошибка мини-плеера:", e);
     }
 }
+
+loadLeastViewedVideo();
 
 loadLeastViewedVideo();
