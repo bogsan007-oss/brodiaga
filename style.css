@@ -8,13 +8,13 @@ body {
     font-family: Arial, sans-serif;
 }
 
+
 /* ============================
-   ШАПКА САЙТА
+   ШАПКА САЙТА (ПК)
 ============================ */
-/* Шапка на ПК */
 .site-header {
-    width: 100%;          /* растягивается по ширине */
-    height: 250px;        /* фиксированная высота */
+    width: 100%;              /* шапка во всю ширину */
+    height: 250px;            /* фиксированная высота */
     background: #111;
     display: flex;
     align-items: center;
@@ -28,6 +28,8 @@ body {
     width: 250px;
     height: 250px;
     object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.25);
 }
 
 /* Скрытый заголовок для SEO */
@@ -39,39 +41,23 @@ body {
     pointer-events: none;
 }
 
-
-.site-header {
+/* Меню справа */
+.menu {
+    margin-left: 40px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #111;
-    padding: 10px 20px;
+    gap: 25px;
 }
 
-.header-left .site-title {
-    font-size: 24px;
-    color: red;
-}
-
-.site-logo {
-    height: 60px;
-    width: auto;
-    border-radius: 6px;
-    box-shadow: 0 0 8px rgba(255, 215, 0, 0.25);
-}
-
-.header-right a {
-    color: red;
-    margin-left: 20px;
+.menu a {
+    color: #fff;
     text-decoration: none;
+    font-size: 20px;
 }
 
-.header-center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
 
+/* ============================
+   ПРЕВЬЮ В ШАПКЕ (если используется)
+============================ */
 .header-preview {
     display: flex;
     flex-direction: column;
@@ -99,6 +85,7 @@ body {
     text-align: center;
     max-width: 260px;
 }
+
 
 /* ============================
    ГЛАВНАЯ — СЕТКА ВИДЕО
@@ -134,6 +121,7 @@ body {
     color: #fff;
 }
 
+
 /* ============================
    СТРАНИЦА ПРОСМОТРА
 ============================ */
@@ -166,6 +154,7 @@ body {
     color: #888;
     font-size: 14px;
 }
+
 
 /* ============================
    ПОХОЖИЕ ВИДЕО — КАРТОЧКИ
@@ -209,74 +198,39 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
 /* ============================
-   АДАПТИВНАЯ ШАПКА ДЛЯ ТЕЛЕФОНОВ
+   АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ
 ============================ */
 @media (max-width: 768px) {
 
     .site-header {
+        height: auto;          /* высота адаптивная */
         flex-direction: column;
-        align-items: center;
-        padding: 15px 10px;
+        justify-content: center;
+        padding: 15px 0;
+    }
+
+    .site-logo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .menu {
+        margin-left: 0;
+        margin-top: 15px;
+        flex-direction: column;
         gap: 12px;
     }
 
-    .header-left,
-    .header-center,
-    .header-right {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    /* Логотип по центру */
-    .header-left .site-title,
-    .site-logo {
+    .menu a {
+        font-size: 18px;
         text-align: center;
     }
 
-    /* Плеер на всю ширину */
-    .header-center {
-        order: 1;
-    }
-
-    /* Логотип под плеером */
-    .header-left {
-        order: 2;
-    }
-
-    /* Меню внизу */
-    .header-right {
-        order: 3;
-    }
-
-    /* Уменьшаем превью в шапке */
     .preview-thumb {
         width: 200px;
         height: 110px;
-    }
-}
-@media (max-width: 768px) {
-    .site-header {
-        width: 100%;
-        padding: 15px 0;
-    }
-
-    .site-logo {
-        width: 180px;
-        height: 180px;
-    }
-}
-@media (max-width: 768px) {
-    .site-header {
-        height: auto;       /* высота адаптивная */
-        flex-direction: column;
-        justify-content: center;
-        padding: 15px 0;
-    }
-
-    .site-logo {
-        width: 180px;
-        height: 180px;
     }
 }
