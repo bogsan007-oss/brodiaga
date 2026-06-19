@@ -36,9 +36,31 @@ body {
     justify-content: center;
 }
 
-#mini-player {
-    width: 320px;
-    height: 200px;
-    border-radius: 8px;
-    overflow: hidden;
+.header-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
 }
+
+.preview-thumb {
+    width: 260px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+    transition: transform .25s ease;
+}
+
+.preview-thumb:hover {
+    transform: scale(1.03);
+}
+
+.preview-title {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #f0f0f0;
+    text-align: center;
+    max-width: 260px;
+}
+
