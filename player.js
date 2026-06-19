@@ -1,6 +1,6 @@
 <script>
 async function loadLeastViewedVideo() {
-    const apiKey = "AIzaSyDczpmgcrlq2cUQ8BY_i7jnxCaO2DHf5MI";
+    const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
     const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ"; // плейлист загрузок
 
     // 1. Получаем список всех видео из плейлиста
