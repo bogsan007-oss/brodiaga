@@ -180,3 +180,50 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/* ============================
+   АДАПТИВНАЯ ШАПКА ДЛЯ ТЕЛЕФОНОВ
+============================ */
+@media (max-width: 768px) {
+
+    .site-header {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 10px;
+        gap: 12px;
+    }
+
+    .header-left,
+    .header-center,
+    .header-right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Логотип по центру */
+    .header-left .site-title,
+    .site-logo {
+        text-align: center;
+    }
+
+    /* Плеер на всю ширину */
+    .header-center {
+        order: 1;
+    }
+
+    /* Логотип под плеером */
+    .header-left {
+        order: 2;
+    }
+
+    /* Меню внизу */
+    .header-right {
+        order: 3;
+    }
+
+    /* Уменьшаем превью в шапке */
+    .preview-thumb {
+        width: 200px;
+        height: 110px;
+    }
+}
