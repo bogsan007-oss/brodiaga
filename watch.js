@@ -1,3 +1,6 @@
+// ===============================
+// ЗАГРУЗКА ОСНОВНОГО ВИДЕО
+// ===============================
 async function loadVideo() {
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
 
@@ -42,9 +45,17 @@ async function loadVideo() {
     document.getElementById("video-description").textContent = video.snippet.description;
     document.getElementById("video-date").textContent =
         "Дата публикации: " + new Date(video.snippet.publishedAt).toLocaleDateString("ru-RU");
+
+    // ВЫЗЫВАЕМ ПОХОЖИЕ ВИДЕО
+    loadRelatedVideos(videoId);
 }
 
 loadVideo();
+
+
+// ===============================
+// ПОХОЖИЕ ВИДЕО (КАРТОЧКИ)
+// ===============================
 async function loadRelatedVideos(currentId) {
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
     const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
@@ -56,9 +67,14 @@ async function loadRelatedVideos(currentId) {
     const container = document.getElementById("related-videos");
     container.innerHTML = "";
 
+    if (!data.items) {
+        container.innerHTML = "<p>Нет похожих видео</p>";
+        return;
+    }
+
     data.items
         .filter(item => item.snippet.resourceId.videoId !== currentId)
-        .slice(0, 8) // показываем 8 похожих
+        .slice(0, 6) // количество карточек
         .forEach(item => {
             const videoId = item.snippet.resourceId.videoId;
             const title = item.snippet.title;
@@ -78,4 +94,3 @@ async function loadRelatedVideos(currentId) {
             container.appendChild(card);
         });
 }
-
