@@ -253,3 +253,14 @@ body {
         height: 110px;
     }
 }
+@media (max-width: 768px) {
+    .site-header {
+        width: 100%;
+        padding: 15px 0;
+    }
+
+    .site-logo {
+        width: 180px;
+        height: 180px;
+    }
+}
