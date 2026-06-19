@@ -267,3 +267,16 @@ body {
         height: 180px;
     }
 }
+@media (max-width: 768px) {
+    .site-header {
+        height: auto;       /* высота адаптивная */
+        flex-direction: column;
+        justify-content: center;
+        padding: 15px 0;
+    }
+
+    .site-logo {
+        width: 180px;
+        height: 180px;
+    }
+}
