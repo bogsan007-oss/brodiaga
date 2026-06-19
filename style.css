@@ -11,14 +11,16 @@ body {
 /* ============================
    ШАПКА САЙТА
 ============================ */
-/* Шапка фиксированной ширины под логотип */
+/* Шапка на ПК */
 .site-header {
-    width: 250px;
+    width: 100%;          /* растягивается по ширине */
+    height: 250px;        /* фиксированная высота */
     background: #111;
-    padding: 10px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 /* Логотип 250x250 */
@@ -28,7 +30,7 @@ body {
     object-fit: contain;
 }
 
-/* Прячем название, но оставляем для SEO */
+/* Скрытый заголовок для SEO */
 .hidden-title {
     position: absolute;
     left: -9999px;
@@ -36,6 +38,7 @@ body {
     opacity: 0;
     pointer-events: none;
 }
+
 
 .site-header {
     display: flex;
