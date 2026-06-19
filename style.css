@@ -122,4 +122,43 @@ body {
     color: #888;
     font-size: 14px;
 }
+.related-title {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #fff;
+}
+
+#related-videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.related-card {
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.related-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+.related-thumb {
+    width: 100%;
+    display: block;
+}
+
+.related-title-text {
+    padding: 10px;
+    font-size: 15px;
+    color: #fff;
+    height: 44px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
