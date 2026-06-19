@@ -46,7 +46,7 @@ async function loadVideo() {
     document.getElementById("video-date").textContent =
         "Дата публикации: " + new Date(video.snippet.publishedAt).toLocaleDateString("ru-RU");
 
-    // ВЫЗЫВАЕМ ПОХОЖИЕ ВИДЕО
+    // ⭐ ВЫЗЫВАЕМ ПОХОЖИЕ ВИДЕО
     loadRelatedVideos(videoId);
 }
 
@@ -74,7 +74,7 @@ async function loadRelatedVideos(currentId) {
 
     data.items
         .filter(item => item.snippet.resourceId.videoId !== currentId)
-        .slice(0, 6) // количество карточек
+        .slice(0, 6)
         .forEach(item => {
             const videoId = item.snippet.resourceId.videoId;
             const title = item.snippet.title;
