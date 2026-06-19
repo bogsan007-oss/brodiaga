@@ -1,17 +1,17 @@
+/* ============================
+   ЗАГРУЗКА МИНИ-ПРЕВЬЮ (самое непопулярное видео)
+============================ */
 async function loadLeastViewedVideo() {
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
     const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
 
     try {
-        // 1. Получаем список видео
+        // 1. Получаем список видео из плейлиста
         const listUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
         const listRes = await fetch(listUrl);
         const listData = await listRes.json();
 
-        if (!listData.items) {
-            console.error("Ошибка: список видео пуст");
-            return;
-        }
+        if (!listData.items) return;
 
         const videoIds = listData.items
             .map(v => v.snippet?.resourceId?.videoId)
@@ -23,24 +23,18 @@ async function loadLeastViewedVideo() {
         const statsRes = await fetch(statsUrl);
         const statsData = await statsRes.json();
 
-        if (!statsData.items) {
-            console.error("Ошибка: статистика не получена");
-            return;
-        }
+        if (!statsData.items) return;
 
-        // 3. Фильтруем только корректные видео
+        // 3. Фильтруем корректные видео
         const validVideos = statsData.items.filter(v =>
             v.statistics?.viewCount &&
             v.snippet?.thumbnails?.medium?.url
         );
 
-        if (!validVideos.length) {
-            console.error("Нет валидных видео");
-            return;
-        }
+        if (!validVideos.length) return;
 
         // 4. Находим самое мало просматриваемое
-        let leastViewed = validVideos.reduce((min, v) =>
+        const leastViewed = validVideos.reduce((min, v) =>
             Number(v.statistics.viewCount) < Number(min.statistics.viewCount) ? v : min
         );
 
@@ -49,50 +43,69 @@ async function loadLeastViewedVideo() {
         const thumb = leastViewed.snippet.thumbnails.medium.url;
 
         // 5. Подставляем в HTML
-        document.getElementById("preview-thumb").src = thumb;
-        document.getElementById("preview-title").textContent = title;
+        const thumbEl = document.getElementById("preview-thumb");
+        const titleEl = document.getElementById("preview-title");
+        const previewEl = document.getElementById("header-preview");
 
-        // 6. Клик → страница просмотра
-        document.getElementById("header-preview").onclick = () => {
-            window.location.href = `watch.html?id=${videoId}`;
-        };
+        if (thumbEl) thumbEl.src = thumb;
+        if (titleEl) titleEl.textContent = title;
+
+        // 6. Клик → переход на просмотр
+        if (previewEl) {
+            previewEl.onclick = () => {
+                window.location.href = `watch.html?id=${videoId}`;
+            };
+        }
 
     } catch (e) {
-        console.error("Ошибка выполнения:", e);
+        console.error("Ошибка выполнения loadLeastViewedVideo:", e);
     }
 }
 
 loadLeastViewedVideo();
+
+
+/* ============================
+   ЗАГРУЗКА КАРТОЧЕК НА ГЛАВНОЙ
+============================ */
 async function loadVideoCards() {
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
     const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
 
-    const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
-    const res = await fetch(url);
-    const data = await res.json();
+    try {
+        const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
+        const res = await fetch(url);
+        const data = await res.json();
 
-    const container = document.getElementById("video-list");
-    container.innerHTML = "";
+        const container = document.getElementById("video-list");
+        if (!container) return;
 
-    data.items.forEach(item => {
-        const videoId = item.snippet.resourceId.videoId;
-        const title = item.snippet.title;
-        const thumb = item.snippet.thumbnails.medium.url;
+        container.innerHTML = "";
 
-        const card = document.createElement("div");
-        card.className = "video-card";
-        card.onclick = () => {
-            window.location.href = `watch.html?id=${videoId}`;
-        };
+        if (!data.items) return;
 
-        card.innerHTML = `
-            <img class="video-thumb" src="${thumb}" alt="">
-            <div class="video-title">${title}</div>
-        `;
+        data.items.forEach(item => {
+            const videoId = item.snippet.resourceId.videoId;
+            const title = item.snippet.title;
+            const thumb = item.snippet.thumbnails.medium.url;
 
-        container.appendChild(card);
-    });
+            const card = document.createElement("div");
+            card.className = "video-card";
+            card.onclick = () => {
+                window.location.href = `watch.html?id=${videoId}`;
+            };
+
+            card.innerHTML = `
+                <img class="video-thumb" src="${thumb}" alt="">
+                <div class="video-title">${title}</div>
+            `;
+
+            container.appendChild(card);
+        });
+
+    } catch (e) {
+        console.error("Ошибка выполнения loadVideoCards:", e);
+    }
 }
 
 loadVideoCards();
-
