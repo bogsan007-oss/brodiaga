@@ -63,3 +63,36 @@ async function loadLeastViewedVideo() {
 }
 
 loadLeastViewedVideo();
+async function loadVideoCards() {
+    const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
+    const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
+
+    const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const container = document.getElementById("video-list");
+    container.innerHTML = "";
+
+    data.items.forEach(item => {
+        const videoId = item.snippet.resourceId.videoId;
+        const title = item.snippet.title;
+        const thumb = item.snippet.thumbnails.medium.url;
+
+        const card = document.createElement("div");
+        card.className = "video-card";
+        card.onclick = () => {
+            window.location.href = `watch.html?id=${videoId}`;
+        };
+
+        card.innerHTML = `
+            <img class="video-thumb" src="${thumb}" alt="">
+            <div class="video-title">${title}</div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+loadVideoCards();
+
