@@ -47,21 +47,6 @@
 
 <!-- Твой скрипт -->
 <script src="player.js"></script>
-<script>
-async function debugYouTube() {
-    const apiKey = "AIzaSyDczpmgcrlq2cUQ8BY_i7jnxCaO2DHf5MI";
-    const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
-
-    const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=5`;
-
-    const res = await fetch(url);
-    const data = await res.text();
-
-    document.body.innerHTML += `<pre style="color:white; font-size:12px;">${data}</pre>`;
-}
-
-debugYouTube();
-</script>
 
 </body>
 </html>
