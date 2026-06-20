@@ -109,3 +109,41 @@ async function loadVideoCards() {
 }
 
 loadVideoCards();
+function insertAdCard() {
+    const list = document.getElementById("video-list");
+    if (!list) return;
+
+    // создаём рекламную карточку
+    const adCard = document.createElement("div");
+    adCard.className = "video-card ad-card";
+
+    adCard.innerHTML = `
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXX"
+                 data-ad-slot="YYYYYY"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    `;
+
+    // вставляем после второй карточки
+    const secondCard = list.children[1];
+    if (secondCard) {
+        list.insertBefore(adCard, secondCard.nextSibling);
+    } else {
+        // если карточек меньше двух — просто добавляем в конец
+        list.appendChild(adCard);
+    }
+
+    // запускаем рекламу
+    try {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+        console.log("AdSense error:", e);
+    }
+}
+
+// вызываем после загрузки видео
+insertAdCard();
