@@ -119,15 +119,13 @@ function insertAdCard() {
     adCard.className = "video-card ad-card";
 
     adCard.innerHTML = `
-        <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-7483662712371460"
-                 data-ad-slot="1747457051"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-        </div>
-    `;
+    <div class="ad-box">
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:100%;height:100%;"
+             data-ad-client="ca-pub-7483662712371460"
+             data-ad-slot="1747457051"></ins>
+    </div>
+`;
 
     const secondCard = list.children[1];
     if (secondCard) {
