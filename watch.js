@@ -20,7 +20,7 @@ async function loadRelatedVideos(currentId) {
             return;
         }
 
-        // ⭐ Безопасная фильтрация (не ломается)
+        // ⭐ Безопасная фильтрация
         const safeItems = data.items.filter(item =>
             item.snippet &&
             item.snippet.resourceId &&
