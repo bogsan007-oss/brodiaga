@@ -116,7 +116,8 @@ function insertAdCard() {
     if (!list) return;
 
     const adCard = document.createElement("div");
-    adCard.className = "video-card ad-card";
+     adCard.className = "video-card ad-card";
+
 
     adCard.innerHTML = `
     <div class="ad-box">
