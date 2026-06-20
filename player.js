@@ -6,7 +6,6 @@ async function loadLeastViewedVideo() {
     const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
 
     try {
-        // 1. Получаем список видео из плейлиста
         const listUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
         const listRes = await fetch(listUrl);
         const listData = await listRes.json();
@@ -18,14 +17,12 @@ async function loadLeastViewedVideo() {
             .filter(Boolean)
             .join(",");
 
-        // 2. Получаем статистику
         const statsUrl = `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=statistics,snippet`;
         const statsRes = await fetch(statsUrl);
         const statsData = await statsRes.json();
 
         if (!statsData.items) return;
 
-        // 3. Фильтруем корректные видео
         const validVideos = statsData.items.filter(v =>
             v.statistics?.viewCount &&
             v.snippet?.thumbnails?.medium?.url
@@ -33,7 +30,6 @@ async function loadLeastViewedVideo() {
 
         if (!validVideos.length) return;
 
-        // 4. Находим самое мало просматриваемое
         const leastViewed = validVideos.reduce((min, v) =>
             Number(v.statistics.viewCount) < Number(min.statistics.viewCount) ? v : min
         );
@@ -42,7 +38,6 @@ async function loadLeastViewedVideo() {
         const title = leastViewed.snippet.title;
         const thumb = leastViewed.snippet.thumbnails.medium.url;
 
-        // 5. Подставляем в HTML
         const thumbEl = document.getElementById("preview-thumb");
         const titleEl = document.getElementById("preview-title");
         const previewEl = document.getElementById("header-preview");
@@ -50,7 +45,6 @@ async function loadLeastViewedVideo() {
         if (thumbEl) thumbEl.src = thumb;
         if (titleEl) titleEl.textContent = title;
 
-        // 6. Клик → переход на просмотр
         if (previewEl) {
             previewEl.onclick = () => {
                 window.location.href = `watch.html?id=${videoId}`;
@@ -103,17 +97,24 @@ async function loadVideoCards() {
             container.appendChild(card);
         });
 
+        // ВСТАВЛЯЕМ РЕКЛАМНУЮ КАРТОЧКУ ПОСЛЕ ЗАГРУЗКИ ВСЕХ ВИДЕО
+        insertAdCard();
+
     } catch (e) {
         console.error("Ошибка выполнения loadVideoCards:", e);
     }
 }
 
 loadVideoCards();
+
+
+/* ============================
+   РЕКЛАМНАЯ КАРТОЧКА (2-й ряд)
+============================ */
 function insertAdCard() {
     const list = document.getElementById("video-list");
     if (!list) return;
 
-    // создаём рекламную карточку
     const adCard = document.createElement("div");
     adCard.className = "video-card ad-card";
 
@@ -121,29 +122,23 @@ function insertAdCard() {
         <div class="ad-container">
             <ins class="adsbygoogle"
                  style="display:block"
-                 data-ad-client="ca-pub-XXXXXX"
-                 data-ad-slot="YYYYYY"
+                 data-ad-client="ca-pub-7483662712371460"
+                 data-ad-slot="1747457051"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
         </div>
     `;
 
-    // вставляем после второй карточки
     const secondCard = list.children[1];
     if (secondCard) {
         list.insertBefore(adCard, secondCard.nextSibling);
     } else {
-        // если карточек меньше двух — просто добавляем в конец
         list.appendChild(adCard);
     }
 
-    // запускаем рекламу
     try {
         (adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {
         console.log("AdSense error:", e);
     }
 }
-
-// вызываем после загрузки видео
-insertAdCard();
