@@ -147,6 +147,28 @@ body {
     width: 100% !important;
     height: 100% !important;
 }
+.ad-card {
+    width: 100%;
+    height: 260px;
+    background: #004040;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ad-box {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ad-box ins {
+    width: 100% !important;
+    height: 100% !important;
+    display: inline-block !important;
+}
 
 
 
@@ -206,6 +228,28 @@ body {
 .ad-card iframe {
     width: 100% !important;
     height: 100% !important;
+}
+.ad-card {
+    width: 100%;
+    height: 260px;
+    background: #004040;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ad-box {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ad-box ins {
+    width: 100% !important;
+    height: 100% !important;
+    display: inline-block !important;
 }
 
 
