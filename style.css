@@ -74,7 +74,7 @@ body {
 .preview-title {
     margin-top: 8px;
     font-size: 14px;
-    color: #f0f0f0;
+    color: #fac115;
     text-align: center;
     max-width: 460px;
     white-space: nowrap;
@@ -118,7 +118,7 @@ body {
     padding: 12px 14px;
     font-size: 15px;
     line-height: 1.35;
-    color: #f1f1f1;
+    color: #fac115;
     background: #004040;
 }
 
@@ -216,7 +216,7 @@ body {
 .related-title-text {
     padding: 10px;
     font-size: 15px;
-    color: #fff;
+    color: #fac115;
     height: 44px;
     overflow: hidden;
     text-overflow: ellipsis;
