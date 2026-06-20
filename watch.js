@@ -3,7 +3,8 @@
 ============================ */
 async function loadVideo() {
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
-
+    const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
+   
     try {
         // Получаем ID из URL
         const urlParams = new URLSearchParams(window.location.search);
