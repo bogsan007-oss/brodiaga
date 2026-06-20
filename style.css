@@ -275,3 +275,19 @@ body {
         height: 110px;
     }
 }
+/* ============================
+  Реклама гугл
+============================ */
+.ad-card {
+    background: #111;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.ad-container {
+    width: 100%;
+}
