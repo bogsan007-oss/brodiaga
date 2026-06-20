@@ -103,27 +103,32 @@ body {
 }
 
 .video-card {
-    background: #111;
-    border-radius: 10px;
+    background: #004040; /* фон как у шапки */
+    border-radius: 14px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform .2s ease, box-shadow .2s ease;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .video-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
 }
 
 .video-thumb {
     width: 100%;
-    display: block;
+    height: 180px;
+    object-fit: cover;
 }
 
 .video-title {
-    padding: 12px;
-    font-size: 16px;
-    color: #fff;
+    padding: 12px 14px;
+    font-size: 15px;
+    line-height: 1.35;
+    color: #f1f1f1;
+    font-weight: 500;
 }
 
 
