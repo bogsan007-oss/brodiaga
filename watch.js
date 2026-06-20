@@ -61,6 +61,10 @@ async function loadVideo() {
 ============================ */
 async function loadRelatedVideos(currentId) {
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
+
+    // ⭐ Плейлист загрузок твоего канала:
+    // Канал: UCIRgBQwdKyIY5Sr0JDn4uPQ
+    // Плейлист загрузок: UUIRgBQwdKyIY5Sr0JDn4uPQ
     const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
 
     try {
