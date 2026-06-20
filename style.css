@@ -110,17 +110,14 @@ body {
     display: flex;
     flex-direction: column;
     transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.video-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    width: 100%;
 }
 
 .video-thumb {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    display: block;
 }
 
 .video-title {
@@ -128,8 +125,9 @@ body {
     font-size: 15px;
     line-height: 1.35;
     color: #f1f1f1;
-    font-weight: 500;
+    background: #004040; /* фон под текстом */
 }
+
 
 
 
