@@ -15,26 +15,52 @@ async function loadRelatedVideos(currentId) {
 
         container.innerHTML = "";
 
-        if (!data.items) {
+        if (!data.items || !data.items.length) {
             container.innerHTML = "<p>Нет похожих видео</p>";
             return;
         }
 
-        // ⭐ Безопасная фильтрация
-        const safeItems = data.items.filter(item =>
+        // Берём только нормальные элементы
+        const items = data.items.filter(item =>
             item.snippet &&
             item.snippet.resourceId &&
             item.snippet.resourceId.videoId &&
-            item.snippet.resourceId.videoId !== currentId
+            item.snippet.thumbnails &&
+            item.snippet.thumbnails.medium
         );
 
-        // ⭐ Перемешиваем
-        const shuffled = safeItems.sort(() => Math.random() - 0.5);
+        if (!items.length) {
+            container.innerHTML = "<p>Нет похожих видео</p>";
+            return;
+        }
 
-        // ⭐ Берём первые 6
-        const randomSix = shuffled.slice(0, 6);
+        const usedIndexes = new Set();
+        const randomVideos = [];
 
-        randomSix.forEach(item => {
+        // Выбираем до 6 случайных разных видео
+        while (randomVideos.length < 6 && usedIndexes.size < items.length) {
+            const idx = Math.floor(Math.random() * items.length);
+            if (usedIndexes.has(idx)) continue;
+
+            const item = items[idx];
+            const videoId = item.snippet.resourceId.videoId;
+
+            // пропускаем текущее видео
+            if (videoId === currentId) {
+                usedIndexes.add(idx);
+                continue;
+            }
+
+            randomVideos.push(item);
+            usedIndexes.add(idx);
+        }
+
+        if (!randomVideos.length) {
+            container.innerHTML = "<p>Нет похожих видео</p>";
+            return;
+        }
+
+        randomVideos.forEach(item => {
             const videoId = item.snippet.resourceId.videoId;
             const title = item.snippet.title;
             const thumb = item.snippet.thumbnails.medium.url;
