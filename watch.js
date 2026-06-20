@@ -20,12 +20,18 @@ async function loadRelatedVideos(currentId) {
             return;
         }
 
-        // ⭐ Перемешиваем массив
-        const shuffled = data.items
-            .filter(item => item.snippet.resourceId.videoId !== currentId)
-            .sort(() => Math.random() - 0.5);
+        // ⭐ Безопасная фильтрация (не ломается)
+        const safeItems = data.items.filter(item =>
+            item.snippet &&
+            item.snippet.resourceId &&
+            item.snippet.resourceId.videoId &&
+            item.snippet.resourceId.videoId !== currentId
+        );
 
-        // ⭐ Берём первые 6 случайных
+        // ⭐ Перемешиваем
+        const shuffled = safeItems.sort(() => Math.random() - 0.5);
+
+        // ⭐ Берём первые 6
         const randomSix = shuffled.slice(0, 6);
 
         randomSix.forEach(item => {
