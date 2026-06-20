@@ -68,7 +68,7 @@ body {
 /* Превью — убрано золотое свечение */
 .preview-thumb {
     width: 460px;
-    height: 150px;
+    height: 200px;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: none;              /* ← убрано золотое свечение */
