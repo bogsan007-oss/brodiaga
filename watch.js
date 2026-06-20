@@ -20,7 +20,7 @@ async function loadRelatedVideos(currentId) {
             return;
         }
 
-        // Берём только нормальные элементы
+        // ⭐ Берём только нормальные элементы
         const items = data.items.filter(item =>
             item.snippet &&
             item.snippet.resourceId &&
@@ -34,25 +34,24 @@ async function loadRelatedVideos(currentId) {
             return;
         }
 
-        const usedIndexes = new Set();
+        const used = new Set();
         const randomVideos = [];
 
-        // Выбираем до 6 случайных разных видео
-        while (randomVideos.length < 6 && usedIndexes.size < items.length) {
+        // ⭐ Честный рандом — выбираем 6 разных видео
+        while (randomVideos.length < 6 && used.size < items.length) {
             const idx = Math.floor(Math.random() * items.length);
-            if (usedIndexes.has(idx)) continue;
+            if (used.has(idx)) continue;
 
             const item = items[idx];
             const videoId = item.snippet.resourceId.videoId;
 
-            // пропускаем текущее видео
             if (videoId === currentId) {
-                usedIndexes.add(idx);
+                used.add(idx);
                 continue;
             }
 
             randomVideos.push(item);
-            usedIndexes.add(idx);
+            used.add(idx);
         }
 
         if (!randomVideos.length) {
