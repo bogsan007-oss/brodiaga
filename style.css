@@ -14,7 +14,7 @@ body {
 ============================ */
 .site-header {
     width: 100%;              /* шапка во всю ширину */
-    height: 450px;            /* фиксированная высота */
+    height: 250px;            /* фиксированная высота */
     background: #004040;
     display: flex;
     align-items: center;
