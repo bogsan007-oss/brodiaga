@@ -311,3 +311,18 @@ body {
         height: 110px;
     }
 }
+#show-more-box {
+    display: flex !important;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#show-more {
+    display: block !important;
+    padding: 12px 25px;
+    background: #0f0f0f;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 6px;
+    cursor: pointer;
+}
