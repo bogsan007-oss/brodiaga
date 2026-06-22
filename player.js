@@ -138,4 +138,30 @@ function insertAdCard() {
         </div>
     `;
 
-    list.insert
+    list.insertBefore(adCard, list.children[2]);
+
+    setTimeout(() => {
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch {}
+    }, 300);
+}
+
+
+/* ============================
+   КНОПКА "ПОКАЗАТЬ БОЛЬШЕ"
+============================ */
+function updateShowMoreButton() {
+    const btn = document.getElementById("show-more");
+
+    if (allVideos.length > videosPerPage) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
+}
+
+document.getElementById("show-more").onclick = () => {
+    renderMoreVideos();
+    updateShowMoreButton();
+};
