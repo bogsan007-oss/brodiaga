@@ -606,3 +606,76 @@ body {
         height: 28px !important;
     }
 }
+/* ============================
+   МОБИЛЬНАЯ ВЕРСИЯ — МЕНЮ СЛЕВА И КРУПНОЕ
+============================ */
+@media (max-width: 600px) {
+
+    /* скрываем превью */
+    .header-center,
+    .header-preview,
+    #header-preview,
+    .preview-thumb,
+    #preview-thumb,
+    .preview-title,
+    #preview-title {
+        display: none !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        visibility: hidden !important;
+    }
+
+    /* логотип на всю ширину */
+    .header-left {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .site-logo {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
+        display: block !important;
+    }
+
+    /* МЕНЮ — ВЕРТИКАЛЬНОЕ, СЛЕВА, КРУПНОЕ */
+    .right-menu {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important; /* ВЫРАВНИВАЕМ ВЛЕВО */
+        padding-left: 20px !important;
+        margin-top: 10px !important;
+    }
+
+    .right-menu ul {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important; /* ВЕРТИКАЛЬНО */
+        align-items: flex-start !important; /* ВЫРАВНИВАЕМ ВЛЕВО */
+        gap: 22px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .right-menu li {
+        display: flex !important;
+        align-items: center !important;
+        gap: 14px !important;
+    }
+
+    .right-menu a {
+        font-size: 28px !important; /* КРУПНОЕ МЕНЮ */
+        color: #fac115 !important;
+        font-weight: 600 !important;
+    }
+
+    .menu-knob {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}
