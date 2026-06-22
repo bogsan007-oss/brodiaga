@@ -2,12 +2,12 @@
    ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
 ============================ */
 let allVideos = [];
-let videosPerPage = 15; // 3 ряда по 5 карточек
+let videosPerPage = 15;
 let currentIndex = 0;
 
 
 /* ============================
-   ЗАГРУЗКА МИНИ-ПРЕВЬЮ (самое непопулярное видео)
+   ЗАГРУЗКА МИНИ-ПРЕВЬЮ
 ============================ */
 async function loadLeastViewedVideo() {
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
@@ -46,18 +46,12 @@ async function loadLeastViewedVideo() {
         const title = leastViewed.snippet.title;
         const thumb = leastViewed.snippet.thumbnails.medium.url;
 
-        const thumbEl = document.getElementById("preview-thumb");
-        const titleEl = document.getElementById("preview-title");
-        const previewEl = document.getElementById("header-preview");
+        document.getElementById("preview-thumb").src = thumb;
+        document.getElementById("preview-title").textContent = title;
 
-        if (thumbEl) thumbEl.src = thumb;
-        if (titleEl) titleEl.textContent = title;
-
-        if (previewEl) {
-            previewEl.onclick = () => {
-                window.location.href = `watch.html?id=${videoId}`;
-            };
-        }
+        document.getElementById("header-preview").onclick = () => {
+            window.location.href = `watch.html?id=${videoId}`;
+        };
 
     } catch (e) {
         console.error("Ошибка выполнения loadLeastViewedVideo:", e);
@@ -68,27 +62,24 @@ loadLeastViewedVideo();
 
 
 /* ============================
-   ЗАГРУЗКА КАРТОЧЕК НА ГЛАВНОЙ (с подгрузкой)
+   ЗАГРУЗКА ВСЕХ ВИДЕО
 ============================ */
 async function loadVideoCards() {
-    const container = document.getElementById("video-list");
-    if (!container) return; // на watch.html просто выходим
-
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
     const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
 
     try {
-        const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
+        const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=100`;
         const res = await fetch(url);
         const data = await res.json();
 
         if (!data.items) return;
 
-        // сохраняем все видео
         allVideos = data.items;
 
-        // показываем первые 15
-        renderMoreVideos();
+        renderMoreVideos();   // первые 15
+        insertAdCard();       // вставляем рекламу
+        showMoreButtonCheck();
 
     } catch (e) {
         console.error("Ошибка выполнения loadVideoCards:", e);
@@ -99,12 +90,10 @@ loadVideoCards();
 
 
 /* ============================
-   ОТРИСОВКА ПОРЦИИ КАРТОЧЕК (15 за раз)
+   ОТРИСОВКА ПОРЦИИ
 ============================ */
 function renderMoreVideos() {
     const container = document.getElementById("video-list");
-    if (!container) return;
-
     const end = currentIndex + videosPerPage;
     const slice = allVideos.slice(currentIndex, end);
 
@@ -120,7 +109,7 @@ function renderMoreVideos() {
         };
 
         card.innerHTML = `
-            <img class="video-thumb" src="${thumb}" alt="">
+            <img class="video-thumb" src="${thumb}">
             <div class="video-title">${title}</div>
         `;
 
@@ -128,21 +117,14 @@ function renderMoreVideos() {
     });
 
     currentIndex = end;
-
-    // если видео закончились — скрываем кнопку
-    const btn = document.getElementById("show-more");
-    if (btn && currentIndex >= allVideos.length) {
-        btn.style.display = "none";
-    }
 }
 
 
 /* ============================
-   РЕКЛАМНАЯ КАРТОЧКА (2-й ряд)
+   РЕКЛАМА ПОСЛЕ 2-Й КАРТОЧКИ
 ============================ */
 function insertAdCard() {
     const list = document.getElementById("video-list");
-    if (!list) return;
 
     const adCard = document.createElement("div");
     adCard.className = "video-card ad-card";
@@ -156,33 +138,30 @@ function insertAdCard() {
         </div>
     `;
 
-    const secondCard = list.children[1];
-    if (secondCard) {
-        list.insertBefore(adCard, secondCard.nextSibling);
-    } else {
-        list.appendChild(adCard);
-    }
+    list.insertBefore(adCard, list.children[2]);
 
-    // ⭐ Безопасная загрузка рекламы
     setTimeout(() => {
         try {
             (adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (e) {
-            console.warn("AdSense blocked — продолжаем работу сайта");
-        }
+        } catch {}
     }, 300);
 }
-
 
 
 /* ============================
    КНОПКА "ПОКАЗАТЬ БОЛЬШЕ"
 ============================ */
-document.addEventListener("DOMContentLoaded", () => {
+function showMoreButtonCheck() {
     const btn = document.getElementById("show-more");
-    if (btn) {
-        btn.onclick = () => {
-            renderMoreVideos();
-        };
+
+    if (allVideos.length > videosPerPage) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
     }
-});
+}
+
+document.getElementById("show-more").onclick = () => {
+    renderMoreVideos();
+    showMoreButtonCheck();
+};
