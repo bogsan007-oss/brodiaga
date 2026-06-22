@@ -27,13 +27,13 @@ async function loadVideo() {
 
         const video = data.items[0];
 
-        // ⭐⭐⭐ ДОБАВЛЕНО: превью в шапке ⭐⭐⭐
-        document.getElementById("preview-thumb").src =
-            `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-
-        document.getElementById("preview-title").textContent =
-            video.snippet.title;
-        // ⭐⭐⭐ конец добавления ⭐⭐⭐
+        // ⭐⭐⭐ УДАЛЕНО: НЕ трогаем шапку ⭐⭐⭐
+        // document.getElementById("preview-thumb").src =
+        //     `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+        //
+        // document.getElementById("preview-title").textContent =
+        //     video.snippet.title;
+        // ⭐⭐⭐ конец удаления ⭐⭐⭐
 
         // Настраиваем Plyr
         const player = new Plyr('#player', {
