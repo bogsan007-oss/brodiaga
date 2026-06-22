@@ -18,39 +18,35 @@
 
 <body>
 <header id="site-header">
-  <div class="header-left">
-    <!-- Логотип -->
-    <img class="site-logo" src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/radio.brodiaga.jpg" alt="Radio Brodiaga"/>
+
+  <div class="header-row">
+
+      <div class="header-left">
+        <img class="site-logo" 
+             src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/radio.brodiaga.jpg" 
+             alt="Radio Brodiaga">
+      </div>
+
+      <div class="header-center">
+          <div id="header-preview" class="header-preview">
+              <img id="preview-thumb" class="preview-thumb" src="" alt="Video preview">
+              <div id="preview-title" class="preview-title"></div>
+          </div>
+      </div>
+
+      <nav class="right-menu">
+        <ul>
+          <li><img src="/rucka.png" class="menu-knob"><a href="index.html">Главная</a></li>
+          <li><img src="/rucka.png" class="menu-knob"><a href="#">Музыка</a></li>
+          <li><img src="/rucka.png" class="menu-knob"><a href="posts/example.html">Посты</a></li>
+          <li><img src="/rucka.png" class="menu-knob"><a href="pages/contact.html">Контакты</a></li>
+        </ul>
+      </nav>
+
   </div>
 
-  <div class="header-center">
-        <div id="header-preview" class="header-preview">
-            <img id="preview-thumb" class="preview-thumb" src="" alt="Video preview">
-            <div id="preview-title" class="preview-title"></div>
-        </div>
-    </div>
-
-  <nav class="right-menu">
-    <ul>
-      <li>
-        <img src="/rucka.png" class="menu-knob" alt="">
-        <a href="index.html">Главная</a>
-      </li>
-      <li>
-        <img src="rucka.png" class="menu-knob" alt="">
-        <a href="#">Музыка</a>
-      </li>
-      <li>
-        <img src="/rucka.png" class="menu-knob" alt="">
-        <a href="posts/example.html">Посты</a>
-      </li>
-      <li>
-        <img src="/rucka.png" class="menu-knob" alt="">
-        <a href="pages/contact.html">Контакты</a>
-      </li>
-    </ul>
-  </nav>
 </header>
+
 
 <!-- Основной контент -->
 <div id="video-list"></div>
