@@ -207,6 +207,56 @@ body {
     height: 100% !important;
     display: block !important;
 }
+/* ============================
+  Подвал
+============================ */
+.footer {
+    background: #0f0f0f;
+    color: #ccc;
+    padding: 30px 0;
+    margin-top: 40px;
+    border-top: 1px solid #222;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.footer-left h3 {
+    margin: 0 0 10px;
+    color: #fff;
+}
+
+.footer-center a {
+    display: block;
+    color: #ccc;
+    margin-bottom: 8px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.footer-center a:hover {
+    color: #fff;
+}
+
+.footer-right p {
+    margin: 5px 0;
+    color: #888;
+}
+
+/* Адаптивность */
+@media (max-width: 700px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
 
 
 /* ============================
