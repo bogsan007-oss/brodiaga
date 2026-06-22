@@ -78,8 +78,8 @@ async function loadVideoCards() {
         allVideos = data.items;
 
         renderMoreVideos();   // первые 15
-        insertAdCard();       // вставляем рекламу
-        showMoreButtonCheck();
+        insertAdCard();       // реклама после 2-й карточки
+        updateShowMoreButton();
 
     } catch (e) {
         console.error("Ошибка выполнения loadVideoCards:", e);
@@ -138,30 +138,4 @@ function insertAdCard() {
         </div>
     `;
 
-    list.insertBefore(adCard, list.children[2]);
-
-    setTimeout(() => {
-        try {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        } catch {}
-    }, 300);
-}
-
-
-/* ============================
-   КНОПКА "ПОКАЗАТЬ БОЛЬШЕ"
-============================ */
-function showMoreButtonCheck() {
-    const btn = document.getElementById("show-more");
-
-    if (allVideos.length > videosPerPage) {
-        btn.style.display = "block";
-    } else {
-        btn.style.display = "none";
-    }
-}
-
-document.getElementById("show-more").onclick = () => {
-    renderMoreVideos();
-    showMoreButtonCheck();
-};
+    list.insert
