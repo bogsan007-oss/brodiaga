@@ -27,6 +27,14 @@ async function loadVideo() {
 
         const video = data.items[0];
 
+        // ⭐⭐⭐ ДОБАВЛЕНО: превью в шапке ⭐⭐⭐
+        document.getElementById("preview-thumb").src =
+            `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+        document.getElementById("preview-title").textContent =
+            video.snippet.title;
+        // ⭐⭐⭐ конец добавления ⭐⭐⭐
+
         // Настраиваем Plyr
         const player = new Plyr('#player', {
             youtube: { noCookie: true }
@@ -62,10 +70,6 @@ async function loadVideo() {
 ============================ */
 async function loadRelatedVideos(currentId) {
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
-
-    // ⭐ Плейлист загрузок твоего канала:
-    // Канал: UCIRgBQwdKyIY5Sr0JDn4uPQ
-    // Плейлист загрузок: UUIRgBQwdKyIY5Sr0JDn4uPQ
     const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
 
     try {
@@ -83,7 +87,6 @@ async function loadRelatedVideos(currentId) {
             return;
         }
 
-        // Берём только нормальные элементы
         const items = data.items.filter(item =>
             item.snippet &&
             item.snippet.resourceId &&
@@ -100,7 +103,6 @@ async function loadRelatedVideos(currentId) {
         const used = new Set();
         const randomVideos = [];
 
-        // Честный рандом — выбираем до 6 разных видео
         while (randomVideos.length < 6 && used.size < items.length) {
             const idx = Math.floor(Math.random() * items.length);
             if (used.has(idx)) continue;
