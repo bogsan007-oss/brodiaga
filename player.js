@@ -1,6 +1,13 @@
 /* ============================
+   ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+============================ */
+let allVideos = [];
+let videosPerPage = 15; // 3 ряда по 5 карточек
+let currentIndex = 0;
+
+
+/* ============================
    ЗАГРУЗКА МИНИ-ПРЕВЬЮ (самое непопулярное видео)
-   — работает на всех страницах
 ============================ */
 async function loadLeastViewedVideo() {
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
@@ -53,7 +60,7 @@ async function loadLeastViewedVideo() {
         }
 
     } catch (e) {
-        console.error("Ошибка loadLeastViewedVideo:", e);
+        console.error("Ошибка выполнения loadLeastViewedVideo:", e);
     }
 }
 
@@ -61,12 +68,11 @@ loadLeastViewedVideo();
 
 
 /* ============================
-   ЗАГРУЗКА КАРТОЧЕК НА ГЛАВНОЙ
-   — работает ТОЛЬКО если есть #video-list
+   ЗАГРУЗКА КАРТОЧЕК НА ГЛАВНОЙ (с подгрузкой)
 ============================ */
 async function loadVideoCards() {
     const container = document.getElementById("video-list");
-    if (!container) return; // ⭐ На watch.html просто выходим
+    if (!container) return; // на watch.html просто выходим
 
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
     const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
@@ -76,33 +82,16 @@ async function loadVideoCards() {
         const res = await fetch(url);
         const data = await res.json();
 
-        container.innerHTML = "";
-
         if (!data.items) return;
 
-        data.items.forEach(item => {
-            const videoId = item.snippet.resourceId.videoId;
-            const title = item.snippet.title;
-            const thumb = item.snippet.thumbnails.medium.url;
+        // сохраняем все видео
+        allVideos = data.items;
 
-            const card = document.createElement("div");
-            card.className = "video-card";
-            card.onclick = () => {
-                window.location.href = `watch.html?id=${videoId}`;
-            };
-
-            card.innerHTML = `
-                <img class="video-thumb" src="${thumb}" alt="">
-                <div class="video-title">${title}</div>
-            `;
-
-            container.appendChild(card);
-        });
-
-        insertAdCard();
+        // показываем первые 15
+        renderMoreVideos();
 
     } catch (e) {
-        console.error("Ошибка loadVideoCards:", e);
+        console.error("Ошибка выполнения loadVideoCards:", e);
     }
 }
 
@@ -110,7 +99,46 @@ loadVideoCards();
 
 
 /* ============================
-   РЕКЛАМНАЯ КАРТОЧКА
+   ОТРИСОВКА ПОРЦИИ КАРТОЧЕК (15 за раз)
+============================ */
+function renderMoreVideos() {
+    const container = document.getElementById("video-list");
+    if (!container) return;
+
+    const end = currentIndex + videosPerPage;
+    const slice = allVideos.slice(currentIndex, end);
+
+    slice.forEach(item => {
+        const videoId = item.snippet.resourceId.videoId;
+        const title = item.snippet.title;
+        const thumb = item.snippet.thumbnails.medium.url;
+
+        const card = document.createElement("div");
+        card.className = "video-card";
+        card.onclick = () => {
+            window.location.href = `watch.html?id=${videoId}`;
+        };
+
+        card.innerHTML = `
+            <img class="video-thumb" src="${thumb}" alt="">
+            <div class="video-title">${title}</div>
+        `;
+
+        container.appendChild(card);
+    });
+
+    currentIndex = end;
+
+    // если видео закончились — скрываем кнопку
+    const btn = document.getElementById("show-more");
+    if (btn && currentIndex >= allVideos.length) {
+        btn.style.display = "none";
+    }
+}
+
+
+/* ============================
+   РЕКЛАМНАЯ КАРТОЧКА (2-й ряд)
 ============================ */
 function insertAdCard() {
     const list = document.getElementById("video-list");
@@ -141,3 +169,16 @@ function insertAdCard() {
         console.log("AdSense error:", e);
     }
 }
+
+
+/* ============================
+   КНОПКА "ПОКАЗАТЬ БОЛЬШЕ"
+============================ */
+document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("show-more");
+    if (btn) {
+        btn.onclick = () => {
+            renderMoreVideos();
+        };
+    }
+});
