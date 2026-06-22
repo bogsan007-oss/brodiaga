@@ -157,13 +157,9 @@ function insertAdCard() {
 ============================ */
 function updateShowMoreButton() {
     const btn = document.getElementById("show-more");
-
-    if (allVideos.length > videosPerPage) {
-        btn.style.display = "block";
-    } else {
-        btn.style.display = "none";
-    }
+    btn.style.display = "block"; // ВСЕГДА показываем кнопку
 }
+
 
 document.getElementById("show-more").onclick = () => {
     renderMoreVideos();
