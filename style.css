@@ -528,3 +528,81 @@ body {
         height: 26px;
     }
 }
+/* ============================
+   МОБИЛЬНАЯ ВЕРСИЯ — ЖЁСТКИЙ ФИКС
+============================ */
+@media (max-width: 600px) {
+
+    /* скрываем превью полностью */
+    .header-center,
+    .header-preview,
+    #header-preview,
+    .preview-thumb,
+    #preview-thumb,
+    .preview-title,
+    #preview-title {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* шапка в столбик */
+    #site-header {
+        padding: 0;
+        margin: 0;
+    }
+
+    /* ЛОГОТИП НА ВСЮ ШИРИНУ */
+    .header-left {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .site-logo {
+        width: 100% !important;   /* ВОТ ЭТО ДЕЛАЕТ ЛОГОТИП НА ВСЮ ШИРИНУ */
+        height: auto !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
+        display: block !important;
+    }
+
+    /* МЕНЮ — ВЕРТИКАЛЬНОЕ, КРУПНОЕ */
+    .right-menu {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 15px 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .right-menu ul {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important; /* ВЕРТИКАЛЬНО */
+        align-items: center !important;
+        gap: 20px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .right-menu li {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+    }
+
+    .right-menu a {
+        font-size: 26px !important; /* КРУПНОЕ МЕНЮ */
+        color: #fac115 !important;
+    }
+
+    .menu-knob {
+        width: 28px !important;
+        height: 28px !important;
+    }
+}
