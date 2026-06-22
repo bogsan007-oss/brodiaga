@@ -330,8 +330,7 @@ body {
 ============================ */
 #show-more {
     display: block !important;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     padding: 8px 18px; /* меньше расстояние */
     background: #003f40; /* твой цвет */
     color: #fff;
