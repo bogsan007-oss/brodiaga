@@ -461,3 +461,70 @@ body {
         justify-content: center;
     }
 }
+/* ============================
+   МОБИЛЬНАЯ ВЕРСИЯ — ТОЧНО КАК ТЫ ХОЧЕШЬ
+============================ */
+@media (max-width: 600px) {
+
+    /* скрываем превью полностью */
+    .header-center,
+    .header-preview,
+    .preview-thumb,
+    .preview-title {
+        display: none !important;
+    }
+
+    /* перестраиваем шапку в столбик */
+    #site-header {
+        padding: 15px 0;
+    }
+
+    .header-left {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    /* логотип сверху, ровно, не налезает */
+    .site-logo {
+        width: 160px;
+        height: 160px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* меню — вертикальное, крупное, под логотипом */
+    .right-menu {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .right-menu ul {
+        display: flex;
+        flex-direction: column; /* ВЕРТИКАЛЬНОЕ МЕНЮ */
+        align-items: center;
+        gap: 18px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .right-menu li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .right-menu a {
+        font-size: 22px; /* КРУПНОЕ МЕНЮ */
+        color: #fac115;
+    }
+
+    .menu-knob {
+        width: 26px;
+        height: 26px;
+    }
+}
