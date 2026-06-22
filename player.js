@@ -121,7 +121,7 @@ function renderMoreVideos() {
 
 
 /* ============================
-   РЕКЛАМА ПОСЛЕ 10-Й КАРТОЧКИ
+   РЕКЛАМА ПОСЛЕ 6-Й КАРТОЧКИ
 ============================ */
 function insertAdCard() {
     const list = document.getElementById("video-list");
@@ -138,8 +138,7 @@ function insertAdCard() {
         </div>
     `;
 
-    // вставляем рекламу после 10-й карточки
-    const index = 10;
+    const index = 6; // вставляем рекламу после 6-й карточки
     if (list.children[index]) {
         list.insertBefore(adCard, list.children[index]);
     } else {
