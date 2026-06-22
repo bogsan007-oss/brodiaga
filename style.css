@@ -351,7 +351,7 @@ body {
 
 
 /* ============================
-   АДАПТИВНОСТЬ
+   АДАПТИВНОСТЬ 768px (оставляем)
 ============================ */
 @media (max-width: 768px) {
 
@@ -383,4 +383,48 @@ body {
         justify-content: center;
         gap: 25px;
     }
+}
+
+
+/* ============================
+   СКРЫВАЕМ ПРЕВЬЮ НА МОБИЛЬНЫХ 600px
+============================ */
+@media (max-width: 600px) {
+
+    .preview-thumb,
+    .header-preview {
+        display: none !important;
+    }
+
+    #site-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .header-left,
+    .header-center,
+    .right-menu {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .right-menu ul {
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .site-logo {
+        width: 140px;
+        height: 140px;
+    }
+}
+
 }
