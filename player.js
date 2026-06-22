@@ -163,12 +163,16 @@ function insertAdCard() {
         list.appendChild(adCard);
     }
 
-    try {
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-        console.log("AdSense error:", e);
-    }
+    // ⭐ Безопасная загрузка рекламы
+    setTimeout(() => {
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+            console.warn("AdSense blocked — продолжаем работу сайта");
+        }
+    }, 300);
 }
+
 
 
 /* ============================
