@@ -328,21 +328,25 @@ body {
 /* ============================
    КНОПКА "ПОКАЗАТЬ БОЛЬШЕ"
 ============================ */
-#show-more-box {
-    display: flex !important;
-    justify-content: center;
-    margin: 20px 0;
-}
-
 #show-more {
     display: block !important;
-    padding: 12px 25px;
-    background: #0f0f0f;
-    color: white;
-    border: 1px solid #444;
+    padding: 8px 18px; /* меньше расстояние */
+    background: #003f40; /* твой цвет */
+    color: #fff;
+    border: 1px solid #666; /* тонкая рамка */
     border-radius: 6px;
+    font-size: 18px; /* крупнее шрифт */
+    letter-spacing: 0.3px;
     cursor: pointer;
+    transition: all .25s ease;
 }
+
+#show-more:hover {
+    border-color: #fac115;
+    color: #fac115;
+    transform: translateY(-2px);
+}
+
 
 
 /* ============================
