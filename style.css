@@ -425,6 +425,60 @@ body {
         width: 140px;
         height: 140px;
     }
+     /* ============================
+   МОБИЛЬНАЯ ВЕРСИЯ (до 600px)
+============================ */
+@media (max-width: 600px) {
+
+    /* скрываем превью */
+    .preview-thumb,
+    .header-preview {
+        display: none !important;
+    }
+
+    /* перестраиваем шапку в столбик */
+    #site-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 10px 0;
+        height: auto;
+    }
+
+    /* УВЕЛИЧЕННЫЙ логотип */
+    .site-logo {
+        width: 200px;   /* ставим нормальный размер */
+        height: 200px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* меню по центру */
+    .right-menu {
+        width: 100%;
+        position: static !important;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .right-menu ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+        padding: 0;
+        margin: 0;
+        flex-wrap: wrap; /* чтобы не тянулось в одну линию */
+    }
+
+    .right-menu li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
-}
