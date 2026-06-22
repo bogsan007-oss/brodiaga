@@ -1,5 +1,6 @@
 /* ============================
    ЗАГРУЗКА МИНИ-ПРЕВЬЮ (самое непопулярное видео)
+   — работает на всех страницах
 ============================ */
 async function loadLeastViewedVideo() {
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
@@ -52,7 +53,7 @@ async function loadLeastViewedVideo() {
         }
 
     } catch (e) {
-        console.error("Ошибка выполнения loadLeastViewedVideo:", e);
+        console.error("Ошибка loadLeastViewedVideo:", e);
     }
 }
 
@@ -61,8 +62,12 @@ loadLeastViewedVideo();
 
 /* ============================
    ЗАГРУЗКА КАРТОЧЕК НА ГЛАВНОЙ
+   — работает ТОЛЬКО если есть #video-list
 ============================ */
 async function loadVideoCards() {
+    const container = document.getElementById("video-list");
+    if (!container) return; // ⭐ На watch.html просто выходим
+
     const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
     const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
 
@@ -70,9 +75,6 @@ async function loadVideoCards() {
         const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
         const res = await fetch(url);
         const data = await res.json();
-
-        const container = document.getElementById("video-list");
-        if (!container) return;
 
         container.innerHTML = "";
 
@@ -97,11 +99,10 @@ async function loadVideoCards() {
             container.appendChild(card);
         });
 
-        // ВСТАВЛЯЕМ РЕКЛАМНУЮ КАРТОЧКУ ПОСЛЕ ЗАГРУЗКИ ВСЕХ ВИДЕО
         insertAdCard();
 
     } catch (e) {
-        console.error("Ошибка выполнения loadVideoCards:", e);
+        console.error("Ошибка loadVideoCards:", e);
     }
 }
 
@@ -109,24 +110,23 @@ loadVideoCards();
 
 
 /* ============================
-   РЕКЛАМНАЯ КАРТОЧКА (2-й ряд)
+   РЕКЛАМНАЯ КАРТОЧКА
 ============================ */
 function insertAdCard() {
     const list = document.getElementById("video-list");
     if (!list) return;
 
     const adCard = document.createElement("div");
-     adCard.className = "video-card ad-card";
-
+    adCard.className = "video-card ad-card";
 
     adCard.innerHTML = `
-    <div class="ad-box">
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:100%;height:100%;"
-             data-ad-client="ca-pub-7483662712371460"
-             data-ad-slot="1747457051"></ins>
-    </div>
-`;
+        <div class="ad-box">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:100%;height:100%;"
+                 data-ad-client="ca-pub-7483662712371460"
+                 data-ad-slot="1747457051"></ins>
+        </div>
+    `;
 
     const secondCard = list.children[1];
     if (secondCard) {
