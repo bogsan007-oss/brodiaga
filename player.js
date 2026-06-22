@@ -2,7 +2,7 @@
    ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
 ============================ */
 let allVideos = [];
-let videosPerPage = 15;
+let videosPerPage = 14;
 let currentIndex = 0;
 
 
