@@ -331,12 +331,12 @@ body {
 #show-more {
     display: block !important;
     margin: 0 auto;
-    padding: 8px 18px; /* меньше расстояние */
-    background: #003f40; /* твой цвет */
+    padding: 8px 18px;
+    background: #003f40;
     color: #fff;
-    border: 1px solid #666; /* тонкая рамка */
+    border: 1px solid #666;
     border-radius: 6px;
-    font-size: 18px; /* крупнее шрифт */
+    font-size: 18px;
     letter-spacing: 0.3px;
     cursor: pointer;
     transition: all .25s ease;
@@ -349,9 +349,8 @@ body {
 }
 
 
-
 /* ============================
-   АДАПТИВНОСТЬ 768px (оставляем)
+   АДАПТИВНОСТЬ 768px
 ============================ */
 @media (max-width: 768px) {
 
@@ -387,46 +386,7 @@ body {
 
 
 /* ============================
-   СКРЫВАЕМ ПРЕВЬЮ НА МОБИЛЬНЫХ 600px
-============================ */
-@media (max-width: 600px) {
-
-    .preview-thumb,
-    .header-preview {
-        display: none !important;
-    }
-
-    #site-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        height: auto;
-        padding: 10px 0;
-    }
-
-    .header-left,
-    .header-center,
-    .right-menu {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .right-menu ul {
-        flex-direction: row;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .site-logo {
-        width: 140px;
-        height: 140px;
-    }
-     /* ============================
-   МОБИЛЬНАЯ ВЕРСИЯ (до 600px)
+   МОБИЛЬНАЯ ВЕРСИЯ 600px
 ============================ */
 @media (max-width: 600px) {
 
@@ -436,7 +396,7 @@ body {
         display: none !important;
     }
 
-    /* перестраиваем шапку в столбик */
+    /* перестраиваем шапку */
     #site-header {
         display: flex;
         flex-direction: column;
@@ -447,71 +407,14 @@ body {
         height: auto;
     }
 
-    /* УВЕЛИЧЕННЫЙ логотип */
-    .site-logo {
-        width: 200px;   /* ставим нормальный размер */
-        height: 200px;
-        margin: 0 auto;
-        display: block;
-    }
-
-    /* меню по центру */
-    .right-menu {
-        width: 100%;
-        position: static !important;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .right-menu ul {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 20px;
-        padding: 0;
-        margin: 0;
-        flex-wrap: wrap; /* чтобы не тянулось в одну линию */
-    }
-
-    .right-menu li {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-/* ============================
-   МОБИЛЬНАЯ ВЕРСИЯ (до 600px)
-============================ */
-@media (max-width: 600px) {
-
-    /* скрываем превью */
-    .preview-thumb,
-    .header-preview {
-        display: none !important;
-    }
-
-    /* перестраиваем шапку в столбик */
-    #site-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        padding: 10px 0;
-        height: auto;
-    }
-
-    /* ЛОГОТИП — большой, по центру, не перекрывает меню */
+    /* логотип */
     .site-logo {
         width: 200px;
         height: 200px;
         margin: 0 auto;
-        display: block;
     }
 
-    /* меню по центру, НЕ в одну строку */
+    /* меню */
     .right-menu {
         width: 100%;
         position: static !important;
@@ -528,7 +431,7 @@ body {
         gap: 20px;
         padding: 0;
         margin: 0;
-        flex-wrap: wrap; /* ВАЖНО: позволяет меню переноситься */
+        flex-wrap: wrap;
     }
 
     .right-menu li {
@@ -537,4 +440,3 @@ body {
         justify-content: center;
     }
 }
-
