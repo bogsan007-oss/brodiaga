@@ -47,6 +47,26 @@
     <div class="video-player-container">
         <video id="player" playsinline controls></video>
     </div>
+<!-- Кнопки под плеером  -->    
+<div class="action-panel">
+    <div class="panel-section rating-section">
+        <div class="stars" id="ratingStars">
+            <span data-value="1">☆</span>
+            <span data-value="2">☆</span>
+            <span data-value="3">☆</span>
+            <span data-value="4">☆</span>
+            <span data-value="5">☆</span>
+        </div>
+    </div>
+
+    <div class="panel-section comment-section" onclick="goToComments()">
+        Комментарий
+    </div>
+
+    <div class="panel-section private-section" onclick="openPrivateForm()">
+        В приват
+    </div>
+</div>
 
     <h1 id="video-title" class="video-title-page"></h1>
     <p id="video-description" class="video-description"></p>
