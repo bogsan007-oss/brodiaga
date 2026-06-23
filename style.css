@@ -327,7 +327,7 @@ body {
   КНОПКИ ПОД ПЛЕЕРОМ
 ============================ */
 .action-panel {
-    margin-top: 5px;
+    margin-top: 2px;
     width: 100%;
     max-width: 720px; /* ширина как у плеера */
     display: flex;
@@ -340,7 +340,7 @@ body {
 /* Каждая секция */
 .panel-section {
     flex: 1;
-    padding: 6px 0;
+    padding: 4px 0;
     text-align: center;
     cursor: pointer;
     user-select: none;
