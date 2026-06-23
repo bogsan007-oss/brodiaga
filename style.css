@@ -353,6 +353,12 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.watch-ad {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
 
 
 /* ============================
