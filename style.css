@@ -84,8 +84,15 @@ body {
 }
 
 .menu-knob {
-    width: 22px;
+    width: 22px; /* или твой размер */
     height: 22px;
+    transition: transform 0.4s ease;
+    transform-origin: center center;
+}
+/* Вращение при наведении */
+.right-menu li:hover .menu-knob {
+    transform: rotate(180deg);
+}
 }
 
 .right-menu a {
