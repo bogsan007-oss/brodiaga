@@ -283,7 +283,66 @@ body {
     justify-content: center;
     margin: 20px 0;
 }
+/* ============================
+  КНОПКИ ПОД ПЛЕЕРОМ
+============================ */
+.action-panel {
+    margin-top: 15px;
+    width: 100%;
+    max-width: 720px; /* ширина как у плеера */
+    display: flex;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #001a1a;
+}
 
+/* Каждая секция */
+.panel-section {
+    flex: 1;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    font-size: 15px;
+    transition: background 0.2s, opacity 0.2s;
+}
+
+/* Левая секция — звёзды */
+.rating-section {
+    background: #002222;
+}
+
+/* Средняя — комментарий */
+.comment-section {
+    background: #e6c27a;
+    color: #001f1f;
+    font-weight: bold;
+}
+
+/* Правая — приват */
+.private-section {
+    background: #001f1f;
+    border-left: 1px solid rgba(255,255,255,0.2);
+    color: #e6c27a;
+}
+
+/* Ховеры */
+.panel-section:hover {
+    opacity: 0.8;
+}
+
+/* Звёзды */
+.stars span {
+    font-size: 20px;
+    padding: 0 2px;
+    color: rgba(255,255,255,0.4); /* контур */
+    transition: color 0.2s;
+}
+
+.stars span.active {
+    color: #e6c27a; /* золотые */
+}
 
 
 /* ============================
