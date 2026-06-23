@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комментарии</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
 
+<body>
+
+    <!-- Узкая шапка -->
+    <header class="mini-header">
+        <div class="back-btn" onclick="history.back()">← Вернуться назад</div>
+        <img src="../rucka.png" class="mini-logo" alt="logo">
+    </header>
+
+    <!-- Контейнер комментариев -->
+    <div class="comments-container">
+        <h2>Комментарии</h2>
+
+        <div class="comments-list">
+            <!-- Здесь будут комментарии -->
+        </div>
+
+        <hr class="divider">
+
+        <button id="write-to-author">Написать лично автору</button>
+
+        <form id="private-form" style="display:none;">
+            <input type="text" placeholder="Ваше имя">
+            <textarea placeholder="Ваше сообщение"></textarea>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+
+    <script src="comments.js"></script>
+
+</body>
+</html>
