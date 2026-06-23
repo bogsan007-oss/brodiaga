@@ -333,7 +333,7 @@ body {
 /* Каждая секция */
 .panel-section {
     flex: 1;
-    padding: 10px 0;
+    padding: 6px 0;
     text-align: center;
     cursor: pointer;
     user-select: none;
