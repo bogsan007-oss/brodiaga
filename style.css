@@ -283,6 +283,39 @@ body {
     justify-content: center;
     margin: 20px 0;
 }
+
+
+/* ============================
+   СТРАНИЦА ПРОСМОТРА
+============================ */
+.video-page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.video-player-container {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.video-title-page {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.video-description {
+    white-space: pre-line;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.video-date {
+    color: #888;
+    font-size: 14px;
+}
 /* ============================
   КНОПКИ ПОД ПЛЕЕРОМ
 ============================ */
@@ -343,40 +376,6 @@ body {
 .stars span.active {
     color: #e6c27a; /* золотые */
 }
-
-
-/* ============================
-   СТРАНИЦА ПРОСМОТРА
-============================ */
-.video-page {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-.video-player-container {
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-.video-title-page {
-    font-size: 26px;
-    margin-bottom: 10px;
-}
-
-.video-description {
-    white-space: pre-line;
-    color: #ccc;
-    margin-bottom: 20px;
-}
-
-.video-date {
-    color: #888;
-    font-size: 14px;
-}
-
 
 /* ============================
    ПОХОЖИЕ ВИДЕО
