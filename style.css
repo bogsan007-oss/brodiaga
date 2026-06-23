@@ -320,7 +320,7 @@ body {
   КНОПКИ ПОД ПЛЕЕРОМ
 ============================ */
 .action-panel {
-    margin-top: 15px;
+    margin-top: 5px;
     width: 100%;
     max-width: 720px; /* ширина как у плеера */
     display: flex;
