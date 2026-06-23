@@ -294,6 +294,13 @@ body {
     padding: 20px;
 }
 
+.player-wrapper {
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
 .video-player-container {
     width: 100%;
     border-radius: 12px;
