@@ -147,6 +147,33 @@ async function loadRelatedVideos(currentId) {
         console.error("Ошибка loadRelatedVideos:", e);
     }
 }
+// Звёзды
+const stars = document.querySelectorAll('#ratingStars span');
+
+stars.forEach(star => {
+    star.addEventListener('click', () => {
+        const value = star.getAttribute('data-value');
+
+        stars.forEach(s => {
+            s.classList.remove('active');
+            if (s.getAttribute('data-value') <= value) {
+                s.classList.add('active');
+            }
+        });
+
+        console.log("Оценка:", value);
+    });
+});
+
+// Переход в комментарии
+function goToComments() {
+    window.location.href = "pages/comments.html";
+}
+
+// Открытие приватной формы
+function openPrivateForm() {
+    alert("Открываем приватную форму… (позже сделаем красиво)");
+}
 
 
 /* ============================
