@@ -68,7 +68,6 @@ body {
 }
 
 /* МЕНЮ */
-/* МЕНЮ */
 .right-menu ul {
     list-style: none;
     margin: 0;
@@ -281,6 +280,8 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    text-align: center;
     margin: 20px 0;
 }
 
