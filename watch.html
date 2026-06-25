@@ -7,6 +7,10 @@
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+
+    <!-- Глобальный код AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7483662712371460"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -70,7 +74,9 @@
                 В приват
             </div>
 
-        </div> <!-- /player-wrapper -->
+        </div> <!-- /action-panel -->
+
+    </div> <!-- /player-wrapper -->
 
 
     <!-- Контент страницы (широкий контейнер) -->
@@ -80,12 +86,13 @@
 
     <h2 class="related-title">Похожие видео</h2>
 
-    <div id="related-videos"></div>
+    <!-- Широкий контейнер для 3 карточек -->
+    <div id="related-videos" class="related-grid"></div>
 
-    <!-- Реклама -->
+    <!-- Реклама под похожими видео -->
     <div class="watch-ad">
         <ins class="adsbygoogle"
-             style="display:block"
+             style="display:block; width:100%; min-height:200px;"
              data-ad-client="ca-pub-7483662712371460"
              data-ad-slot="7897698404"
              data-ad-format="auto"
@@ -95,6 +102,11 @@
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
+
+    <!-- Временный футер -->
+    <footer class="footer-temp">
+        © Radio Brodiaga — временный футер
+    </footer>
 
 </div> <!-- /video-page -->
 
