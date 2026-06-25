@@ -811,7 +811,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #111;
+    background: #004040;
     padding: 8px 12px;
     border-bottom: 1px solid #333;
     height: 60px;
@@ -820,7 +820,7 @@ body {
 }
 
 .mini-logo {
-    height: 45px;      /* фиксируем высоту */
+    height: 100px;      /* фиксируем высоту */
     width: auto;       /* ширина подстраивается */
     max-width: 120px;  /* не даём убежать вправо */
     object-fit: contain;
