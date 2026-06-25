@@ -42,22 +42,34 @@ async function loadVideo() {
             ]
         };
 
-        // Заполняем данные
+        // Заголовок
         document.getElementById("video-title").textContent = video.snippet.title;
 
-        // ⭐ ЧИСТОЕ ОПИСАНИЕ БЕЗ HTML ⭐
-       // ⭐ ДЕЛАЕМ ССЫЛКИ КЛИКАБЕЛЬНЫМИ ⭐
-function makeLinksClickable(text) {
-    return text.replace(
-        /(https?:\/\/[^\s]+)/g,
-        '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
-    );
+        // ⭐ ФУНКЦИЯ ДЛЯ КЛИКАБЕЛЬНЫХ ССЫЛОК ⭐
+        function makeLinksClickable(text) {
+            return text.replace(
+                /(https?:\/\/[^\s]+)/g,
+                '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
+            );
+        }
+
+        // Описание: чистим HTML и делаем ссылки кликабельными
+        const cleanDescription = video.snippet.description.replace(/<[^>]+>/g, "");
+        document.getElementById("video-description").innerHTML =
+            makeLinksClickable(cleanDescription);
+
+        // Дата
+        document.getElementById("video-date").textContent =
+            "Дата публикации: " + new Date(video.snippet.publishedAt).toLocaleDateString("ru-RU");
+
+        // Похожие видео
+        loadRelatedVideos(videoId);
+
+    } catch (e) {
+        console.error("Ошибка loadVideo:", e);
+    }
 }
 
-document.getElementById("video-description").innerHTML =
-    makeLinksClickable(
-        video.snippet.description.replace(/<[^>]+>/g, "")
-    );
 
 
 
