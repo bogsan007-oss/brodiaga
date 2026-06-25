@@ -46,7 +46,8 @@ async function loadVideo() {
         document.getElementById("video-title").textContent = video.snippet.title;
 
         // ⭐ ЧИСТОЕ ОПИСАНИЕ БЕЗ HTML ⭐
-        function makeLinksClickable(text) {
+       // ⭐ ДЕЛАЕМ ССЫЛКИ КЛИКАБЕЛЬНЫМИ ⭐
+function makeLinksClickable(text) {
     return text.replace(
         /(https?:\/\/[^\s]+)/g,
         '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
@@ -57,6 +58,7 @@ document.getElementById("video-description").innerHTML =
     makeLinksClickable(
         video.snippet.description.replace(/<[^>]+>/g, "")
     );
+
 
 
         document.getElementById("video-date").textContent =
