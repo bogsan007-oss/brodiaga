@@ -814,7 +814,7 @@ body {
     background: #004040;
     padding: 8px 12px;
     border-bottom: 1px solid #333;
-    height: 60px;
+    height: 100px;
     box-sizing: border-box;
     overflow: hidden; /* не даём логотипу вылезать */
 }
