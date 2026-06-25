@@ -278,9 +278,7 @@ body {
 
 .after-show-more-ad {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
     text-align: center;
     margin: 20px 0;
 }
