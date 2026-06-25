@@ -54,10 +54,11 @@
 <div id="show-more-box">
     <button id="show-more">Показать больше</button>
 </div>
-    <!-- Реклама Гугла -->
+
+<!-- Реклама Гугла -->
 <div class="after-show-more-ad">
     <ins class="adsbygoogle"
-        style="display:block"
+        style="display:block; width:100%;"
         data-ad-client="ca-pub-7483662712371460"
         data-ad-slot="4045182991"
         data-ad-format="auto"
@@ -65,10 +66,16 @@
 </div>
 
 <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    // Принудительный ререндер — важно для главной страницы
+    setTimeout(() => {
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {}
+    }, 300);
 </script>
 
 <footer class="footer">
+
     <div class="footer-content">
         <div class="footer-left">
             <h3>Песни Старого Клоуна</h3>
