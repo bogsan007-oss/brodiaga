@@ -27,14 +27,6 @@ async function loadVideo() {
 
         const video = data.items[0];
 
-        // ⭐⭐⭐ УДАЛЕНО: НЕ трогаем шапку ⭐⭐⭐
-        // document.getElementById("preview-thumb").src =
-        //     `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-        //
-        // document.getElementById("preview-title").textContent =
-        //     video.snippet.title;
-        // ⭐⭐⭐ конец удаления ⭐⭐⭐
-
         // Настраиваем Plyr
         const player = new Plyr('#player', {
             youtube: { noCookie: true }
@@ -52,7 +44,11 @@ async function loadVideo() {
 
         // Заполняем данные
         document.getElementById("video-title").textContent = video.snippet.title;
-        document.getElementById("video-description").textContent = video.snippet.description;
+
+        // ⭐ ЧИСТОЕ ОПИСАНИЕ БЕЗ HTML ⭐
+        document.getElementById("video-description").textContent =
+            video.snippet.description.replace(/<[^>]+>/g, "");
+
         document.getElementById("video-date").textContent =
             "Дата публикации: " + new Date(video.snippet.publishedAt).toLocaleDateString("ru-RU");
 
@@ -147,6 +143,8 @@ async function loadRelatedVideos(currentId) {
         console.error("Ошибка loadRelatedVideos:", e);
     }
 }
+
+
 // Звёзды
 const stars = document.querySelectorAll('#ratingStars span');
 
@@ -180,3 +178,4 @@ function openPrivateForm() {
    СТАРТ
 ============================ */
 loadVideo();
+
