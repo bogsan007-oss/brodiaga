@@ -10,7 +10,7 @@
 </head>
 
 <body>
-ТЕСТ 123
+
     <!-- Узкая шапка -->
     <header class="mini-header">
         <div class="back-btn" onclick="history.back()">← Вернуться назад</div>
@@ -19,13 +19,16 @@
 
     <!-- Контейнер комментариев -->
     <div class="comments-container">
-        <h2>Комментарии</h2>
+    <h2>Комментарии</h2>
 
-        <div class="comments-list"></div>
-<div class="comment-form">
-    <textarea id="commentText" placeholder="Написать комментарий..."></textarea>
-    <button onclick="sendComment()">Отправить</button>
+    <div class="comments-list"></div>
+
+    <div class="comment-form">
+        <textarea id="commentText" placeholder="Написать комментарий..."></textarea>
+        <button onclick="sendComment()">Отправить</button>
+    </div>
 </div>
+
 
         <hr class="divider">
 
@@ -49,9 +52,7 @@
     </div>
 
     <script src="comments.js"></script>
-<script>
-console.log("Встроенный JS работает!");
-</script>
+
 
 </body>
 </html>
