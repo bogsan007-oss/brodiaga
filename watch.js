@@ -43,7 +43,10 @@ async function loadVideo() {
         };
 
         // Заголовок
-        document.getElementById("video-title").textContent = video.snippet.title;
+        const titleEl = document.getElementById("video-title");
+        if (titleEl) {
+            titleEl.textContent = video.snippet.title;
+        }
 
         // ⭐ ФУНКЦИЯ ДЛЯ КЛИКАБЕЛЬНЫХ ССЫЛОК ⭐
         function makeLinksClickable(text) {
@@ -54,33 +57,25 @@ async function loadVideo() {
         }
 
         // Описание: чистим HTML и делаем ссылки кликабельными
-        const cleanDescription = video.snippet.description.replace(/<[^>]+>/g, "");
-        document.getElementById("video-description").innerHTML =
-            makeLinksClickable(cleanDescription);
+        const descEl = document.getElementById("video-description");
+        if (descEl) {
+            const cleanDescription = (video.snippet.description || "").replace(/<[^>]+>/g, "");
+            descEl.innerHTML = makeLinksClickable(cleanDescription);
+        }
 
         // Дата
-        document.getElementById("video-date").textContent =
-            "Дата публикации: " + new Date(video.snippet.publishedAt).toLocaleDateString("ru-RU");
+        const dateEl = document.getElementById("video-date");
+        if (dateEl) {
+            dateEl.textContent =
+                "Дата публикации: " + new Date(video.snippet.publishedAt).toLocaleDateString("ru-RU");
+        }
 
         // Похожие видео
         loadRelatedVideos(videoId);
 
     } catch (e) {
         console.error("Ошибка loadVideo:", e);
-    }
-}
-
-
-
-
-        document.getElementById("video-date").textContent =
-            "Дата публикации: " + new Date(video.snippet.publishedAt).toLocaleDateString("ru-RU");
-
-        // Загружаем похожие видео
-        loadRelatedVideos(videoId);
-
-    } catch (e) {
-        console.error("Ошибка loadVideo:", e);
+        document.body.innerHTML = "<h2>Ошибка загрузки видео</h2>";
     }
 }
 
@@ -169,30 +164,41 @@ async function loadRelatedVideos(currentId) {
 }
 
 
-// Звёзды
-const stars = document.querySelectorAll('#ratingStars span');
+/* ============================
+   ЗВЁЗДЫ РЕЙТИНГА
+============================ */
+const starsContainer = document.getElementById('ratingStars');
+if (starsContainer) {
+    const stars = starsContainer.querySelectorAll('span');
 
-stars.forEach(star => {
-    star.addEventListener('click', () => {
-        const value = star.getAttribute('data-value');
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const value = star.getAttribute('data-value');
 
-        stars.forEach(s => {
-            s.classList.remove('active');
-            if (s.getAttribute('data-value') <= value) {
-                s.classList.add('active');
-            }
+            stars.forEach(s => {
+                s.classList.remove('active');
+                if (s.getAttribute('data-value') <= value) {
+                    s.classList.add('active');
+                }
+            });
+
+            console.log("Оценка:", value);
         });
-
-        console.log("Оценка:", value);
     });
-});
+}
 
-// Переход в комментарии
+
+/* ============================
+   ПЕРЕХОД В КОММЕНТАРИИ
+============================ */
 function goToComments() {
     window.location.href = "pages/comments.html";
 }
 
-// Открытие приватной формы
+
+/* ============================
+   ОТКРЫТИЕ ПРИВАТНОЙ ФОРМЫ
+============================ */
 function openPrivateForm() {
     alert("Открываем приватную форму… (позже сделаем красиво)");
 }
@@ -202,4 +208,3 @@ function openPrivateForm() {
    СТАРТ
 ============================ */
 loadVideo();
-
