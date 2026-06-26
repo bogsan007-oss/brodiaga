@@ -77,6 +77,7 @@ async function loadVideoCards() {
 
         allVideos = data.items;
 
+        // ВАЖНО: выполняем только на index.html
         if (document.getElementById("video-list")) {
             renderMoreVideos();
             insertAdCard();
