@@ -5,7 +5,7 @@ let allVideos = [];
 let videosPerPage = 14;
 let currentIndex = 0;
 
-const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
+const apiKey = "AIzaSyBsgFd3dCjYQcKdMRtvCW-bwKrifH1n80w";
 const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
 
 
