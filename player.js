@@ -5,14 +5,14 @@ let allVideos = [];
 let videosPerPage = 14;
 let currentIndex = 0;
 
+const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
+const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
+
 
 /* ============================
    ЗАГРУЗКА МИНИ-ПРЕВЬЮ
 ============================ */
 async function loadLeastViewedVideo() {
-    const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
-    const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
-
     try {
         const listUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
         const listRes = await fetch(listUrl);
@@ -46,28 +46,28 @@ async function loadLeastViewedVideo() {
         const title = leastViewed.snippet.title;
         const thumb = leastViewed.snippet.thumbnails.medium.url;
 
-        document.getElementById("preview-thumb").src = thumb;
-        document.getElementById("preview-title").textContent = title;
+        const thumbEl = document.getElementById("preview-thumb");
+        const titleEl = document.getElementById("preview-title");
+        const boxEl = document.getElementById("header-preview");
 
-        document.getElementById("header-preview").onclick = () => {
-            window.location.href = `watch.html?id=${videoId}`;
-        };
+        if (thumbEl) thumbEl.src = thumb;
+        if (titleEl) titleEl.textContent = title;
+        if (boxEl) {
+            boxEl.onclick = () => {
+                window.location.href = `watch.html?id=${videoId}`;
+            };
+        }
 
     } catch (e) {
-        console.error("Ошибка выполнения loadLeastViewedVideo:", e);
+        console.error("Ошибка loadLeastViewedVideo:", e);
     }
 }
-
-loadLeastViewedVideo();
 
 
 /* ============================
    ЗАГРУЗКА ВСЕХ ВИДЕО
 ============================ */
 async function loadVideoCards() {
-    const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
-    const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
-
     try {
         const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=100`;
         const res = await fetch(url);
@@ -77,16 +77,16 @@ async function loadVideoCards() {
 
         allVideos = data.items;
 
-        renderMoreVideos();   // первые 15
-        insertAdCard();       // реклама после 2-й карточки
-        updateShowMoreButton();
+        if (document.getElementById("video-list")) {
+            renderMoreVideos();
+            insertAdCard();
+            updateShowMoreButton();
+        }
 
     } catch (e) {
-        console.error("Ошибка выполнения loadVideoCards:", e);
+        console.error("Ошибка loadVideoCards:", e);
     }
 }
-
-loadVideoCards();
 
 
 /* ============================
@@ -94,6 +94,8 @@ loadVideoCards();
 ============================ */
 function renderMoreVideos() {
     const container = document.getElementById("video-list");
+    if (!container) return;
+
     const end = currentIndex + videosPerPage;
     const slice = allVideos.slice(currentIndex, end);
 
@@ -125,6 +127,7 @@ function renderMoreVideos() {
 ============================ */
 function insertAdCard() {
     const list = document.getElementById("video-list");
+    if (!list) return;
 
     const adCard = document.createElement("div");
     adCard.className = "video-card ad-card";
@@ -138,7 +141,7 @@ function insertAdCard() {
         </div>
     `;
 
-    const index = 6; // вставляем рекламу после 6-й карточки
+    const index = 6;
     if (list.children[index]) {
         list.insertBefore(adCard, list.children[index]);
     } else {
@@ -152,16 +155,26 @@ function insertAdCard() {
     }, 300);
 }
 
+
 /* ============================
    КНОПКА "ПОКАЗАТЬ БОЛЬШЕ"
 ============================ */
 function updateShowMoreButton() {
     const btn = document.getElementById("show-more");
-    btn.style.display = "block"; // ВСЕГДА показываем кнопку
+    if (btn) btn.style.display = "block";
+}
+
+const showMoreBtn = document.getElementById("show-more");
+if (showMoreBtn) {
+    showMoreBtn.onclick = () => {
+        renderMoreVideos();
+        updateShowMoreButton();
+    };
 }
 
 
-document.getElementById("show-more").onclick = () => {
-    renderMoreVideos();
-    updateShowMoreButton();
-};
+/* ============================
+   ЗАПУСК
+============================ */
+loadLeastViewedVideo();
+loadVideoCards();
