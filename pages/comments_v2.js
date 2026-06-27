@@ -1,7 +1,7 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js'
 
 // Подключение к Supabase
-const supabaseUrl = 'https://uyclsolpcfmhldpvnfjii.supabase.co'   // ✔ ПРАВИЛЬНО
+const supabaseUrl = 'https://uyclsolpcfmhldpvnfji.supabase.co'   // ✔ ПРАВИЛЬНО
 const supabaseKey = 'sb_publishable_5RFic9tFvNRGRvYmNnDWnA_QXjuCSDy'
 const supabase = createClient(supabaseUrl, supabaseKey)
 
