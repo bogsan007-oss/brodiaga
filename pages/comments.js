@@ -55,15 +55,15 @@ async function sendComment() {
     if (!text) return
 
     const { error } = await supabase
-        .from('comments')
-        .insert([
-            {
-                video_id: videoId,
-                name: 'Гость',
-                text: text,
-                date: new Date()
-            }
-        ])
+    .from('comments')
+    .insert([
+        {
+            video_id: videoId,
+            name: 'Гость',
+            text: text,
+            date: new Date().toISOString()
+        }
+    ])
 
     if (error) {
         alert('Ошибка отправки комментария')
