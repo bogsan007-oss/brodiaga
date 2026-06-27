@@ -5,42 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Комментарии</title>
     <link rel="stylesheet" href="../style.css?v=999">
-
- 
 </head>
 
 <body>
 
-    <!-- Узкая шапка -->
     <header class="mini-header">
         <div class="back-btn" onclick="history.back()">← Вернуться назад</div>
         <img src="../radio.brodiaga.jpg" class="mini-logo" alt="logo">
     </header>
 
-    <!-- Контейнер комментариев -->
     <div class="comments-container">
-    <h2>Комментарии</h2>
+        <h2>Комментарии</h2>
 
-    <div class="comments-list"></div>
+        <div class="comments-list"></div>
 
-    <div class="comment-form">
-        <textarea id="commentText" placeholder="Написать комментарий..."></textarea>
-        <button onclick="sendComment()">Отправить</button>
-    </div>
-</div>
-        <hr class="divider">
-
-        <button id="write-to-author">Написать лично автору</button>
-
-        <form id="private-form" style="display:none;">
-            <input type="text" placeholder="Ваше имя">
-            <textarea placeholder="Ваше сообщение"></textarea>
-            <button type="submit">Отправить</button>
-        </form>
+        <div class="comment-form">
+            <textarea id="commentText" placeholder="Написать комментарий..."></textarea>
+            <button onclick="sendComment()">Отправить</button>
+        </div>
     </div>
 
-    <script type="module" src="comments.js"></script>
+    <hr class="divider">
 
+    <button id="write-to-author">Написать лично автору</button>
+
+    <form id="private-form" style="display:none;">
+        <input type="text" placeholder="Ваше имя">
+        <textarea placeholder="Ваше сообщение"></textarea>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <!-- ПРАВИЛЬНОЕ ПОДКЛЮЧЕНИЕ -->
+    <script type="module" src="/pages/comments_v2.js?v=1000"></script>
 
 </body>
 </html>
