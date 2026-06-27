@@ -17,33 +17,26 @@
     <div class="comments-container">
         <h2>Комментарии</h2>
 
-        <!-- === CUSDIS КОММЕНТАРИИ === -->
-        <div id="cusdis_thread"
-             data-host="https://cusdis.com"
-             data-app-id="f3a60707-e3dc-4e6f-a51b-1c3bf1d3b8ee">
-        </div>
+        <!-- === CUSDIS SSR БЕЗ IFRAME === -->
+        <div id="comments"></div>
 
-        <!-- Включаем autoHeight ДО загрузки скрипта -->
         <script>
-            window.CUSDIS_LOCALE = {
-                autoHeight: true
-            };
-        </script>
-
-        <!-- Загружаем Cusdis -->
-        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-
-        <!-- Подставляем ID видео -->
-        <script>
+            // Получаем ID видео из URL (?video=XXXX)
             const urlParams = new URLSearchParams(window.location.search);
             const videoId = urlParams.get('video') || 'default';
 
-            const thread = document.getElementById('cusdis_thread');
-            thread.setAttribute('data-page-id', videoId);
-            thread.setAttribute('data-page-url', window.location.href);
-            thread.setAttribute('data-page-title', 'Комментарии к видео ' + videoId);
+            // Загружаем SSR HTML с Cloudflare Worker
+            fetch(`https://YOUR_WORKER_URL/?pageId=${videoId}`)
+                .then(r => r.text())
+                .then(html => {
+                    document.getElementById('comments').innerHTML = html;
+                })
+                .catch(err => {
+                    document.getElementById('comments').innerHTML =
+                        "<p style='color:red;'>Ошибка загрузки комментариев</p>";
+                });
         </script>
-        <!-- === КОНЕЦ CUSDIS === -->
+        <!-- === КОНЕЦ SSR === -->
 
     </div>
 
