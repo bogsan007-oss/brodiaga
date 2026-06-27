@@ -79,3 +79,6 @@ async function sendComment() {
 document.getElementById('write-to-author').onclick = () => {
     document.getElementById('private-form').style.display = 'block'
 }
+
+// Делаем функцию доступной для HTML-кнопки
+window.sendComment = sendComment;
