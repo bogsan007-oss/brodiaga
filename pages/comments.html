@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Комментарии</title>
     <link rel="stylesheet" href="../style.css?v=999">
 </head>
@@ -23,17 +23,18 @@
              data-app-id="f3a60707-e3dc-4e6f-a51b-1c3bf1d3b8ee">
         </div>
 
-        <!-- Включаем autoHeight -->
+        <!-- Включаем autoHeight ДО загрузки скрипта -->
         <script>
             window.CUSDIS_LOCALE = {
                 autoHeight: true
             };
         </script>
 
+        <!-- Загружаем Cusdis -->
         <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 
+        <!-- Подставляем ID видео -->
         <script>
-            // Получаем ID видео из URL (?video=XXXX)
             const urlParams = new URLSearchParams(window.location.search);
             const videoId = urlParams.get('video') || 'default';
 
