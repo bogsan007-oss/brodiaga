@@ -7,14 +7,29 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 // Получаем ID видео из URL
 const urlParams = new URLSearchParams(window.location.search)
-const videoId = urlParams.get('video') || 'default'
+const videoId = urlParams.get('video')
+
+// Если ID нет — дальше не работаем
+if (!videoId) {
+    console.error('Ошибка: videoId не найден в URL')
+    alert('Ошибка: ID видео не найден в адресе страницы')
+}
 
 // Загружаем комментарии при загрузке страницы
-document.addEventListener('DOMContentLoaded', loadComments)
+document.addEventListener('DOMContentLoaded', () => {
+    if (videoId) {
+        loadComments()
+    }
+})
 
 // Функция загрузки комментариев
 async function loadComments() {
     const list = document.querySelector('.comments-list')
+    if (!list) {
+        console.error('Элемент .comments-list не найден')
+        return
+    }
+
     list.innerHTML = '<p>Загрузка...</p>'
 
     const { data, error } = await supabase
@@ -25,7 +40,7 @@ async function loadComments() {
 
     if (error) {
         list.innerHTML = '<p>Ошибка загрузки комментариев</p>'
-        console.error(error)
+        console.error('Ошибка загрузки комментариев:', error)
         return
     }
 
@@ -41,7 +56,9 @@ async function loadComments() {
         div.className = 'comment-item'
         div.innerHTML = `
             <div class="comment-text">${c.text}</div>
-            <div class="comment-date">${new Date(c.date).toLocaleString('ru-RU')}</div>
+            <div class="comment-date">${c.date
+                ? new Date(c.date).toLocaleString('ru-RU')
+                : ''}</div>
         `
         list.appendChild(div)
     })
@@ -50,24 +67,33 @@ async function loadComments() {
 // Функция отправки комментария
 async function sendComment() {
     const textarea = document.getElementById('commentText')
-    const text = textarea.value.trim()
+    if (!textarea) {
+        console.error('Поле commentText не найдено')
+        return
+    }
 
+    const text = textarea.value.trim()
     if (!text) return
 
+    if (!videoId) {
+        alert('Ошибка: ID видео не найден, комментарий не может быть отправлен')
+        return
+    }
+
     const { error } = await supabase
-    .from('comments')
-    .insert([
-        {
-            video_id: videoId,
-            name: 'Гость',
-            text: text,
-            date: new Date().toISOString()
-        }
-    ])
+        .from('comments')
+        .insert([
+            {
+                video_id: videoId,
+                name: 'Гость',
+                text: text,
+                date: new Date().toISOString()
+            }
+        ])
 
     if (error) {
         alert('Ошибка отправки комментария')
-        console.error(error)
+        console.error('Ошибка отправки комментария:', error)
         return
     }
 
@@ -76,9 +102,15 @@ async function sendComment() {
 }
 
 // Показать форму личного сообщения
-document.getElementById('write-to-author').onclick = () => {
-    document.getElementById('private-form').style.display = 'block'
+const writeBtn = document.getElementById('write-to-author')
+if (writeBtn) {
+    writeBtn.onclick = () => {
+        const form = document.getElementById('private-form')
+        if (form) {
+            form.style.display = 'block'
+        }
+    }
 }
 
 // Делаем функцию доступной для HTML-кнопки
-window.sendComment = sendComment;
+window.sendComment = sendComment
