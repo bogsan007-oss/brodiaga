@@ -192,8 +192,17 @@ if (starsContainer) {
    ПЕРЕХОД В КОММЕНТАРИИ
 ============================ */
 function goToComments() {
-    window.location.href = "pages/comments.html";
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoId = urlParams.get("id");
+
+    if (!videoId) {
+        alert("Ошибка: ID видео не найден");
+        return;
+    }
+
+    window.location.href = "/pages/comments.html?video=" + videoId;
 }
+
 
 
 /* ============================
