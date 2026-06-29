@@ -75,6 +75,7 @@
             background: #1f5dcc;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -96,9 +97,18 @@
 
     <!-- ВСТАВЛЯЕМ СЮДА comments_v2.js -->
     <script>
-        // Здесь будет твой код Supabase
-        // Мы вставим его следующим шагом
-    </script>
+    // Подключение к Supabase
+    const supabaseUrl = "https://uyclsolpcfmlhdpvnfji.supabase.co";
+    const supabaseKey = "sb-publishable-5RFic9tFvNRGRvYmNnDWnA_QXjuCSDy";
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    // Получаем video_id из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoId = urlParams.get("video");
+
+    console.log("videoId:", videoId);
+</script>
+
 
 </body>
 </html>
