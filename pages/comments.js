@@ -5,7 +5,9 @@ console.log("comments.js загружен и выполняется!");
 ----------------------------- */
 const supabaseUrl = "https://uyclsolpcfmlhdpvnfji.supabase.co";
 const supabaseKey = "sb-publishable-5RFic9tFvNRGRvYmNnDWnA_QXjuCSDy";
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+// ВАЖНО: Supabase v2 через CDN → глобальный объект называется supabase
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 /* -----------------------------
    Получаем video_id из URL
