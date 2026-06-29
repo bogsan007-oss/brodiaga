@@ -107,43 +107,44 @@
     const videoId = urlParams.get("video");
 
     console.log("videoId:", videoId);
-        // Кнопка отправки
-document.getElementById("sendComment").addEventListener("click", async () => {
-    const text = document.getElementById("commentText").value.trim();
 
-    if (!text) {
-        alert("Введите текст комментария");
-        return;
-    }
+    // Кнопка отправки комментария
+    document.getElementById("sendComment").addEventListener("click", async () => {
+        const text = document.getElementById("commentText").value.trim();
 
-    if (!videoId) {
-        alert("Ошибка: videoId не найден");
-        return;
-    }
+        if (!text) {
+            alert("Введите текст комментария");
+            return;
+        }
 
-    // Отправляем комментарий в Supabase
-    const { data, error } = await supabase
-        .from("comments")
-        .insert([
-            {
-                video_id: videoId,
-                text: text,
-                created_at: new Date().toISOString()
-            }
-        ]);
+        if (!videoId) {
+            alert("Ошибка: videoId не найден");
+            return;
+        }
 
-    if (error) {
-        console.error("Ошибка отправки:", error);
-        alert("Не удалось отправить комментарий");
-        return;
-    }
+        // Отправляем комментарий в Supabase
+        const { data, error } = await supabase
+            .from("comments")
+            .insert([
+                {
+                    video_id: videoId,
+                    text: text
+                }
+            ]);
 
-    console.log("Комментарий отправлен:", data);
-    document.getElementById("commentText").value = "";
-    alert("Комментарий отправлен!");
-});
+        console.log("data:", data);
+        console.log("error:", error);
 
+        if (error) {
+            alert("Ошибка отправки: " + error.message);
+            return;
+        }
+
+        alert("Комментарий отправлен!");
+        document.getElementById("commentText").value = "";
+    });
 </script>
+
 
 
 </body>
