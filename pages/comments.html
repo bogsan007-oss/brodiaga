@@ -4,59 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Комментарии</title>
-    <link rel="stylesheet" href="../style.css?v=999">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .header {
+            background: #222;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .comment {
+            background: #fafafa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #eee;
+        }
+
+        .comment small {
+            color: #777;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 16px;
+            border: none;
+            background: #2b7cff;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1f5dcc;
+        }
+    </style>
 </head>
 
 <body>
 
-<header class="mini-header">
-    <div class="back-btn" onclick="history.back()">← Вернуться назад</div>
-    <img src="../radio.brodiaga.jpg" class="mini-logo" alt="logo">
-</header>
-
-<div class="comments-container">
-    <h2>Комментарии к этому треку</h2>
-
-    <!-- Обёртка, которую мы красиво стилизуем -->
-    <div class="comments-block">
-        <div id="cusdis_thread"
-             data-host="https://cusdis.com"
-             data-app-id="f3a60707-e3dc-4e6f-a51b-1c3bf1d3b8ee">
-        </div>
+    <div class="header">
+        <div>Комментарии</div>
+        <a class="back" href="../index.html">← Вернуться назад</a>
     </div>
 
+    <div class="container">
+        <h2>Оставить комментарий</h2>
+
+        <textarea id="commentText" placeholder="Ваш комментарий..."></textarea>
+        <button id="sendComment">Отправить</button>
+
+        <h2 style="margin-top: 30px;">Все комментарии</h2>
+        <div id="commentsList"></div>
+    </div>
+
+    <!-- ВСТАВЛЯЕМ СЮДА comments_v2.js -->
     <script>
-        // Русская локаль + autoHeight
-        window.CUSDIS_LOCALE = {
-            autoHeight: true
-        };
+        // Здесь будет твой код Supabase
+        // Мы вставим его следующим шагом
     </script>
-
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-
-    <script>
-        // Берём ID видео из URL (?video=XXXX)
-        const urlParams = new URLSearchParams(window.location.search);
-        const videoId = urlParams.get('video') || 'default';
-
-        const thread = document.getElementById('cusdis_thread');
-        thread.setAttribute('data-page-id', videoId);
-        thread.setAttribute('data-page-url', window.location.href);
-        thread.setAttribute('data-page-title', 'Комментарии к треку ' + videoId);
-    </script>
-</div>
-
-<hr class="divider">
-
-<button id="write-to-author">Написать лично автору</button>
-
-<form id="private-form" style="display:none;">
-    <input type="text" placeholder="Ваше имя">
-    <textarea placeholder="Ваше сообщение"></textarea>
-    <button type="submit">Отправить</button>
-</form>
-
-<script type="module" src="/pages/comments_v2.js?v=1000"></script>
 
 </body>
 </html>
