@@ -4,7 +4,7 @@ console.log("comments.js загружен и выполняется!");
    Подключение к Supabase
 ----------------------------- */
 const supabaseUrl = "https://uyclsolpcfmlhdpvnfji.supabase.co";
-const supabaseKey = "sb_publishable_5RFic9tFvNRGRvYmNnDWnA_QXjuCSDy";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV5Y2xzb2xwY2ZtbGhkcHZuZmppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1MjE2MTYsImV4cCI6MjA5ODA5NzYxNn0.j0mM369JxDr7PCNksXlj_y0RrycRlWTP8La9pAQdiaw";
 
 // Правильное создание клиента Supabase
 const client = window.supabase.createClient(supabaseUrl, supabaseKey);
