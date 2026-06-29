@@ -107,6 +107,42 @@
     const videoId = urlParams.get("video");
 
     console.log("videoId:", videoId);
+        // Кнопка отправки
+document.getElementById("sendComment").addEventListener("click", async () => {
+    const text = document.getElementById("commentText").value.trim();
+
+    if (!text) {
+        alert("Введите текст комментария");
+        return;
+    }
+
+    if (!videoId) {
+        alert("Ошибка: videoId не найден");
+        return;
+    }
+
+    // Отправляем комментарий в Supabase
+    const { data, error } = await supabase
+        .from("comments")
+        .insert([
+            {
+                video_id: videoId,
+                text: text,
+                created_at: new Date().toISOString()
+            }
+        ]);
+
+    if (error) {
+        console.error("Ошибка отправки:", error);
+        alert("Не удалось отправить комментарий");
+        return;
+    }
+
+    console.log("Комментарий отправлен:", data);
+    document.getElementById("commentText").value = "";
+    alert("Комментарий отправлен!");
+});
+
 </script>
 
 
