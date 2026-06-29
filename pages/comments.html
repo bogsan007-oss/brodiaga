@@ -95,64 +95,11 @@
         <div id="commentsList"></div>
     </div>
 
-    <!-- ВСТАВЛЯЕМ СЮДА comments_v2.js -->
-    <script>
-        console.log("СКРИПТ ЗАПУСТИЛСЯ!");
-
-    // Подключение к Supabase
-    const supabaseUrl = "https://uyclsolpcfmlhdpvnfji.supabase.co";
-    const supabaseKey = "sb-publishable-5RFic9tFvNRGRvYmNnDWnA_QXjuCSDy";
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-    // Получаем video_id из URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const videoId = urlParams.get("video");
-
-    console.log("videoId:", videoId);
-
-    // Кнопка отправки комментария
-    document.getElementById("sendComment").addEventListener("click", async () => {
-        console.log("Кнопка нажата!");
-
-        const text = document.getElementById("commentText").value.trim();
-
-        if (!text) {
-            alert("Введите текст комментария");
-            return;
-        }
-
-        if (!videoId) {
-            alert("Ошибка: videoId не найден");
-            return;
-        }
-
-        // Отправляем комментарий в Supabase
-        const { data, error } = await supabase
-            .from("comments")
-            .insert([
-                {
-                    video_id: videoId,
-                    name: "Аноним",        // обязательное поле
-                    text: text,
-                    date: new Date().toISOString() // обязательное поле
-                }
-            ]);
-
-        console.log("data:", data);
-        console.log("error:", error);
-
-        if (error) {
-            alert("Ошибка отправки: " + error.message);
-            return;
-        }
-
-        alert("Комментарий отправлен!");
-        document.getElementById("commentText").value = "";
-    });
-</script>
+   
 
 
 
+<script src="comments.js"></script>
 
 </body>
 </html>
