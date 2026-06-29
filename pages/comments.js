@@ -6,8 +6,8 @@ console.log("comments.js загружен и выполняется!");
 const supabaseUrl = "https://uyclsolpcfmlhdpvnfji.supabase.co";
 const supabaseKey = "sb-publishable-5RFic9tFvNRGRvYmNnDWnA_QXjuCSDy";
 
-// ВАЖНО: Supabase v2 через CDN → глобальный объект называется supabase
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+// Правильное создание клиента Supabase
+const client = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 /* -----------------------------
    Получаем video_id из URL
@@ -49,7 +49,7 @@ sendBtn.addEventListener("click", async () => {
         return;
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await client
         .from("comments")
         .insert([
             {
@@ -80,7 +80,7 @@ sendBtn.addEventListener("click", async () => {
 async function loadComments() {
     console.log("Загрузка комментариев...");
 
-    const { data, error } = await supabase
+    const { data, error } = await client
         .from("comments")
         .select("*")
         .eq("video_id", videoId)
