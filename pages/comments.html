@@ -110,6 +110,8 @@
 
     // Кнопка отправки комментария
     document.getElementById("sendComment").addEventListener("click", async () => {
+        console.log("Кнопка нажата!");
+
         const text = document.getElementById("commentText").value.trim();
 
         if (!text) {
@@ -128,7 +130,9 @@
             .insert([
                 {
                     video_id: videoId,
-                    text: text
+                    name: "Аноним",        // обязательное поле
+                    text: text,
+                    date: new Date().toISOString() // обязательное поле
                 }
             ]);
 
@@ -144,6 +148,7 @@
         document.getElementById("commentText").value = "";
     });
 </script>
+
 
 
 
