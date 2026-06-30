@@ -122,19 +122,19 @@ async function loadComments() {
 ----------------------------- */
 loadComments();
 
-// Получаем ID видео из URL
-const urlParams = new URLSearchParams(window.location.search);
-const videoId = urlParams.get("id");
+// Получаем ID видео из URL (тот же параметр, что и для комментариев)
+const urlParams2 = new URLSearchParams(window.location.search);
+const videoId2 = urlParams2.get("video");
 
 // Если ID есть — подставляем превью
-if (videoId) {
+if (videoId2) {
 
     // Миниатюра YouTube
     document.getElementById("previewThumb").src =
-        `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+        `https://i.ytimg.com/vi/${videoId2}/hqdefault.jpg`;
 
     // Название видео через oEmbed API YouTube
-    fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`)
+    fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId2}&format=json`)
         .then(res => res.json())
         .then(data => {
             document.getElementById("videoTitle").textContent = data.title;
@@ -144,5 +144,6 @@ if (videoId) {
         });
 
     // Ссылка на просмотр
-    document.getElementById("watchLink").href = `../watch.html?id=${videoId}`;
+    document.getElementById("watchLink").href = `../watch.html?id=${videoId2}`;
 }
+
