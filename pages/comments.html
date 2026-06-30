@@ -4,31 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Комментарии</title>
-<link rel="stylesheet" href="comments.css">
 
+    <link rel="stylesheet" href="comments.css">
 </head>
 
 <body>
 
+    <!-- Шапка -->
     <div class="header">
         <div>Комментарии</div>
         <a class="back" href="../index.html">← Вернуться назад</a>
     </div>
 
-    <div class="container">
-        <h2>Оставить комментарий</h2>
+    <!-- Основной контейнер -->
+    <div class="comments-wrapper">
 
-        <textarea id="commentText" placeholder="Ваш комментарий..."></textarea>
-        <button id="sendComment">Отправить</button>
+        <!-- Тёмный блок превью -->
+        <div class="preview-block">
+            <img id="previewThumb" src="" alt="Превью">
+            <div class="preview-info">
+                <h2 id="videoTitle">Название видео</h2>
+                <a id="watchLink" class="watch-btn" href="#">Смотреть видео</a>
+            </div>
+        </div>
 
-        <h2 style="margin-top: 30px;">Все комментарии</h2>
+        <!-- Светлая форма комментариев -->
+        <div class="comment-form">
+            <h2>Оставить комментарий</h2>
+
+            <textarea id="commentText" placeholder="Ваш комментарий..."></textarea>
+            <button id="sendComment">Отправить</button>
+        </div>
+
+        <!-- Вывод комментариев -->
+        <h2>Все комментарии</h2>
         <div id="commentsList"></div>
+
     </div>
 
-   
-
- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js?v=5"></script>
-<script src="comments.js?v=20"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js?v=5"></script>
+    <script src="comments.js?v=20"></script>
 
 </body>
 </html>
