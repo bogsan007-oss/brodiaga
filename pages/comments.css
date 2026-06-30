@@ -1,0 +1,137 @@
+/* ============================
+   1. Общие стили страницы
+   ============================ */
+
+body {
+    background-color: #008080; /* фон сайта */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+
+/* ============================
+   2. Контейнер страницы
+   ============================ */
+
+.comments-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+
+/* ============================
+   3. Тёмный блок превью видео
+   ============================ */
+
+.preview-block {
+    background-color: #004040; /* тёмный бирюзовый */
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.preview-block img {
+    width: 140px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.preview-info {
+    color: white;
+}
+
+.preview-info h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.preview-info .watch-btn {
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #006666;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+}
+
+
+
+/* ============================
+   4. Форма комментариев (светлая)
+   ============================ */
+
+.comment-form {
+    background-color: #71AAAA; /* светло-бирюзовый */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #006666;
+    resize: vertical;
+}
+
+.comment-form button {
+    margin-top: 10px;
+    background-color: #004040;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+
+/* ============================
+   5. Вывод комментариев (карточки)
+   ============================ */
+
+.comment-item {
+    background-color: #CCEEEE; /* светлая карточка */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 4px solid #006666;
+}
+
+.comment-item .author {
+    font-weight: bold;
+    color: #004040;
+}
+
+.comment-item .text {
+    margin-top: 8px;
+}
+
+
+
+/* ============================
+   6. Адаптивность
+   ============================ */
+
+@media (max-width: 600px) {
+    .preview-block {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .preview-block img {
+        width: 100%;
+        height: auto;
+    }
+}
