@@ -38,6 +38,17 @@ body {
 .ch-back:hover {
     opacity: 1;
 }
+.ch-back, .back {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.85;
+
+    white-space: nowrap;      /* ← текст не переносится */
+    max-width: 200px;         /* ← ограничиваем ширину */
+    overflow: hidden;         /* ← если вдруг длинный текст */
+    text-overflow: ellipsis;  /* ← добавляет "…" вместо обрезания */
+}
 
 /* ============================
    3. Контейнер страницы
