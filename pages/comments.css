@@ -81,6 +81,7 @@ body {
     height: 120px;
     padding: 10px;
     border-radius: 6px;
+    box-sizing: border-box;
     border: 1px solid #006666;
     resize: vertical;
 }
