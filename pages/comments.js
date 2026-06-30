@@ -129,18 +129,20 @@ const videoId = urlParams.get("id");
 // Если ID есть — подставляем превью
 if (videoId) {
 
-    // Миниатюра
+    // Миниатюра YouTube
     document.getElementById("previewThumb").src =
         `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
-    // Название видео через API
+    // Название видео через oEmbed API YouTube
     fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`)
         .then(res => res.json())
         .then(data => {
             document.getElementById("videoTitle").textContent = data.title;
+        })
+        .catch(() => {
+            document.getElementById("videoTitle").textContent = "Видео";
         });
 
     // Ссылка на просмотр
     document.getElementById("watchLink").href = `../watch.html?id=${videoId}`;
 }
-
