@@ -27,6 +27,7 @@ body {
    3. Тёмный блок превью видео
    ============================ */
 
+/* Тёмный блок превью */
 .preview-block {
     background-color: #004040; /* тёмный бирюзовый */
     padding: 15px;
@@ -42,6 +43,7 @@ body {
     height: 80px;
     object-fit: cover;
     border-radius: 6px;
+    background: #003333; /* если нет миниатюры */
 }
 
 .preview-info {
@@ -53,7 +55,7 @@ body {
     font-size: 20px;
 }
 
-.preview-info .watch-btn {
+.watch-btn {
     margin-top: 10px;
     display: inline-block;
     background-color: #006666;
@@ -62,6 +64,7 @@ body {
     color: white;
     text-decoration: none;
 }
+
 
 
 
