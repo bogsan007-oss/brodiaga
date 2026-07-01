@@ -38,42 +38,41 @@
 .play-btn {
     width: 90px;
     height: 90px;
-    background: #008080; /* квадрат исчезает */
+    background: #008080; /* маскируем квадрат */
     border: none;
     cursor: pointer;
     position: relative;
     padding: 0;
 }
 
-/* Внешний контур (тёмно-зелёный + золотой) */
+/* Внешний треугольник (контур) */
 .play-btn::after {
     content: "";
     position: absolute;
-    left: 10px;
-    top: 8px;
+    left: 8px;
+    top: 6px;
     width: 0;
     height: 0;
 
-    border-top: 36px solid transparent;
-    border-bottom: 36px solid transparent;
-    border-left: 60px solid #003020; /* тёмно-зелёный */
-
-    outline: 2px solid gold; /* золотой ободок */
+    border-top: 38px solid transparent;
+    border-bottom: 38px solid transparent;
+    border-left: 62px solid #003020; /* тёмно-зелёный */
 }
 
-/* Внутренний жёлтый треугольник */
+/* Внутренний треугольник (жёлтый) */
 .play-btn::before {
     content: "";
     position: absolute;
-    left: 20px;
-    top: 16px;
+    left: 18px;
+    top: 14px;
     width: 0;
     height: 0;
 
-    border-top: 28px solid transparent;
-    border-bottom: 28px solid transparent;
-    border-left: 48px solid #ffd700; /* жёлтый */
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 50px solid #ffd700; /* жёлтый */
 }
+
 
 /* ========================= */
 /*       ВИЗУАЛИЗАТОР        */
