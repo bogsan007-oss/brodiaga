@@ -28,6 +28,13 @@ body {
     letter-spacing: 1px;
 }
 
+.ch-center {
+    color: #e6c27a;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
 .ch-back {
     color: #ffffff;
     text-decoration: none;
