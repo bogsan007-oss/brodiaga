@@ -161,3 +161,22 @@ if (canvasDesktop) {
         drawDesktop();
     };
 }
+// =========================
+// ПРЕВЬЮ (ПК-ВЕРСИЯ)
+// =========================
+
+// Элементы превью
+const previewDesktopImg = document.getElementById('preview-desktop-img');
+const previewDesktopTitle = document.getElementById('preview-desktop-title');
+
+// Устанавливаем превью при загрузке
+if (previewDesktopImg && previewDesktopTitle) {
+    previewDesktopImg.src = currentStation.img || "assets/stations/default.png";
+    previewDesktopTitle.textContent = currentStation.name;
+}
+
+// Обновляем превью при старте воспроизведения
+playerDesktop.onplay = () => {
+    previewDesktopImg.src = currentStation.img || "assets/stations/default.png";
+    previewDesktopTitle.textContent = currentStation.name;
+};
