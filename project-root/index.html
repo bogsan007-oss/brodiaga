@@ -5,60 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radio Player</title>
 
-    <!-- Подключение стилей -->
     <link rel="stylesheet" href="styleRadio.css">
-
 </head>
 <body>
 
-    <!-- ========================= -->
-    <!--   ВЕРХНЯЯ ПАНЕЛЬ СПРАВА   -->
-    <!-- ========================= -->
-    <header class="top-bar">
-        <div class="top-right">
-            <div class="logo-btn">
-                <img src="assets/logo.png" alt="Logo">
-            </div>
-
-            <div class="home-btn">
-                <img src="assets/icons/home.svg" alt="Home">
-            </div>
-        </div>
-    </header>
-
-
-    <!-- ========================================= -->
-    <!--   ОСНОВНАЯ СТРОКА: ПЛЕЕР + ВИЗУАЛИЗАТОР   -->
-    <!-- ========================================= -->
-    <section class="player-row">
-
-        <!-- Вытянутый блок слева -->
-        <div class="player-block">
-            <div class="station-title">Название радио</div>
-
-            <button class="play-btn">▶</button>
-            <audio id="player" src="https://radio.brodiaga.com/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%B8%20%D0%93%D0%B0%D0%B3%D0%B0%D1%80%D0%B8%D0%BD.mp3"></audio>
+<header class="top-bar">
+    <div class="top-right">
+        <div class="logo-btn">
+            <img src="assets/logo.png" alt="Logo">
         </div>
 
-        <!-- ВИЗУАЛИЗАТОР СТОИТ РЯДОМ, НЕ ВНУТРИ ПЛЕЕРА -->
-<div class="visualizer-block">
-    <canvas id="visualizer"></canvas>
-</div>
+        <div class="home-btn">
+            <img src="assets/icons/home.svg" alt="Home">
+        </div>
+    </div>
+</header>
 
-    </section>
+<section class="player-row">
 
+    <!-- Плеер -->
+    <div class="player-block">
+        <div class="station-title">Название радио</div>
 
-    <!-- ========================= -->
-    <!--   КАРТОЧКИ СТАНЦИЙ        -->
-    <!-- ========================= -->
-    <section class="stations-list" id="stations">
-        <!-- Карточки будут подгружаться из stations/data.json -->
-    </section>
+        <!-- ВАЖНО: кнопка должна быть DIV -->
+        <div class="play-btn"></div>
 
+        <audio id="player" src="https://radio.brodiaga.com/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%B8%20%D0%93%D0%B0%D0%B3%D0%B0%D1%80%D0%B8%D0%BD.mp3"></audio>
+    </div>
 
-    <!-- Скрипты -->
-    <script src="player.js"></script>
-    <script src="visualizer.js"></script>
+    <!-- Визуализатор рядом -->
+    <div class="visualizer-block">
+        <canvas id="visualizer"></canvas>
+    </div>
+
+</section>
+
+<section class="stations-list" id="stations"></section>
+
+<!-- ВАЖНО: сначала player.js, потом visualizer.js -->
+<script src="player.js"></script>
+<script src="visualizer.js"></script>
 
 </body>
 </html>
