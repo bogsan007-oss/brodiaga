@@ -23,6 +23,8 @@ body {
 
 .ch-left {
     color: #e6c27a;
+    width: 100px;
+    height: 100px;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 1px;
