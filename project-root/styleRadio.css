@@ -20,7 +20,7 @@
 
 /* Логотип слева */
 .logo-left img {
-    height: 100%;               /* логотип под высоту шапки */
+    height: 120px;               /* логотип под высоту шапки */
     width: auto;
     border-radius: 10px;
 }
