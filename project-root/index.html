@@ -9,8 +9,44 @@
 </head>
 <body>
 
+<!-- ============================
+     ПК-ВЕРСИЯ ХЕДЕРА
+     Логотип → Play → Audio → Визуализатор → Превью
+     ============================ -->
 <header class="top-bar">
-    <div class="top-right">
+
+    <!-- Этот блок показывается только на компьютере -->
+    <div class="header-desktop">
+
+        <!-- ЛОГОТИП СЛЕВА -->
+        <div class="logo-left">
+            <img src="https://radio.brodiaga.com/radio.brodiaga.jpg" alt="Radio Brodiaga">
+        </div>
+
+        <!-- КНОПКА PLAY (ПК-версия) -->
+        <div class="play-btn-desktop"></div>
+
+        <!-- АУДИО-ПЛЕЕР (ПК-версия) -->
+        <audio id="player-desktop" src="https://radio.brodiaga.com/Прости Гагарин.mp3"></audio>
+
+        <!-- ВИЗУАЛИЗАТОР (ПК-версия) -->
+        <div class="visualizer-block-desktop">
+            <canvas id="visualizer-desktop"></canvas>
+        </div>
+
+        <!-- ПРЕВЬЮ СПРАВА -->
+        <div class="preview-right">
+            <img src="assets/stations/shanson.png" alt="Preview">
+        </div>
+
+    </div>
+
+    <!-- ============================
+         МОБИЛЬНАЯ ВЕРСИЯ ХЕДЕРА
+         Логотип + Home
+         ============================ -->
+    <div class="header-mobile">
+
         <div class="logo-btn">
             <img src="assets/logo.png" alt="Logo">
         </div>
@@ -18,31 +54,43 @@
         <div class="home-btn">
             <img src="assets/icons/home.svg" alt="Home">
         </div>
+
     </div>
+
 </header>
 
-<section class="player-row">
+<!-- ============================
+     МОБИЛЬНЫЙ ПЛЕЕР
+     Название → Play → Audio → Визуализатор
+     ============================ -->
+<section class="player-row-mobile">
 
-    <!-- Плеер -->
     <div class="player-block">
+        <!-- НАЗВАНИЕ ТОЛЬКО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ -->
         <div class="station-title">Название радио</div>
 
-        <!-- ВАЖНО: кнопка должна быть DIV -->
+        <!-- КНОПКА PLAY (мобильная) -->
         <div class="play-btn"></div>
 
-        <audio id="player" src="https://radio.brodiaga.com/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%B8%20%D0%93%D0%B0%D0%B3%D0%B0%D1%80%D0%B8%D0%BD.mp3"></audio>
+        <!-- АУДИО-ПЛЕЕР (мобильная версия) -->
+        <audio id="player" src="https://radio.brodiaga.com/Прости Гагарин.mp3"></audio>
     </div>
 
-    <!-- Визуализатор рядом -->
+    <!-- ВИЗУАЛИЗАТОР (мобильная версия) -->
     <div class="visualizer-block">
         <canvas id="visualizer"></canvas>
     </div>
 
 </section>
 
+<!-- ============================
+     СПИСОК СТАНЦИЙ
+     ============================ -->
 <section class="stations-list" id="stations"></section>
 
-<!-- ВАЖНО: сначала player.js, потом visualizer.js -->
+<!-- ============================
+     СКРИПТЫ
+     ============================ -->
 <script src="player.js"></script>
 <script src="visualizer.js"></script>
 
