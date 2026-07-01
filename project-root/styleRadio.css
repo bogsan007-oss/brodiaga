@@ -1,3 +1,37 @@
+/* ПК-версия включена */
+.header-desktop {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+/* Мобильная версия скрыта на ПК */
+.header-mobile,
+.player-row-mobile {
+    display: none;
+}
+
+/* Адаптив — мобильная версия */
+@media (max-width: 900px) {
+
+    .header-desktop {
+        display: none;
+    }
+
+    .header-mobile {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .player-row-mobile {
+        display: block;
+        margin-top: 20px;
+    }
+}
+
+
 /* ========================= */
 /*   ОСНОВНАЯ ПАНЕЛЬ ПЛЕЕРА  */
 /* ========================= */
