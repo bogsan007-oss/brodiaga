@@ -76,7 +76,31 @@
 
     z-index: 2;
 }
+/* ========================= */
+/*       ПАУЗА        */
+/* ========================= */
+     .play-btn.pause::before,
+.play-btn.pause::after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    width: 10px;          /* толщина полоски */
+    height: 40px;         /* длина полоски */
+    background-color: #ffd700; /* золото */
+    border: 2px solid #006b5f; /* зелёный контур */
+    box-sizing: border-box;
+    z-index: 2;
+}
 
+/* Левая полоска */
+.play-btn.pause::before {
+    left: 18px;
+}
+
+/* Правая полоска */
+.play-btn.pause::after {
+    left: 40px;
+}
 
 
 
