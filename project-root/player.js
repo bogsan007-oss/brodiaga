@@ -113,6 +113,9 @@ player.onplay = () => {
 // =========================
 
 const canvasDesktop = document.getElementById('visualizer-desktop');
+
+let drawDesktop = null; // чтобы можно было вызвать из общего onplay
+
 if (canvasDesktop) {
 
     const ctxDesktop = canvasDesktop.getContext('2d');
@@ -129,7 +132,7 @@ if (canvasDesktop) {
     sourceDesktop.connect(analyserDesktop);
     analyserDesktop.connect(audioCtxDesktop.destination);
 
-    function drawDesktop() {
+    drawDesktop = function () {
         requestAnimationFrame(drawDesktop);
 
         const bufferLength = analyserDesktop.frequencyBinCount;
@@ -154,18 +157,15 @@ if (canvasDesktop) {
 
             x += barWidth + 1;
         }
-    }
-
-    playerDesktop.onplay = () => {
-        audioCtxDesktop.resume();
-        drawDesktop();
     };
+
+    // НЕ запускаем здесь onplay — он будет общий ниже
 }
+
 // =========================
 // ПРЕВЬЮ (ПК-ВЕРСИЯ)
 // =========================
 
-// Элементы превью
 const previewDesktopImg = document.getElementById('preview-desktop-img');
 const previewDesktopTitle = document.getElementById('preview-desktop-title');
 
@@ -174,9 +174,22 @@ if (previewDesktopImg && previewDesktopTitle) {
     previewDesktopImg.src = currentStation.img || "assets/stations/default.png";
     previewDesktopTitle.textContent = currentStation.name;
 }
+// =========================
+// ОБЩИЙ onplay ДЛЯ ПК-ПЛЕЕРА
+// =========================
 
-// Обновляем превью при старте воспроизведения
 playerDesktop.onplay = () => {
-    previewDesktopImg.src = currentStation.img || "assets/stations/default.png";
-    previewDesktopTitle.textContent = currentStation.name;
+
+    // Визуализатор
+    if (drawDesktop) {
+        audioCtxDesktop.resume();
+        drawDesktop();
+    }
+
+    // Превью
+    if (previewDesktopImg && previewDesktopTitle) {
+        previewDesktopImg.src = currentStation.img || "assets/stations/default.png";
+        previewDesktopTitle.textContent = currentStation.name;
+    }
 };
+
