@@ -116,7 +116,8 @@
    МОБИЛЬНАЯ КНОПКА PLAY
    ========================================================= */
 
-.play-btn {
+.play-btn,
+.play-btn-desktop{
     width: 90px;
     height: 90px;
     background: #008080;
@@ -128,7 +129,8 @@
 }
 
 /* Внешний треугольник */
-.play-btn::after {
+.play-btn::after,
+.play-btn-desktop::after {
     content: "";
     position: absolute;
     left: 6px;
@@ -140,7 +142,8 @@
 }
 
 /* Внутренний треугольник */
-.play-btn::before {
+.play-btn::before,
+.play-btn-desktop::before {
     content: "";
     position: absolute;
     left: 15px;
@@ -153,7 +156,9 @@
 
 /* Пауза */
 .play-btn.pause::before,
-.play-btn.pause::after {
+.play-btn.pause::after,
+.play-btn-desktop.pause::before,
+.play-btn-desktop.pause::after {
     content: "";
     position: absolute;
     top: 16px;
@@ -165,14 +170,15 @@
     z-index: 2;
 }
 
-.play-btn.pause::before {
+.play-btn.pause::before,
+.play-btn-desktop.pause::before {
     left: 14px;
 }
 
-.play-btn.pause::after {
+.play-btn.pause::after,
+.play-btn-desktop.pause::after {
     left: 42px;
 }
-
 
 /* =========================================================
    МОБИЛЬНЫЙ ВИЗУАЛИЗАТОР
