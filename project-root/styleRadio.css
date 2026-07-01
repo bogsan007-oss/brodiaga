@@ -65,8 +65,8 @@
 .play-btn::before {
     content: "";
     position: absolute;
-    left: 22px;  /* дальше внутрь */
-    top: 16px;   /* дальше внутрь */
+    left: 18px;   /* было 22px — двигаем влево */
+    top: 16px;
     width: 0;
     height: 0;
 
@@ -76,6 +76,7 @@
 
     z-index: 2;
 }
+
 
 
 
