@@ -1,60 +1,95 @@
-/* ПК-версия включена */
+/* =========================================================
+   ПК-ВЕРСИЯ — ХЕДЕР
+   ========================================================= */
+
+.top-bar {
+    height: 120px;              /* фиксируем высоту шапки */
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    background: #008080;
+}
+
+/* Основной ПК-контейнер */
 .header-desktop {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 10px 20px;
+    width: 100%;
 }
 
-/* Мобильная версия скрыта на ПК */
+/* Логотип слева */
+.logo-left img {
+    height: 100%;               /* логотип под высоту шапки */
+    width: auto;
+    border-radius: 10px;
+}
+
+/* ПК-кнопка Play */
+.play-btn-desktop {
+    width: 90px;
+    height: 90px;
+    background: #008080;
+    position: relative;
+    cursor: pointer;
+}
+
+/* ПК-визуализатор */
+.visualizer-block-desktop canvas {
+    height: 90px;
+    width: 100%;
+    background: #004040;
+    border-radius: 12px;
+}
+
+/* Превью справа */
+.preview-right img {
+    height: 90px;
+    width: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Скрываем мобильные элементы на ПК */
 .header-mobile,
 .player-row-mobile {
     display: none;
 }
 
-/* Адаптив — мобильная версия */
-@media (max-width: 900px) {
 
-    .header-desktop {
-        display: none;
-    }
+/* =========================================================
+   МОБИЛЬНАЯ ВЕРСИЯ — ХЕДЕР
+   ========================================================= */
 
-    .header-mobile {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-    }
-
-    .player-row-mobile {
-        display: block;
-        margin-top: 20px;
-    }
-}
-
-
-/* ========================= */
-/*   ОСНОВНАЯ ПАНЕЛЬ ПЛЕЕРА  */
-/* ========================= */
-
-.player-row {
-    width: 100%;
-    background: #008080; /* цвет карточки */
+.header-mobile {
     display: flex;
-    align-items: center;
-    gap: 6px;
+    justify-content: space-between;
     padding: 10px;
-    border-radius: 12px;
-    margin-top: 0px;
 }
 
-/* Левая карточка */
+.logo-btn img,
+.home-btn img {
+    width: 40px;
+    height: 40px;
+}
+
+
+/* =========================================================
+   МОБИЛЬНАЯ ВЕРСИЯ — ПЛЕЕР
+   ========================================================= */
+
+.player-row-mobile {
+    display: block;
+    margin-top: 20px;
+}
+
 .player-block {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 140px;
     height: 160px;
-    background: #008080; /* маскируем квадрат */
+    background: #008080;
     border-radius: 12px;
     padding: 12px;
     color: white;
@@ -65,9 +100,10 @@
     opacity: 0.85;
 }
 
-/* ========================= */
-/*        КНОПКА PLAY        */
-/* ========================= */
+
+/* =========================================================
+   МОБИЛЬНАЯ КНОПКА PLAY
+   ========================================================= */
 
 .play-btn {
     width: 90px;
@@ -77,77 +113,91 @@
     cursor: pointer;
     position: relative;
     padding: 0;
-    display: block; /* добавлено */
+    display: block;
 }
 
-/* Внешний треугольник (зелёный контур) */
+/* Внешний треугольник */
 .play-btn::after {
     content: "";
     position: absolute;
     left: 6px;
     top: 4px;
-    width: 0;
-    height: 0;
-
     border-top: 40px solid transparent;
     border-bottom: 40px solid transparent;
     border-left: 65px solid #003020;
-
     z-index: 1;
 }
 
-/* Внутренний треугольник (жёлтый) */
+/* Внутренний треугольник */
 .play-btn::before {
     content: "";
     position: absolute;
-    left: 15px;   /* было 22px — двигаем влево */
+    left: 15px;
     top: 16px;
-    width: 0;
-    height: 0;
-
     border-top: 26px solid transparent;
     border-bottom: 26px solid transparent;
     border-left: 42px solid #ffd700;
-
     z-index: 2;
 }
-/* ========================= */
-/*       ПАУЗА        */
-/* ========================= */
+
+/* Пауза */
 .play-btn.pause::before,
 .play-btn.pause::after {
     content: "";
     position: absolute;
-    top: 16px;               /* чуть выше — чтобы полоски были длиннее */
-    width: 18px;             /* толщина полоски (было 10px) */
-    height: 50px;            /* длина полоски (было 40px) */
-    background-color: #ffd700; /* золото */
-    border: 4px solid #004040; /* контур толще (было 2px) */
+    top: 16px;
+    width: 18px;
+    height: 50px;
+    background-color: #ffd700;
+    border: 4px solid #004040;
     box-sizing: border-box;
     z-index: 2;
 }
 
-/* Левая полоска */
 .play-btn.pause::before {
-    left: 14px;              /* подгонка под твой треугольник */
+    left: 14px;
 }
 
-/* Правая полоска */
 .play-btn.pause::after {
-    left: 42px;              /* расстояние между полосками */
+    left: 42px;
 }
 
 
-
-
-
-/* ========================= */
-/*       ВИЗУАЛИЗАТОР        */
-/* ========================= */
+/* =========================================================
+   МОБИЛЬНЫЙ ВИЗУАЛИЗАТОР
+   ========================================================= */
 
 #visualizer {
     flex: 1;
     height: 120px;
     background: #004040;
     border-radius: 12px;
+}
+
+
+/* =========================================================
+   АДАПТИВ — ПЕРЕКЛЮЧЕНИЕ НА МОБИЛЬНУЮ ВЕРСИЮ
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    /* ПК скрываем */
+    .header-desktop {
+        display: none;
+    }
+
+    /* Мобильный хедер включаем */
+    .header-mobile {
+        display: flex;
+    }
+
+    /* Мобильный плеер включаем */
+    .player-row-mobile {
+        display: block;
+    }
+
+    /* ПК-плеер скрываем */
+    .player-row {
+        display: none;
+    }
 }
