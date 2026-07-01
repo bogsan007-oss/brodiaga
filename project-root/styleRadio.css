@@ -19,8 +19,13 @@
 }
 
 /* Логотип слева */
+.logo-left {
+    height: 120px;
+    display: flex;
+    align-items: center;
+}
 .logo-left img {
-    height: 120px;               /* логотип под высоту шапки */
+    height: 100%;               /* логотип под высоту шапки */
     width: auto;
     border-radius: 10px;
 }
