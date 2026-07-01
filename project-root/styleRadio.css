@@ -7,10 +7,10 @@
     background: #008080; /* цвет карточки */
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 6px;
+    padding: 10px;
     border-radius: 12px;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 /* Левая карточка */
