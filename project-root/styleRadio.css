@@ -79,28 +79,29 @@
 /* ========================= */
 /*       ПАУЗА        */
 /* ========================= */
-     .play-btn.pause::before,
+.play-btn.pause::before,
 .play-btn.pause::after {
     content: "";
     position: absolute;
-    top: 14px;
-    width: 10px;          /* толщина полоски */
-    height: 40px;         /* длина полоски */
+    top: 10px;               /* чуть выше — чтобы полоски были длиннее */
+    width: 14px;             /* толщина полоски (было 10px) */
+    height: 48px;            /* длина полоски (было 40px) */
     background-color: #ffd700; /* золото */
-    border: 2px solid #006b5f; /* зелёный контур */
+    border: 3px solid #006b5f; /* контур толще (было 2px) */
     box-sizing: border-box;
     z-index: 2;
 }
 
 /* Левая полоска */
 .play-btn.pause::before {
-    left: 18px;
+    left: 16px;              /* подгонка под твой треугольник */
 }
 
 /* Правая полоска */
 .play-btn.pause::after {
-    left: 40px;
+    left: 44px;              /* расстояние между полосками */
 }
+
 
 
 
