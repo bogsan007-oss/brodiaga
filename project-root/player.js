@@ -1,39 +1,29 @@
-// Загружаем аудио
-const audio = new Audio();
-audio.crossOrigin = "anonymous";
+// =========================
+// ПЛЕЕР
+// =========================
 
 // Кнопка ▶
-const playBtn = document.querySelector('.play-btn');
+const btn = document.querySelector('.play-btn');
+
+// Аудио из HTML
+const player = document.getElementById('player');
 
 // Название станции
 const stationTitle = document.querySelector('.station-title');
 
-// Текущая станция (пока одна, потом добавим JSON)
+// Текущая станция (пока одна)
 let currentStation = {
     name: "Название радио",
-    url: "https://online-radio-stream-url"
+    url: "https://radio.brodiaga.com/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%B8%20%D0%93%D0%B0%D0%B3%D0%B0%D1%80%D0%B8%D0%BD.mp3"
 };
 
 // Устанавливаем название
 stationTitle.textContent = currentStation.name;
 
 // Обработчик кнопки ▶
-playBtn.addEventListener('click', () => {
-    if (audio.paused) {
-        audio.src = currentStation.url;
-        audio.play();
-        playBtn.textContent = "⏸"; // пауза
-    } else {
-        audio.pause();
-        playBtn.textContent = "▶"; // play
-    }
-});
-
-const btn = document.querySelector('.play-btn');
-const player = document.getElementById('player');
-
 btn.addEventListener('click', () => {
     if (player.paused) {
+        player.src = currentStation.url;
         player.play();
         btn.classList.add('pause');
     } else {
@@ -41,7 +31,12 @@ btn.addEventListener('click', () => {
         btn.classList.remove('pause');
     }
 });
-const player = document.getElementById('player');
+
+
+// =========================
+// ВИЗУАЛИЗАТОР
+// =========================
+
 const canvas = document.getElementById('visualizer');
 const ctx = canvas.getContext('2d');
 
