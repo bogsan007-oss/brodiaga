@@ -38,7 +38,7 @@
 .play-btn {
     width: 90px;
     height: 90px;
-    background: #008080; /* маскируем квадрат */
+    background: #008080;
     border: none;
     cursor: pointer;
     position: relative;
@@ -49,29 +49,30 @@
 .play-btn::after {
     content: "";
     position: absolute;
-    left: 8px;
-    top: 6px;
+    left: 6px;
+    top: 4px;
     width: 0;
     height: 0;
 
-    border-top: 38px solid transparent;
-    border-bottom: 38px solid transparent;
-    border-left: 62px solid #003020; /* тёмно-зелёный */
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    border-left: 65px solid #003020; /* тёмно-зелёный */
 }
 
 /* Внутренний треугольник (жёлтый) */
 .play-btn::before {
     content: "";
     position: absolute;
-    left: 18px;
-    top: 14px;
+    left: 18px;   /* смещаем внутрь */
+    top: 14px;    /* смещаем внутрь */
     width: 0;
     height: 0;
 
     border-top: 30px solid transparent;
     border-bottom: 30px solid transparent;
-    border-left: 50px solid #ffd700; /* жёлтый */
+    border-left: 50px solid #ffd700; /* ярко-жёлтый */
 }
+
 
 
 /* ========================= */
