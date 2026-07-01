@@ -84,10 +84,10 @@
     content: "";
     position: absolute;
     top: 10px;               /* чуть выше — чтобы полоски были длиннее */
-    width: 14px;             /* толщина полоски (было 10px) */
-    height: 48px;            /* длина полоски (было 40px) */
+    width: 16px;             /* толщина полоски (было 10px) */
+    height: 50px;            /* длина полоски (было 40px) */
     background-color: #ffd700; /* золото */
-    border: 3px solid #006b5f; /* контур толще (было 2px) */
+    border: 6px solid #006b5f; /* контур толще (было 2px) */
     box-sizing: border-box;
     z-index: 2;
 }
