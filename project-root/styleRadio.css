@@ -45,7 +45,7 @@
     padding: 0;
 }
 
-/* Внешний треугольник (контур) */
+/* Внешний треугольник (зелёный контур) */
 .play-btn::after {
     content: "";
     position: absolute;
@@ -56,22 +56,27 @@
 
     border-top: 40px solid transparent;
     border-bottom: 40px solid transparent;
-    border-left: 65px solid #003020; /* тёмно-зелёный */
+    border-left: 65px solid #003020;
+
+    z-index: 1;
 }
 
 /* Внутренний треугольник (жёлтый) */
 .play-btn::before {
     content: "";
     position: absolute;
-    left: 18px;   /* смещаем внутрь */
-    top: 14px;    /* смещаем внутрь */
+    left: 22px;  /* дальше внутрь */
+    top: 16px;   /* дальше внутрь */
     width: 0;
     height: 0;
 
-    border-top: 30px solid transparent;
-    border-bottom: 30px solid transparent;
-    border-left: 50px solid #ffd700; /* ярко-жёлтый */
+    border-top: 26px solid transparent;
+    border-bottom: 26px solid transparent;
+    border-left: 42px solid #ffd700;
+
+    z-index: 2;
 }
+
 
 
 
