@@ -113,10 +113,10 @@ player.onplay = () => {
 // =========================
 
 const canvasDesktop = document.getElementById('visualizer-desktop');
+let drawDesktop = null;
+let audioCtxDesktop = null;
 
-let drawDesktop = null; // чтобы можно было вызвать из общего onplay
-
-if (canvasDesktop) {
+if (canvasDesktop && playerDesktop) {
 
     const ctxDesktop = canvasDesktop.getContext('2d');
 
@@ -124,7 +124,7 @@ if (canvasDesktop) {
     canvasDesktop.width = canvasDesktop.clientWidth;
     canvasDesktop.height = canvasDesktop.clientHeight;
 
-    const audioCtxDesktop = new (window.AudioContext || window.webkitAudioContext)();
+    audioCtxDesktop = new (window.AudioContext || window.webkitAudioContext)();
     const sourceDesktop = audioCtxDesktop.createMediaElementSource(playerDesktop);
     const analyserDesktop = audioCtxDesktop.createAnalyser();
 
@@ -158,9 +158,8 @@ if (canvasDesktop) {
             x += barWidth + 1;
         }
     };
-
-    // НЕ запускаем здесь onplay — он будет общий ниже
 }
+
 
 // =========================
 // ПРЕВЬЮ (ПК-ВЕРСИЯ)
@@ -181,7 +180,7 @@ if (previewDesktopImg && previewDesktopTitle) {
 playerDesktop.onplay = () => {
 
     // Визуализатор
-    if (drawDesktop) {
+    if (audioCtxDesktop && drawDesktop) {
         audioCtxDesktop.resume();
         drawDesktop();
     }
@@ -192,4 +191,5 @@ playerDesktop.onplay = () => {
         previewDesktopTitle.textContent = currentStation.name;
     }
 };
+
 
