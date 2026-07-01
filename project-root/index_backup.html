@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Player</title>
+
+    <link rel="stylesheet" href="styleRadio.css">
+</head>
+<body>
+
+
+
+<!-- =========================================================
+     ПЛЕЕР — СТАРАЯ РАБОЧАЯ ВЕРСИЯ (НЕ ЛОМАЕТ JS)
+     ========================================================= -->
+<section class="player-row">
+
+    <div class="player-block">
+
+        <!-- НАЗВАНИЕ — ТОЛЬКО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ -->
+        <div class="station-title">Название радио</div>
+
+        <!-- КНОПКА PLAY -->
+        <div class="play-btn"></div>
+
+        <!-- АУДИО-ПЛЕЕР -->
+        <audio id="player" src="https://radio.brodiaga.com/Прости Гагарин.mp3"></audio>
+
+    </div>
+
+    <!-- ВИЗУАЛИЗАТОР -->
+    <div class="visualizer-block">
+        <canvas id="visualizer"></canvas>
+    </div>
+
+</section>
+
+<!-- =========================================================
+     СПИСОК СТАНЦИЙ
+     ========================================================= -->
+<section class="stations-list" id="stations"></section>
+
+<!-- =========================================================
+     СКРИПТЫ — НЕ ТРОГАЕМ
+     ========================================================= -->
+<script src="player.js"></script>
+<script src="visualizer.js"></script>
+
+</body>
+</html>
