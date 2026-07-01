@@ -1,39 +1,44 @@
-.radio-panel {
-    width: 100%;
-    background: #008080;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    gap: 20px;
-}
+/* ========================= */
+/*   ОСНОВНАЯ ПАНЕЛЬ ПЛЕЕРА  */
+/* ========================= */
+
 .player-row {
+    width: 100%;
+    background: #008080; /* цвет карточки */
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 10px;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
 }
 
+/* Левая карточка */
 .player-block {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 120px;
-    height: 140px;
-    background: #1a1a1a;
-    border-radius: 10px;
-    padding: 10px;
+    width: 140px;
+    height: 160px;
+    background: #008080; /* маскируем квадрат */
+    border-radius: 12px;
+    padding: 12px;
     color: white;
 }
 
 .station-title {
     font-size: 14px;
-    opacity: 0.8;
+    opacity: 0.85;
 }
+
+/* ========================= */
+/*        КНОПКА PLAY        */
+/* ========================= */
 
 .play-btn {
     width: 90px;
     height: 90px;
-    background: transparent;
+    background: #008080; /* квадрат исчезает */
     border: none;
     cursor: pointer;
     position: relative;
@@ -49,14 +54,11 @@
     width: 0;
     height: 0;
 
-    /* большой внешний треугольник */
     border-top: 36px solid transparent;
     border-bottom: 36px solid transparent;
     border-left: 60px solid #003020; /* тёмно-зелёный */
 
-    /* золотой ободок */
-    outline: 2px solid gold;
-    border-radius: 4px;
+    outline: 2px solid gold; /* золотой ободок */
 }
 
 /* Внутренний жёлтый треугольник */
@@ -73,8 +75,13 @@
     border-left: 48px solid #ffd700; /* жёлтый */
 }
 
+/* ========================= */
+/*       ВИЗУАЛИЗАТОР        */
+/* ========================= */
 
-    outline: 2px solid gold;  /* золотой ободок */
-    border-radius: 4px;       /* лёгкое сглаживание */
+#visualizer {
+    flex: 1;
+    height: 120px;
+    background: #004040;
+    border-radius: 12px;
 }
-
