@@ -108,3 +108,56 @@ player.onplay = () => {
     audioCtx.resume();
     draw();
 };
+// =========================
+// ВИЗУАЛИЗАТОР (ПК-ВЕРСИЯ)
+// =========================
+
+const canvasDesktop = document.getElementById('visualizer-desktop');
+if (canvasDesktop) {
+
+    const ctxDesktop = canvasDesktop.getContext('2d');
+
+    // Подгоняем канвас под CSS-ширину и высоту
+    canvasDesktop.width = canvasDesktop.clientWidth;
+    canvasDesktop.height = canvasDesktop.clientHeight;
+
+    const audioCtxDesktop = new (window.AudioContext || window.webkitAudioContext)();
+    const sourceDesktop = audioCtxDesktop.createMediaElementSource(playerDesktop);
+    const analyserDesktop = audioCtxDesktop.createAnalyser();
+
+    analyserDesktop.fftSize = 256;
+    sourceDesktop.connect(analyserDesktop);
+    analyserDesktop.connect(audioCtxDesktop.destination);
+
+    function drawDesktop() {
+        requestAnimationFrame(drawDesktop);
+
+        const bufferLength = analyserDesktop.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        analyserDesktop.getByteFrequencyData(dataArray);
+
+        ctxDesktop.clearRect(0, 0, canvasDesktop.width, canvasDesktop.height);
+
+        const barWidth = (canvasDesktop.width / bufferLength) * 2.5;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            const barHeight = dataArray[i] / 5;
+
+            ctxDesktop.fillStyle = '#ffd700'; // золото
+            ctxDesktop.fillRect(
+                x,
+                canvasDesktop.height - barHeight,
+                barWidth,
+                barHeight
+            );
+
+            x += barWidth + 1;
+        }
+    }
+
+    playerDesktop.onplay = () => {
+        audioCtxDesktop.resume();
+        drawDesktop();
+    };
+}
