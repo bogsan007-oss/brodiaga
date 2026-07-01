@@ -1,14 +1,14 @@
 // =========================
-// ПЛЕЕР
+// ПЛЕЕР (МОБИЛЬНЫЙ)
 // =========================
 
-// Кнопка ▶
+// Кнопка ▶ (мобильная)
 const btn = document.querySelector('.play-btn');
 
-// Аудио из HTML
+// Аудио из HTML (мобильное)
 const player = document.getElementById('player');
 
-// Название станции
+// Название станции (мобильное)
 const stationTitle = document.querySelector('.station-title');
 
 // Текущая станция (пока одна)
@@ -17,10 +17,10 @@ let currentStation = {
     url: "https://radio.brodiaga.com/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%B8%20%D0%93%D0%B0%D0%B3%D0%B0%D1%80%D0%B8%D0%BD.mp3"
 };
 
-// Устанавливаем название
+// Устанавливаем название (мобильное)
 stationTitle.textContent = currentStation.name;
 
-// Обработчик кнопки ▶
+// Обработчик кнопки ▶ (мобильный)
 btn.addEventListener('click', () => {
     if (player.paused) {
         player.src = currentStation.url;
@@ -34,7 +34,32 @@ btn.addEventListener('click', () => {
 
 
 // =========================
-// ВИЗУАЛИЗАТОР
+// ПЛЕЕР (ПК-ВЕРСИЯ)
+// =========================
+
+// ПК-кнопка ▶
+const btnDesktop = document.querySelector('.play-btn-desktop');
+
+// ПК-аудио
+const playerDesktop = document.getElementById('player-desktop');
+
+// Обработчик кнопки ▶ (ПК)
+if (btnDesktop && playerDesktop) {
+    btnDesktop.addEventListener('click', () => {
+        if (playerDesktop.paused) {
+            playerDesktop.src = currentStation.url;
+            playerDesktop.play();
+            btnDesktop.classList.add('pause');
+        } else {
+            playerDesktop.pause();
+            btnDesktop.classList.remove('pause');
+        }
+    });
+}
+
+
+// =========================
+// ВИЗУАЛИЗАТОР (МОБИЛЬНЫЙ)
 // =========================
 
 const canvas = document.getElementById('visualizer');
