@@ -23,39 +23,48 @@
 }
 
 .play-btn {
-    width: 90px;               /* крупная кнопка */
+    width: 90px;
     height: 90px;
-    background: transparent;   /* без фона */
+    background: transparent;
     border: none;
     cursor: pointer;
     position: relative;
     padding: 0;
 }
 
-/* Внутренний жёлтый треугольник */
-.play-btn::before {
-    content: "";
-    position: absolute;
-    left: 22px;                /* отступы */
-    top: 18px;
-    width: 0;
-    height: 0;
-    border-top: 26px solid transparent;
-    border-bottom: 26px solid transparent;
-    border-left: 45px solid #ffd700; /* ярко-жёлтый */
-}
-
 /* Внешний контур (тёмно-зелёный + золотой) */
 .play-btn::after {
     content: "";
     position: absolute;
-    left: 14px;
-    top: 10px;
+    left: 10px;
+    top: 8px;
     width: 0;
     height: 0;
-    border-top: 34px solid transparent;
-    border-bottom: 34px solid transparent;
-    border-left: 55px solid #003020; /* тёмно-зелёный контур */
+
+    /* большой внешний треугольник */
+    border-top: 36px solid transparent;
+    border-bottom: 36px solid transparent;
+    border-left: 60px solid #003020; /* тёмно-зелёный */
+
+    /* золотой ободок */
+    outline: 2px solid gold;
+    border-radius: 4px;
+}
+
+/* Внутренний жёлтый треугольник */
+.play-btn::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    width: 0;
+    height: 0;
+
+    border-top: 28px solid transparent;
+    border-bottom: 28px solid transparent;
+    border-left: 48px solid #ffd700; /* жёлтый */
+}
+
 
     outline: 2px solid gold;  /* золотой ободок */
     border-radius: 4px;       /* лёгкое сглаживание */
