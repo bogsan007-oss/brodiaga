@@ -83,7 +83,7 @@
 .play-btn.pause::after {
     content: "";
     position: absolute;
-    top: 10px;               /* чуть выше — чтобы полоски были длиннее */
+    top: 16px;               /* чуть выше — чтобы полоски были длиннее */
     width: 16px;             /* толщина полоски (было 10px) */
     height: 50px;            /* длина полоски (было 40px) */
     background-color: #ffd700; /* золото */
