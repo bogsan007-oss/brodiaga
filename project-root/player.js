@@ -30,7 +30,14 @@ playBtn.addEventListener('click', () => {
 });
 
 const btn = document.querySelector('.play-btn');
+const player = document.getElementById('player');
 
 btn.addEventListener('click', () => {
-    btn.classList.toggle('pause');
+    if (player.paused) {
+        player.play();
+        btn.classList.add('pause');
+    } else {
+        player.pause();
+        btn.classList.remove('pause');
+    }
 });
