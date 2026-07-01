@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Player</title>
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========================= -->
+    <!--   ВЕРХНЯЯ ПАНЕЛЬ СПРАВА   -->
+    <!-- ========================= -->
+    <header class="top-bar">
+        <div class="top-right">
+            <div class="logo-btn">
+                <img src="assets/logo.png" alt="Logo">
+            </div>
+
+            <div class="home-btn">
+                <img src="assets/icons/home.svg" alt="Home">
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ========================================= -->
+    <!--   ОСНОВНАЯ СТРОКА: ПЛЕЕР + ВИЗУАЛИЗАТОР   -->
+    <!-- ========================================= -->
+    <section class="player-row">
+
+        <!-- Вытянутый блок слева -->
+        <div class="player-block">
+            <div class="station-title">Название радио</div>
+
+            <button class="play-btn">▶</button>
+        </div>
+
+        <!-- Визуализатор справа -->
+        <canvas id="visualizer"></canvas>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!--   КАРТОЧКИ СТАНЦИЙ        -->
+    <!-- ========================= -->
+    <section class="stations-list" id="stations">
+        <!-- Карточки будут подгружаться из stations/data.json -->
+    </section>
+
+
+    <!-- Скрипты -->
+    <script src="player.js"></script>
+    <script src="visualizer.js"></script>
+
+</body>
+</html>
