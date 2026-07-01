@@ -28,3 +28,9 @@ playBtn.addEventListener('click', () => {
         playBtn.textContent = "▶"; // play
     }
 });
+
+const btn = document.querySelector('.play-btn');
+
+btn.addEventListener('click', () => {
+    btn.classList.toggle('pause');
+});
