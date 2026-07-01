@@ -65,7 +65,7 @@ function draw() {
     let x = 0;
 
     for (let i = 0; i < bufferLength; i++) {
-        const barHeight = dataArray[i] / 3;
+        const barHeight = dataArray[i] / 5;
 
         ctx.fillStyle = '#ffd700'; // золото
         ctx.fillRect(
