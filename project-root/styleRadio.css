@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     padding: 0 20px;
-    background: #008080;
+    background: #004040;
 }
 
 /* Основной ПК-контейнер */
@@ -34,7 +34,7 @@
 .play-btn-desktop {
     width: 90px;
     height: 90px;
-    background: #008080;
+    background: #004040;
     position: relative;
     cursor: pointer;
 }
