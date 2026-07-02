@@ -214,5 +214,23 @@ function setStation(streamUrl, previewUrl, title) {
         stationTitle.textContent = title;
     }
 }
+/* ===============================
+   Смена станции (только превью + поток)
+   =============================== */
+
+const previewImg = document.querySelector(".preview-right img");
+const playerDesktop = document.getElementById("player-desktop");
+
+function setStation(streamUrl, previewUrl) {
+
+    // Меняем поток
+    playerDesktop.src = streamUrl;
+    playerDesktop.play();
+
+    // Меняем превью справа
+    if (previewImg) {
+        previewImg.src = previewUrl;
+    }
+}
 
 
