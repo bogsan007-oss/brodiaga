@@ -21,35 +21,14 @@ let currentStation = {
 
 function setStation(streamUrl, previewUrl) {
 
-    // сохраняем станцию
     currentStation.url = streamUrl;
     currentStation.preview = previewUrl;
 
-    // меняем поток
     playerDesktop.src = streamUrl;
 
-    // меняем превью
     if (previewImg) {
         previewImg.src = previewUrl;
     }
-}
-
-/* ============================
-   КНОПКА PLAY (ПК)
-============================ */
-
-if (btnDesktop && playerDesktop) {
-    btnDesktop.addEventListener("click", () => {
-
-        if (playerDesktop.paused) {
-            playerDesktop.play();
-            btnDesktop.classList.add("pause");
-        } else {
-            playerDesktop.pause();
-            btnDesktop.classList.remove("pause");
-        }
-
-    });
 }
 
 /* ============================
@@ -57,17 +36,20 @@ if (btnDesktop && playerDesktop) {
 ============================ */
 
 const canvasDesktop = document.getElementById("visualizer-desktop");
+let audioCtx = null;
+let analyser = null;
 
-if (canvasDesktop && playerDesktop) {
+function initVisualizer() {
+    if (!canvasDesktop || !playerDesktop) return;
 
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const ctx = canvasDesktop.getContext("2d");
 
     canvasDesktop.width = canvasDesktop.clientWidth;
     canvasDesktop.height = canvasDesktop.clientHeight;
 
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const source = audioCtx.createMediaElementSource(playerDesktop);
-    const analyser = audioCtx.createAnalyser();
+    analyser = audioCtx.createAnalyser();
 
     analyser.fftSize = 256;
     source.connect(analyser);
@@ -100,8 +82,33 @@ if (canvasDesktop && playerDesktop) {
         }
     }
 
-    playerDesktop.onplay = () => {
-        audioCtx.resume();
-        draw();
-    };
+    draw();
 }
+
+/* ============================
+   КНОПКА PLAY (ПК)
+============================ */
+
+if (btnDesktop && playerDesktop) {
+    btnDesktop.addEventListener("click", () => {
+
+        // запускаем AudioContext строго после клика
+        if (audioCtx && audioCtx.state === "suspended") {
+            audioCtx.resume();
+        }
+
+        if (playerDesktop.paused) {
+            playerDesktop.play();
+            btnDesktop.classList.add("pause");
+        } else {
+            playerDesktop.pause();
+            btnDesktop.classList.remove("pause");
+        }
+    });
+}
+
+/* ============================
+   АВТО-ИНИЦИАЛИЗАЦИЯ ВИЗУАЛИЗАТОРА
+============================ */
+
+initVisualizer();
