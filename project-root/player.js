@@ -191,5 +191,15 @@ playerDesktop.onplay = () => {
         previewDesktopTitle.textContent = currentStation.name;
     }
 };
+const previewImg = document.querySelector(".preview-right img");
+const stationTitle = document.querySelector(".station-title");
+const player = document.getElementById("player-desktop");
 
+function setStation(streamUrl, previewUrl, title) {
+    player.src = streamUrl;
+    player.play();
+
+    previewImg.src = previewUrl;
+    stationTitle.textContent = title;
+}
 
