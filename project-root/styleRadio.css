@@ -218,3 +218,39 @@
         display: none;
     }
 }
+
+
+.stations-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.station {
+    background: #004040;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+    text-align: center;
+}
+
+.station:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.station img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.station .title {
+    margin-top: 8px;
+    color: #e6c27a;
+    font-size: 16px;
+    font-weight: 600;
+}
