@@ -969,6 +969,149 @@ body {
     font-size: 12px;
     margin-top: 6px;
 }
+[Дед, весь твой CSS остаётся без изменений — я вставляю только блок ниже]
+
+/* ============================
+   АДАПТАЦИЯ ДЛЯ ТЕЛЕВИЗОРОВ (1800px+)
+   МАСШТАБИРОВАНИЕ ВСЕГО САЙТА
+============================ */
+@media (min-width: 1800px) {
+
+    /* Увеличиваем базовый размер текста */
+    html {
+        font-size: 22px;
+    }
+
+    /* ШАПКА — крупнее, шире, масштабируется */
+    #site-header {
+        padding: 30px 0;
+    }
+
+    .header-row {
+        max-width: 1800px;
+        gap: 40px;
+    }
+
+    .site-logo {
+        width: 18vw;
+        height: 18vw;
+        object-fit: contain;
+    }
+
+    .preview-thumb {
+        width: 30vw;
+        height: 14vw;
+        border-radius: 14px;
+    }
+
+    .preview-title {
+        font-size: 1.3vw;
+    }
+
+    /* МЕНЮ — крупное, удобное */
+    .right-menu a {
+        font-size: 1.4vw;
+    }
+
+    .menu-knob {
+        width: 2vw;
+        height: 2vw;
+    }
+
+    /* СЕТКА ВИДЕО — масштабируемая */
+    #video-list {
+        max-width: 1800px;
+        margin: 0 auto;
+        grid-template-columns: repeat(auto-fill, minmax(18vw, 1fr));
+        gap: 2vw;
+        padding: 2vw;
+    }
+
+    .video-card {
+        border-radius: 1vw;
+    }
+
+    .video-thumb {
+        height: 12vw;
+    }
+
+    .video-title {
+        font-size: 1.2vw;
+        padding: 1.2vw;
+    }
+
+    /* РЕКЛАМНАЯ КАРТОЧКА */
+    .ad-card {
+        height: 16vw;
+    }
+
+    /* СТРАНИЦА ПРОСМОТРА — широкая */
+    .video-page {
+        max-width: 80vw;
+        padding: 2vw;
+    }
+
+    .player-wrapper {
+        max-width: 70vw;
+    }
+
+    .video-player-container iframe {
+        width: 100%;
+        height: calc(70vw * 0.5625); /* 16:9 */
+    }
+
+    .video-title-page {
+        font-size: 2vw;
+    }
+
+    .video-description {
+        font-size: 1.2vw;
+    }
+
+    /* КНОПКИ ПОД ПЛЕЕРОМ */
+    .action-panel {
+        max-width: 70vw;
+        font-size: 1.3vw;
+    }
+
+    .panel-section {
+        padding: 1vw 0;
+    }
+
+    .stars span {
+        font-size: 1.8vw;
+    }
+
+    /* ПОХОЖИЕ ВИДЕО */
+    #related-videos {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2vw;
+    }
+
+    .related-title-text {
+        font-size: 1.2vw;
+        height: 3.5vw;
+    }
+
+    /* ПОДВАЛ */
+    .footer-content {
+        max-width: 1800px;
+        gap: 3vw;
+        padding: 0 2vw;
+    }
+
+    .footer-left h3 {
+        font-size: 1.8vw;
+    }
+
+    .footer-center a {
+        font-size: 1.2vw;
+    }
+
+    .footer-right p {
+        font-size: 1.1vw;
+    }
+}
  
 
 
