@@ -69,13 +69,21 @@ async function loadLeastViewedVideo() {
 ============================ */
 async function loadVideoCards() {
     try {
-        const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=100`;
-        const res = await fetch(url);
-        const data = await res.json();
+        let nextPageToken = "";
+        allVideos = [];
 
-        if (!data.items) return;
+        while (true) {
+            const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50&pageToken=${nextPageToken}`;
+            const res = await fetch(url);
+            const data = await res.json();
 
-        allVideos = data.items;
+            if (!data.items) break;
+
+            allVideos = allVideos.concat(data.items);
+
+            if (!data.nextPageToken) break;
+            nextPageToken = data.nextPageToken;
+        }
 
         if (document.getElementById("video-list")) {
             renderMoreVideos();
@@ -86,6 +94,7 @@ async function loadVideoCards() {
         console.error("Ошибка loadVideoCards:", e);
     }
 }
+
 
 
 /* ============================
