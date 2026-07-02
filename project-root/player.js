@@ -191,15 +191,28 @@ playerDesktop.onplay = () => {
         previewDesktopTitle.textContent = currentStation.name;
     }
 };
+// ===============================
+// Смена станции (ПК + мобильная)
+// ===============================
 const previewImg = document.querySelector(".preview-right img");
 const stationTitle = document.querySelector(".station-title");
-const player = document.getElementById("player-desktop");
+const playerDesktop = document.getElementById("player-desktop");
 
 function setStation(streamUrl, previewUrl, title) {
-    player.src = streamUrl;
-    player.play();
 
-    previewImg.src = previewUrl;
-    stationTitle.textContent = title;
+    // Меняем поток
+    playerDesktop.src = streamUrl;
+    playerDesktop.play();
+
+    // Меняем превью справа
+    if (previewImg) {
+        previewImg.src = previewUrl;
+    }
+
+    // Меняем название станции
+    if (stationTitle) {
+        stationTitle.textContent = title;
+    }
 }
+
 
