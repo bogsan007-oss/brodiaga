@@ -2,7 +2,7 @@
    ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
 ============================ */
 let allVideos = [];
-let videosPerPage = 14;
+let videosPerPage = 14; // 14 видео + реклама = 15 элементов
 let currentIndex = 0;
 
 const apiKey = "AIzaSyBsgFd3dCjYQcKdMRtvCW-bwKrifH1n80w";
@@ -77,10 +77,8 @@ async function loadVideoCards() {
 
         allVideos = data.items;
 
-        // ВАЖНО: выполняем только на index.html
         if (document.getElementById("video-list")) {
             renderMoreVideos();
-            insertAdCard();
             updateShowMoreButton();
         }
 
@@ -91,7 +89,7 @@ async function loadVideoCards() {
 
 
 /* ============================
-   ОТРИСОВКА ПОРЦИИ
+   ОТРИСОВКА ПОРЦИИ (14 видео + реклама)
 ============================ */
 function renderMoreVideos() {
     const container = document.getElementById("video-list");
@@ -100,60 +98,57 @@ function renderMoreVideos() {
     const end = currentIndex + videosPerPage;
     const slice = allVideos.slice(currentIndex, end);
 
-    slice.forEach(item => {
-        const videoId = item.snippet.resourceId.videoId;
-        const title = item.snippet.title;
-        const thumb = item.snippet.thumbnails.medium.url;
+    const finalItems = [];
 
-        const card = document.createElement("div");
-        card.className = "video-card";
-        card.onclick = () => {
-            window.location.href = `watch.html?id=${videoId}`;
-        };
-
-        card.innerHTML = `
-            <img class="video-thumb" src="${thumb}">
-            <div class="video-title">${title}</div>
-        `;
-
-        container.appendChild(card);
+    slice.forEach((item, i) => {
+        // Вставляем рекламу на 6-е место (после 5 видео)
+        if (i === 5) {
+            finalItems.push({ type: "ad" });
+        }
+        finalItems.push(item);
     });
 
-    currentIndex = end;
-}
+    finalItems.forEach(item => {
+        if (item.type === "ad") {
+            const adCard = document.createElement("div");
+            adCard.className = "video-card ad-card";
+            adCard.innerHTML = `
+                <div class="ad-box">
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:100%;height:100%;"
+                         data-ad-client="ca-pub-7483662712371460"
+                         data-ad-slot="1747457051"></ins>
+                </div>
+            `;
+            container.appendChild(adCard);
 
+            setTimeout(() => {
+                try {
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                } catch {}
+            }, 300);
 
-/* ============================
-   РЕКЛАМА ПОСЛЕ 6-Й КАРТОЧКИ
-============================ */
-function insertAdCard() {
-    const list = document.getElementById("video-list");
-    if (!list) return;
+        } else {
+            const videoId = item.snippet.resourceId.videoId;
+            const title = item.snippet.title;
+            const thumb = item.snippet.thumbnails.medium.url;
 
-    const adCard = document.createElement("div");
-    adCard.className = "video-card ad-card";
+            const card = document.createElement("div");
+            card.className = "video-card";
+            card.onclick = () => {
+                window.location.href = `watch.html?id=${videoId}`;
+            };
 
-    adCard.innerHTML = `
-        <div class="ad-box">
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:100%;height:100%;"
-                 data-ad-client="ca-pub-7483662712371460"
-                 data-ad-slot="1747457051"></ins>
-        </div>
-    `;
+            card.innerHTML = `
+                <img class="video-thumb" src="${thumb}">
+                <div class="video-title">${title}</div>
+            `;
 
-    const index = 6;
-    if (list.children[index]) {
-        list.insertBefore(adCard, list.children[index]);
-    } else {
-        list.appendChild(adCard);
-    }
+            container.appendChild(card);
+        }
+    });
 
-    setTimeout(() => {
-        try {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        } catch {}
-    }, 300);
+    currentIndex = end; // увеличиваем только на 14 видео
 }
 
 
