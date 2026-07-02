@@ -7,16 +7,15 @@
 
     <link rel="stylesheet" href="styleRadio.css">
 </head>
-<audio id="player-desktop" controls preload="none" src="https://radio.brodiaga.com/shanson"></audio>
-    
+
 <body>
 
 <!-- =========================================================
-     ХЕДЕР — ВРЕМЕННО ОСТАВЛЯЕМ СТАРЫЙ, ЧТОБЫ НИЧЕГО НЕ ЛОМАЛОСЬ
+     ХЕДЕР — ПК-версия
      ========================================================= -->
 <header class="top-bar">
     <div class="top-right">
-    <!-- ПК-версия хедера (пока пустой каркас) -->
+
 <div class="header-desktop">
 
     <!-- ЛОГОТИП СЛЕВА -->
@@ -27,33 +26,37 @@
     <!-- КНОПКА PLAY (пока пустая) -->
     <div class="play-btn-desktop"></div>
 
-    <!-- ВИЗУАЛИЗАТОР (пока пустой) -->
+    <!-- ВИЗУАЛИЗАТОР -->
     <div class="visualizer-block-desktop">
         <canvas id="visualizer-desktop"></canvas>
     </div>
 
     <!-- ПРЕВЬЮ СПРАВА -->
     <div class="preview-right">
-    <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png" alt="Preview">
-</div>
+        <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png" alt="Preview">
+    </div>
+
+    <!-- ЕДИНСТВЕННЫЙ ПРАВИЛЬНЫЙ ПЛЕЕР -->
+    <audio id="player-desktop" preload="none"></audio>
+
 </div>
         
 </header>
 
 <!-- =========================================================
-     ПЛЕЕР — СТАРАЯ РАБОЧАЯ ВЕРСИЯ (НЕ ЛОМАЕТ JS)
+     МОБИЛЬНЫЙ ПЛЕЕР (старый, но рабочий)
      ========================================================= -->
 <section class="player-row">
 
     <div class="player-block">
 
-        <!-- НАЗВАНИЕ — ТОЛЬКО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ -->
+        <!-- НАЗВАНИЕ — МОЖНО УБРАТЬ ПОТОМ -->
         <div class="station-title">Название радио</div>
 
         <!-- КНОПКА PLAY -->
         <div class="play-btn"></div>
 
-        <!-- АУДИО-ПЛЕЕР -->
+        <!-- МОБИЛЬНЫЙ ПЛЕЕР -->
         <audio id="player" src="https://radio.brodiaga.com/Прости Гагарин.mp3"></audio>
 
     </div>
@@ -71,27 +74,25 @@
 <section class="stations-list" id="stations">
 
     <!-- Станция 1 — Шансон -->
-   <div class="station" onclick="setStation(
-    'https://radio.brodiaga.com/shanson',
-    'https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png',
-    'Шансон'
-)">
-    <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png" alt="Шансон">
-</div>
+    <div class="station" onclick="setStation(
+        'https://radio.brodiaga.com/shanson',
+        'https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png'
+    )">
+        <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png" alt="Шансон">
+    </div>
 
     <!-- Станция 2 — Ретро -->
     <div class="station" onclick="setStation(
-    'https://radio.brodiaga.com/retro',
-    'https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/retroRadio.png',
-    'Ретро'
-)">
-    <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/retroRadio.png" alt="Ретро">
-</div>
+        'https://radio.brodiaga.com/retro',
+        'https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/retroRadio.png'
+    )">
+        <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/retroRadio.png" alt="Ретро">
+    </div>
+
 </section>
 
-
 <!-- =========================================================
-     СКРИПТЫ — НЕ ТРОГАЕМ
+     СКРИПТЫ
      ========================================================= -->
 <script src="player.js"></script>
 <script src="visualizer.js"></script>
