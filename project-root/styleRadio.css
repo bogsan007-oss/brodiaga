@@ -1,7 +1,4 @@
-/* =========================================================
-   ПК-ВЕРСИЯ — ХЕДЕР
-   ========================================================= */
-
+/* Хедер */
 .top-bar {
     height: 120px;
     display: flex;
@@ -10,7 +7,6 @@
     background: #004040;
 }
 
-/* Основной ПК-контейнер */
 .header-desktop {
     display: flex;
     align-items: center;
@@ -18,97 +14,29 @@
     width: 100%;
 }
 
-/* Логотип слева */
-.logo-left {
-    height: 120px;
-    display: flex;
-    align-items: center;
-}
 .logo-left img {
-    height: 100%;
-    width: auto;
+    height: 100px;
     border-radius: 10px;
 }
 
-/* ПК-кнопка Play */
-.play-btn-desktop {
-    width: 90px;
-    height: 90px;
-    background: #004040;
-    position: relative;
-    cursor: pointer;
-}
-
-/* Визуализатор */
-.visualizer-block-desktop {
-    height: 90px;
-    flex: 1;
-}
-.visualizer-block-desktop canvas {
-    height: 100%;
-    width: 100%;
-    background: #004040;
-    border-radius: 12px;
-}
-
-/* Превью справа */
-.preview-right img {
-    height: 90px;
-    width: 90px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* =========================================================
-   СКРЫВАЕМ МОБИЛЬНЫЕ ЭЛЕМЕНТЫ
-   ========================================================= */
-
-.header-mobile,
-.player-row-mobile,
-.player-row,
-.player-block,
-.station-title,
-#visualizer {
-    display: none !important;
-}
-
-/* =========================================================
-   КНОПКА PLAY — ОБЩИЕ СТИЛИ
-   ========================================================= */
-
+/* Кнопка Play */
 .play-btn-desktop {
     width: 90px;
     height: 90px;
     background: #008080;
-    border: none;
     cursor: pointer;
     position: relative;
-    padding: 0;
-    display: block;
 }
 
-/* Внешний треугольник */
+/* Треугольник Play */
 .play-btn-desktop::after {
     content: "";
     position: absolute;
-    left: 6px;
-    top: 4px;
-    border-top: 40px solid transparent;
-    border-bottom: 40px solid transparent;
-    border-left: 65px solid #003020;
-    z-index: 1;
-}
-
-/* Внутренний треугольник */
-.play-btn-desktop::before {
-    content: "";
-    position: absolute;
-    left: 15px;
-    top: 16px;
-    border-top: 26px solid transparent;
-    border-bottom: 26px solid transparent;
-    border-left: 42px solid #ffd700;
-    z-index: 2;
+    left: 20px;
+    top: 15px;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 45px solid #ffd700;
 }
 
 /* Пауза */
@@ -116,39 +44,36 @@
 .play-btn-desktop.pause::after {
     content: "";
     position: absolute;
-    top: 16px;
+    top: 20px;
     width: 18px;
     height: 50px;
     background-color: #ffd700;
-    border: 4px solid #004040;
-    box-sizing: border-box;
-    z-index: 2;
 }
 
 .play-btn-desktop.pause::before {
-    left: 14px;
+    left: 20px;
 }
 
 .play-btn-desktop.pause::after {
-    left: 42px;
+    left: 50px;
 }
 
-/* =========================================================
-   АУДИО — КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ
-   ========================================================= */
+/* Превью */
+.preview-right img {
+    height: 90px;
+    width: 90px;
+    border-radius: 10px;
+}
 
+/* Аудио — обязательно видимый элемент */
 #player-desktop {
     width: 1px;
     height: 1px;
     opacity: 0;
     position: absolute;
-    z-index: -1;
 }
 
-/* =========================================================
-   СПИСОК СТАНЦИЙ
-   ========================================================= */
-
+/* Станции */
 .stations-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -161,13 +86,6 @@
     border-radius: 10px;
     padding: 8px;
     cursor: pointer;
-    transition: transform .2s ease, box-shadow .2s ease;
-    text-align: center;
-}
-
-.station:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
 .station img {
@@ -175,5 +93,4 @@
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 8px;
-    display: block;
 }
