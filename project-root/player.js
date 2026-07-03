@@ -16,52 +16,29 @@ let currentStation = {
 };
 
 /* ============================
-   СМЕНА СТАНЦИИ (карточки)
+   АУДИО-КОНТЕКСТ И ВИЗУАЛИЗАТОР
 ============================ */
 
-function setStation(streamUrl, previewUrl) {
-
-    currentStation.url = streamUrl;
-    currentStation.preview = previewUrl;
-
-    // меняем поток
-    playerDesktop.src = streamUrl;
-
-    // запускаем звук
-    playerDesktop.play().catch(() => {
-        console.log("Нужно кликнуть по странице");
-    });
-
-    // меняем превью
-    if (previewImg) {
-        previewImg.src = previewUrl;
-    }
-
-    // запускаем визуализатор после смены станции
-    if (audioCtx && audioCtx.state === "suspended") {
-        audioCtx.resume();
-    }
-}
-
-/* ============================
-   ВИЗУАЛИЗАТОР (ПК)
-============================ */
-
-const canvasDesktop = document.getElementById("visualizer-desktop");
 let audioCtx = null;
 let analyser = null;
 let audioSource = null;
 
-function initVisualizer() {
+const canvasDesktop = document.getElementById("visualizer-desktop");
+let ctx = canvasDesktop ? canvasDesktop.getContext("2d") : null;
+
+/* ============================
+   ЗАПУСК ВИЗУАЛИЗАТОРА
+============================ */
+
+function startVisualizer() {
     if (!canvasDesktop || !playerDesktop) return;
 
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const ctx = canvasDesktop.getContext("2d");
+    // создаём AudioContext только один раз
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
 
-    canvasDesktop.width = canvasDesktop.clientWidth;
-    canvasDesktop.height = canvasDesktop.clientHeight;
-
-    // создаём источник ТОЛЬКО ОДИН РАЗ
+    // создаём источник только один раз
     if (!audioSource) {
         audioSource = audioCtx.createMediaElementSource(playerDesktop);
         analyser = audioCtx.createAnalyser();
@@ -70,6 +47,9 @@ function initVisualizer() {
         audioSource.connect(analyser);
         analyser.connect(audioCtx.destination);
     }
+
+    canvasDesktop.width = canvasDesktop.clientWidth;
+    canvasDesktop.height = canvasDesktop.clientHeight;
 
     function draw() {
         requestAnimationFrame(draw);
@@ -102,19 +82,54 @@ function initVisualizer() {
 }
 
 /* ============================
-   КНОПКА PLAY (ПК)
+   СМЕНА СТАНЦИИ
+============================ */
+
+function setStation(streamUrl, previewUrl) {
+
+    currentStation.url = streamUrl;
+    currentStation.preview = previewUrl;
+
+    // меняем поток
+    playerDesktop.src = streamUrl;
+
+    // запускаем звук
+    playerDesktop.play().then(() => {
+
+        // активируем AudioContext
+        if (audioCtx && audioCtx.state === "suspended") {
+            audioCtx.resume();
+        }
+
+        // запускаем визуализатор только после начала звука
+        startVisualizer();
+
+    }).catch(() => {
+        console.log("Нужно кликнуть по странице");
+    });
+
+    // меняем превью
+    if (previewImg) {
+        previewImg.src = previewUrl;
+    }
+}
+
+/* ============================
+   КНОПКА PLAY
 ============================ */
 
 if (btnDesktop && playerDesktop) {
     btnDesktop.addEventListener("click", () => {
 
-        // запускаем AudioContext строго после клика
+        // активируем AudioContext
         if (audioCtx && audioCtx.state === "suspended") {
             audioCtx.resume();
         }
 
         if (playerDesktop.paused) {
-            playerDesktop.play();
+            playerDesktop.play().then(() => {
+                startVisualizer();
+            });
             btnDesktop.classList.add("pause");
         } else {
             playerDesktop.pause();
@@ -122,9 +137,3 @@ if (btnDesktop && playerDesktop) {
         }
     });
 }
-
-/* ============================
-   АВТО-ИНИЦИАЛИЗАЦИЯ ВИЗУАЛИЗАТОРА
-============================ */
-
-initVisualizer();
