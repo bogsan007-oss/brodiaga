@@ -3,7 +3,7 @@
    ========================================================= */
 
 .top-bar {
-    height: 120px;              /* фиксируем высоту шапки */
+    height: 120px;
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -25,7 +25,7 @@
     align-items: center;
 }
 .logo-left img {
-    height: 100%;               /* логотип под высоту шапки */
+    height: 100%;
     width: auto;
     border-radius: 10px;
 }
@@ -39,9 +39,13 @@
     cursor: pointer;
 }
 
-/* ПК-визуализатор */
-.visualizer-block-desktop canvas {
+/* Визуализатор */
+.visualizer-block-desktop {
     height: 90px;
+    flex: 1;
+}
+.visualizer-block-desktop canvas {
+    height: 100%;
     width: 100%;
     background: #004040;
     border-radius: 12px;
@@ -55,69 +59,24 @@
     border-radius: 10px;
 }
 
-/* Скрываем мобильные элементы на ПК */
+/* =========================================================
+   СКРЫВАЕМ МОБИЛЬНЫЕ ЭЛЕМЕНТЫ
+   ========================================================= */
+
 .header-mobile,
-.player-row-mobile {
-    display: none;
+.player-row-mobile,
+.player-row,
+.player-block,
+.station-title,
+#visualizer {
+    display: none !important;
 }
-/* ----- скрываем старую версию ------*/ 
-.player-row {
-    display: none;
-}
- .player-block,
-.station-title {
-    display: none;
-}
-/* =========================================================
-   МОБИЛЬНАЯ ВЕРСИЯ — ХЕДЕР
-   ========================================================= */
-
-.header-mobile {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-.logo-btn img,
-.home-btn img {
-    width: 40px;
-    height: 40px;
-}
-
 
 /* =========================================================
-   МОБИЛЬНАЯ ВЕРСИЯ — ПЛЕЕР
+   КНОПКА PLAY — ОБЩИЕ СТИЛИ
    ========================================================= */
 
-.player-row-mobile {
-    display: block;
-    margin-top: 20px;
-}
-
-.player-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 140px;
-    height: 160px;
-    background: #008080;
-    border-radius: 12px;
-    padding: 12px;
-    color: white;
-}
-
-.station-title {
-    font-size: 14px;
-    opacity: 0.85;
-}
-
-
-/* =========================================================
-   МОБИЛЬНАЯ КНОПКА PLAY
-   ========================================================= */
-
-.play-btn,
-.play-btn-desktop{
+.play-btn-desktop {
     width: 90px;
     height: 90px;
     background: #008080;
@@ -129,7 +88,6 @@
 }
 
 /* Внешний треугольник */
-.play-btn::after,
 .play-btn-desktop::after {
     content: "";
     position: absolute;
@@ -142,7 +100,6 @@
 }
 
 /* Внутренний треугольник */
-.play-btn::before,
 .play-btn-desktop::before {
     content: "";
     position: absolute;
@@ -155,8 +112,6 @@
 }
 
 /* Пауза */
-.play-btn.pause::before,
-.play-btn.pause::after,
 .play-btn-desktop.pause::before,
 .play-btn-desktop.pause::after {
     content: "";
@@ -170,55 +125,29 @@
     z-index: 2;
 }
 
-.play-btn.pause::before,
 .play-btn-desktop.pause::before {
     left: 14px;
 }
 
-.play-btn.pause::after,
 .play-btn-desktop.pause::after {
     left: 42px;
 }
 
 /* =========================================================
-   МОБИЛЬНЫЙ ВИЗУАЛИЗАТОР
+   АУДИО — КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ
    ========================================================= */
 
-#visualizer {
-    flex: 1;
-    height: 120px;
-    background: #004040;
-    border-radius: 12px;
+#player-desktop {
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
 }
-
 
 /* =========================================================
-   АДАПТИВ — ПЕРЕКЛЮЧЕНИЕ НА МОБИЛЬНУЮ ВЕРСИЮ
+   СПИСОК СТАНЦИЙ
    ========================================================= */
-
-@media (max-width: 900px) {
-
-    /* ПК скрываем */
-    .header-desktop {
-        display: none;
-    }
-
-    /* Мобильный хедер включаем */
-    .header-mobile {
-        display: flex;
-    }
-
-    /* Мобильный плеер включаем */
-    .player-row-mobile {
-        display: block;
-    }
-
-    /* ПК-плеер скрываем */
-    .player-row {
-        display: none;
-    }
-}
-
 
 .stations-list {
     display: grid;
@@ -241,17 +170,10 @@
     box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
-/* КВАДРАТНАЯ КАРТОЧКА */
 .station img {
     width: 100%;
-    aspect-ratio: 1 / 1; /* делает картинку квадратной */
-    object-fit: cover;   /* не режет логотип */
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     border-radius: 8px;
     display: block;
 }
-
-/* Убираем текст */
-.station .title {
-    display: none;
-}
-
