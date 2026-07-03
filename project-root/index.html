@@ -11,37 +11,27 @@
 <body>
 
 <header class="top-bar">
-    <div class="top-right">
+    <div class="header-desktop">
 
-        <div class="header-desktop">
+        <!-- ЛОГО -->
+        <div class="logo-left">
+            <img src="https://radio.brodiaga.com/radio.brodiaga.jpg" alt="Radio Brodiaga">
+        </div>
 
-            <!-- ЛОГО -->
-            <div class="logo-left">
-                <img src="https://radio.brodiaga.com/radio.brodiaga.jpg" alt="Radio Brodiaga">
-            </div>
+        <!-- КНОПКА PLAY -->
+        <div class="play-btn-desktop"></div>
 
-            <!-- КНОПКА PLAY -->
-            <div class="play-btn-desktop"></div>
+        <!-- ЕДИНСТВЕННЫЙ ПЛЕЕР -->
+        <audio id="player-desktop" preload="auto"></audio>
 
-            <!-- АУДИО-ПЛЕЕР (должен быть ПЕРЕД визуализатором) -->
-            <audio id="player-desktop" preload="auto"></audio>
-
-            <!-- ВИЗУАЛИЗАТОР -->
-            <div class="visualizer-block-desktop">
-                <canvas id="visualizer-desktop"></canvas>
-            </div>
-
-            <!-- ПРЕВЬЮ -->
-            <div class="preview-right">
-                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png" alt="Preview">
-            </div>
-
+        <!-- ПРЕВЬЮ -->
+        <div class="preview-right">
+            <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png" alt="Preview">
         </div>
 
     </div>
 </header>
 
-<!-- СПИСОК СТАНЦИЙ -->
 <section class="stations-list" id="stations">
 
     <!-- Шансон -->
