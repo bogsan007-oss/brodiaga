@@ -24,10 +24,22 @@ function setStation(streamUrl, previewUrl) {
     currentStation.url = streamUrl;
     currentStation.preview = previewUrl;
 
+    // меняем поток
     playerDesktop.src = streamUrl;
 
+    // запускаем звук
+    playerDesktop.play().catch(() => {
+        console.log("Нужно кликнуть по странице");
+    });
+
+    // меняем превью
     if (previewImg) {
         previewImg.src = previewUrl;
+    }
+
+    // запускаем визуализатор после смены станции
+    if (audioCtx && audioCtx.state === "suspended") {
+        audioCtx.resume();
     }
 }
 
@@ -38,6 +50,7 @@ function setStation(streamUrl, previewUrl) {
 const canvasDesktop = document.getElementById("visualizer-desktop");
 let audioCtx = null;
 let analyser = null;
+let audioSource = null;
 
 function initVisualizer() {
     if (!canvasDesktop || !playerDesktop) return;
@@ -48,12 +61,15 @@ function initVisualizer() {
     canvasDesktop.width = canvasDesktop.clientWidth;
     canvasDesktop.height = canvasDesktop.clientHeight;
 
-    const source = audioCtx.createMediaElementSource(playerDesktop);
-    analyser = audioCtx.createAnalyser();
+    // создаём источник ТОЛЬКО ОДИН РАЗ
+    if (!audioSource) {
+        audioSource = audioCtx.createMediaElementSource(playerDesktop);
+        analyser = audioCtx.createAnalyser();
 
-    analyser.fftSize = 256;
-    source.connect(analyser);
-    analyser.connect(audioCtx.destination);
+        analyser.fftSize = 256;
+        audioSource.connect(analyser);
+        analyser.connect(audioCtx.destination);
+    }
 
     function draw() {
         requestAnimationFrame(draw);
