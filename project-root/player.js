@@ -37,9 +37,6 @@ const bars = visualizer.querySelectorAll(".bar");
 
 let audioCtx = null;
 let analyser = null;
-
-let audioCtx = null;
-let analyser = null;
 let source = null;
 
 function startVisualizer() {
@@ -87,13 +84,3 @@ function startVisualizer() {
 audio.addEventListener("play", () => {
     startVisualizer();
 });
-
-// Запуск строго после начала воспроизведения
-audio.addEventListener("play", () => {
-    if (!audioCtx) {
-        startVisualizer();
-    } else if (audioCtx.state === "suspended") {
-        audioCtx.resume();
-    }
-});
-
