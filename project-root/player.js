@@ -38,11 +38,31 @@ const bars = visualizer.querySelectorAll(".bar");
 let audioCtx = null;
 let analyser = null;
 
+let audioCtx = null;
+let analyser = null;
+let source = null;
+
 function startVisualizer() {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Создаём AudioContext только один раз
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    // Разблокировка звука
+    if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+    }
+
+    // Создаём источник только один раз
+    if (!source) {
+        source = audioCtx.createMediaElementSource(audio);
+    }
+
+    // Создаём анализатор
     analyser = audioCtx.createAnalyser();
 
-    const source = audioCtx.createMediaElementSource(audio);
+    // Подключаем звук и в анализатор, и в динамики
     source.connect(analyser);
     analyser.connect(audioCtx.destination);
 
@@ -62,6 +82,11 @@ function startVisualizer() {
 
     draw();
 }
+
+// Запуск строго после начала воспроизведения
+audio.addEventListener("play", () => {
+    startVisualizer();
+});
 
 // Запуск строго после начала воспроизведения
 audio.addEventListener("play", () => {
