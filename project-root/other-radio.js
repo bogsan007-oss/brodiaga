@@ -1,23 +1,15 @@
+// === ПЛЕЕР ===
 const playerDesktop = document.getElementById("player-desktop");
 const btnDesktop = document.querySelector(".play-btn-desktop");
 const previewImg = document.querySelector(".preview-right img");
 
-let currentStation = {
-    url: "",
-    preview: ""
-};
-
 function setStation(streamUrl, previewUrl) {
-    currentStation.url = streamUrl;
-    currentStation.preview = previewUrl;
-
     playerDesktop.src = streamUrl;
+    previewImg.src = previewUrl;
 
     playerDesktop.play().catch(() => {
         console.log("Нужно кликнуть по странице");
     });
-
-    previewImg.src = previewUrl;
 }
 
 btnDesktop.addEventListener("click", () => {
@@ -29,41 +21,38 @@ btnDesktop.addEventListener("click", () => {
         btnDesktop.classList.remove("pause");
     }
 });
-// === ДВУХСТОРОННИЙ ВИЗУАЛИЗАТОР ===
 
-const audio = document.getElementById("player-desktop");
+
+// === ВИЗУАЛИЗАТОР ===
+
+const audio = playerDesktop;
 const visualizer = document.getElementById("visualizer");
 const bars = visualizer.querySelectorAll(".bar");
 
 let audioCtx = null;
 let analyser = null;
 let source = null;
+let started = false;
 
-function startVisualizer() {
+function initVisualizer() {
 
-    // Создаём AudioContext только один раз
     if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
 
-    // Разблокировка звука
-    if (audioCtx.state === "suspended") {
-        audioCtx.resume();
-    }
-
-    // Создаём источник только один раз
     if (!source) {
         source = audioCtx.createMediaElementSource(audio);
+        analyser = audioCtx.createAnalyser();
+
+        analyser.fftSize = 256;
+
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
     }
 
-    // Создаём анализатор
-    analyser = audioCtx.createAnalyser();
+    if (started) return;
+    started = true;
 
-    // Подключаем звук и в анализатор, и в динамики
-    source.connect(analyser);
-    analyser.connect(audioCtx.destination);
-
-    analyser.fftSize = 256;
     const buffer = new Uint8Array(analyser.frequencyBinCount);
 
     function draw() {
@@ -80,7 +69,9 @@ function startVisualizer() {
     draw();
 }
 
-// Запуск строго после начала воспроизведения
 audio.addEventListener("play", () => {
-    startVisualizer();
+    if (audioCtx && audioCtx.state === "suspended") {
+        audioCtx.resume();
+    }
+    initVisualizer();
 });
