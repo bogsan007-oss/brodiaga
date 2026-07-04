@@ -55,7 +55,7 @@
 }
 
 .play-btn-desktop.pause::after {
-    left: 50px;
+    right: 20px;
 }
 
 /* Превью */
@@ -98,7 +98,7 @@
 #visualizer {
     display: flex;
     align-items: center;        /* центральная линия */
-    height: 40px;               /* можно менять */
+    height: 140px;               /* можно менять */
     background: #003030;        /* фон */
     border-radius: 12px;
     overflow: hidden;
