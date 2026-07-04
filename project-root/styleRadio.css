@@ -94,3 +94,32 @@
     object-fit: cover;
     border-radius: 8px;
 }
+/* ВИЗУАЛИЗАТОР — двухсторонний */
+#visualizer {
+    display: flex;
+    align-items: center;        /* центральная линия */
+    height: 40px;               /* можно менять */
+    background: #003030;        /* фон */
+    border-radius: 12px;
+    overflow: hidden;
+    flex: 1;                    /* растягивается между Play и превью */
+    margin: 0 10px;             /* отступы слева/справа */
+}
+
+/* Каждая полоска */
+.bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    /* центр — невидимая линия */
+    margin: 0 1px;
+}
+
+/* Верхняя и нижняя части */
+.top, .bottom {
+    width: 100%;
+    background: #00ffaa;        /* цвет полосок */
+    height: 0px;                /* JS будет менять */
+    transition: height 0.05s linear;
+}
+
