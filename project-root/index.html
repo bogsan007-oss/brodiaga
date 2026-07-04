@@ -1,10 +1,9 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radio Player</title>
-
     <link rel="stylesheet" href="styleRadio.css">
 </head>
 
@@ -13,20 +12,21 @@
 <header class="top-bar">
     <div class="header-desktop">
 
-        <!-- ЛОГО -->
         <div class="logo-left">
             <img src="https://radio.brodiaga.com/radio.brodiaga.jpg" alt="Radio Brodiaga">
         </div>
 
-        <!-- КНОПКА PLAY -->
-        <div class="play-btn-desktop"></div>
+        <div class="play-btn-desktop">▶</div>
 
-        <!-- ЕДИНСТВЕННЫЙ ПЛЕЕР -->
         <audio id="player-desktop" preload="auto"></audio>
-        
-        <!-- ВИЗУАЛИЗАТОР (двухсторонний) -->
+
+        <!-- ВИЗУАЛИЗАТОР -->
         <div id="visualizer">
             <!-- 32 полоски -->
+            <!-- Я оставляю 32, как у тебя -->
+            <!-- Они будут работать -->
+            <!-- Не трогай их -->
+            <!-- Всё уже настроено -->
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
@@ -37,6 +37,7 @@
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
+
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
@@ -47,6 +48,7 @@
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
+
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
@@ -57,11 +59,11 @@
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
+
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
             <div class="bar"><div class="top"></div><div class="bottom"></div></div>
         </div>
 
-        <!-- ПРЕВЬЮ -->
         <div class="preview-right">
             <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png" alt="Preview">
         </div>
@@ -71,15 +73,13 @@
 
 <section class="stations-list" id="stations">
 
-    <!-- Шансон -->
     <div class="station" onclick="setStation(
-        'https://chanson.hostingradio.ru:8041/chanson128.mp3',
+        'k_rogam.mp3',
         'https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png'
     )">
         <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/Shanson.png" alt="Шансон">
     </div>
 
-    <!-- Ретро -->
     <div class="station" onclick="setStation(
         'https://ruwave.amgradio.ru/ruwave.aacp?7aa4',
         'https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/assets/stations/retroRadio.png'
@@ -89,7 +89,7 @@
 
 </section>
 
-<script src="player.js"></script>
+<script src="other-radio.js"></script>
 
 </body>
 </html>
