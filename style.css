@@ -188,7 +188,7 @@ body {
 
 .video-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.3);
 }
 
 .video-thumb {
@@ -221,7 +221,7 @@ body {
 
 .ad-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.3);
 }
 
 .ad-box {
@@ -235,6 +235,7 @@ body {
     height: 100% !important;
     display: block !important;
 }
+
 
 /* ============================
    Пост публикации
@@ -263,6 +264,36 @@ body {
     line-height: 1.6;
     margin-bottom: 15px;
     color: #fff;
+}
+
+
+/* ============================
+   АДАПТИВ
+============================ */
+@media (max-width: 768px) {
+
+    .video-thumb {
+        height: 140px;
+    }
+
+    .ad-card {
+        height: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .video-thumb {
+        height: 120px;
+    }
+
+    .ad-card {
+        height: 160px;
+    }
+
+    .post-container {
+        padding: 0 15px;
+    }
 }
 
 
