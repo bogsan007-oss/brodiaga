@@ -10,7 +10,7 @@ body {
 
 
 /* ============================
-   ШАПКА — НОВАЯ СТРУКТУРА
+   ШАПКА
 ============================ */
 #site-header {
     width: 100%;
@@ -31,7 +31,6 @@ body {
 /* ЛОГОТИП */
 .header-left {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
@@ -67,7 +66,10 @@ body {
     color: #fac115;
 }
 
-/* МЕНЮ */
+
+/* ============================
+   МЕНЮ
+============================ */
 .right-menu ul {
     list-style: none;
     margin: 0;
@@ -98,72 +100,11 @@ body {
     width: 22px;
     height: 22px;
     transition: transform 0.4s ease;
-    transform-origin: center center;
 }
 
-/* Вращение при наведении */
 .right-menu li:hover .menu-knob {
     transform: rotate(180deg);
 }
-
-
-/* ============================
-   АДАПТИВ 768px
-============================ */
-@media (max-width: 768px) {
-
-    .header-row {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .site-logo {
-        width: 150px;
-        height: 150px;
-    }
-
-    .preview-thumb {
-        width: 300px;
-        height: 130px;
-    }
-
-    .right-menu ul {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-}
-
-
-/* ============================
-   АДАПТИВ 600px — МОБИЛЬНЫЙ
-============================ */
-@media (max-width: 600px) {
-
-    .header-preview {
-        display: none;
-    }
-
-    .header-row {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .site-logo {
-        width: 130px;
-        height: 130px;
-    }
-
-    .right-menu ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-    }
-}
-
-
 
 
 /* ============================
@@ -200,14 +141,13 @@ body {
 .video-title {
     padding: 12px 14px;
     font-size: 15px;
-    line-height: 1.35;
     color: #fac115;
     background: #004040;
 }
 
 
 /* ============================
-   РЕКЛАМНАЯ КАРТОЧКА
+   РЕКЛАМА
 ============================ */
 .ad-card {
     background: #004040;
@@ -224,12 +164,6 @@ body {
     box-shadow: 0 8px 18px rgba(0,0,0,0.3);
 }
 
-.ad-box {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
 .ad-box ins {
     width: 100% !important;
     height: 100% !important;
@@ -238,7 +172,7 @@ body {
 
 
 /* ============================
-   Пост публикации
+   ПОСТ
 ============================ */
 .post-container {
     max-width: 800px;
@@ -263,37 +197,6 @@ body {
     font-size: 18px;
     line-height: 1.6;
     margin-bottom: 15px;
-    color: #fff;
-}
-
-
-/* ============================
-   АДАПТИВ
-============================ */
-@media (max-width: 768px) {
-
-    .video-thumb {
-        height: 140px;
-    }
-
-    .ad-card {
-        height: 200px;
-    }
-}
-
-@media (max-width: 600px) {
-
-    .video-thumb {
-        height: 120px;
-    }
-
-    .ad-card {
-        height: 160px;
-    }
-
-    .post-container {
-        padding: 0 15px;
-    }
 }
 
 
@@ -319,33 +222,15 @@ body {
     flex-wrap: wrap;
 }
 
-.footer-left h3 {
-    margin: 0 0 10px;
-    color: #fff;
-}
-
 .footer-center a {
     display: block;
     color: #ccc;
     margin-bottom: 8px;
     text-decoration: none;
-    transition: 0.2s;
 }
 
 .footer-center a:hover {
     color: #fff;
-}
-
-.footer-right p {
-    margin: 5px 0;
-    color: #888;
-}
-
-.after-show-more-ad {
-    width: 100%;
-    display: block;
-    text-align: center;
-    margin: 20px 0;
 }
 
 
@@ -360,9 +245,7 @@ body {
 
 .player-wrapper {
     max-width: 720px;
-    width: 100%;
     margin: 0 auto;
-    padding: 0;
 }
 
 .video-player-container {
@@ -383,17 +266,14 @@ body {
     margin-bottom: 20px;
 }
 
-.video-date {
-    color: #888;
-    font-size: 14px;
-}
+
 /* ============================
-  КНОПКИ ПОД ПЛЕЕРОМ
+   КНОПКИ ПОД ПЛЕЕРОМ
 ============================ */
 .action-panel {
     margin-top: 2px;
     width: 100%;
-    max-width: 720px; /* ширина как у плеера */
+    max-width: 720px;
     display: flex;
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 8px;
@@ -401,7 +281,6 @@ body {
     background: #001a1a;
 }
 
-/* Каждая секция */
 .panel-section {
     flex: 1;
     padding: 4px 0;
@@ -412,50 +291,33 @@ body {
     transition: background 0.2s, opacity 0.2s;
 }
 
-/* Левая секция — звёзды */
 .rating-section {
     background: #002222;
 }
 
-/* Средняя — комментарий */
 .comment-section {
     background: #e6c27a;
     color: #001f1f;
     font-weight: bold;
 }
 
-/* Правая — приват */
 .private-section {
     background: #001f1f;
-    border-left: 1px solid rgba(255,255,255,0.2);
     color: #e6c27a;
 }
 
-/* Ховеры */
 .panel-section:hover {
     opacity: 0.8;
 }
 
-/* Звёзды */
-.stars span {
-    font-size: 20px;
-    padding: 0 2px;
-    color: rgba(255,255,255,0.4); /* контур */
-    transition: color 0.2s;
-}
-
-.stars span.active {
-    color: #e6c27a; /* золотые */
-}
 
 /* ============================
    ПОХОЖИЕ ВИДЕО
 ============================ */
 #related-videos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* ТРИ карточки в ряд */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    width: 100%;
 }
 
 .related-card {
@@ -471,31 +333,12 @@ body {
     box-shadow: 0 0 15px rgba(255,255,255,0.15);
 }
 
-.related-thumb {
-    width: 100%;
-}
-
-.related-title-text {
-    padding: 10px;
-    font-size: 15px;
-    color: #fac115;
-    height: 44px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.watch-ad {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 25px 0;
-}
-
 
 /* ============================
    КНОПКА "ПОКАЗАТЬ БОЛЬШЕ"
 ============================ */
 #show-more {
-    display: block !important;
+    display: block;
     margin: 0 auto;
     padding: 8px 18px;
     background: #003f40;
@@ -503,7 +346,6 @@ body {
     border: 1px solid #666;
     border-radius: 6px;
     font-size: 18px;
-    letter-spacing: 0.3px;
     cursor: pointer;
     transition: all .25s ease;
 }
@@ -513,366 +355,12 @@ body {
     color: #fac115;
     transform: translateY(-2px);
 }
+
+
 /* ============================
-  СТРАНИЦА КОММЕНТАРИЕВ
+   КОММЕНТАРИИ
 ============================ */
 .mini-header {
-    width: 100%;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 15px;
-    background: #001f1f;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.back-btn {
-    color: #e6c27a;
-    font-size: 15px;
-    cursor: pointer;
-    user-select: none;
-    transition: opacity 0.2s;
-}
-
-.back-btn:hover {
-    opacity: 0.7;
-}
-
-.mini-logo {
-    height: 28px;
-    width: auto;
-    opacity: 0.9;
-}
-
-.comments-container {
-    padding: 20px;
-    max-width: 700px;
-    margin: auto;
-}
-
-.divider {
-    margin: 25px 0;
-    border: none;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-
-/* ============================
-   АДАПТИВНОСТЬ 768px
-============================ */
-@media (max-width: 768px) {
-
-    #site-header {
-        height: auto;
-        flex-direction: column;
-        padding: 15px 0;
-    }
-
-    .site-logo {
-        width: 180px;
-        height: 180px;
-    }
-
-    .preview-thumb {
-        width: 200px;
-        height: 110px;
-    }
-
-    .right-menu {
-        position: static;
-        width: 100%;
-        height: auto;
-        margin-top: 20px;
-    }
-
-    .right-menu ul {
-        flex-direction: row;
-        justify-content: center;
-        gap: 25px;
-    }
-}
-
-
-/* ============================
-   МОБИЛЬНАЯ ВЕРСИЯ 600px
-============================ */
-@media (max-width: 600px) {
-
-    /* скрываем превью */
-    .preview-thumb,
-    .header-preview {
-        display: none !important;
-    }
-
-    /* перестраиваем шапку */
-    #site-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        padding: 10px 0;
-        height: auto;
-    }
-
-    /* логотип */
-    .site-logo {
-        width: 200px;
-        height: 200px;
-        margin: 0 auto;
-    }
-
-    /* меню */
-    .right-menu {
-        width: 100%;
-        position: static !important;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .right-menu ul {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 20px;
-        padding: 0;
-        margin: 0;
-        flex-wrap: wrap;
-    }
-
-    .right-menu li {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-/* ============================
-   МОБИЛЬНАЯ ВЕРСИЯ — ТОЧНО КАК ТЫ ХОЧЕШЬ
-============================ */
-@media (max-width: 600px) {
-
-    /* скрываем превью полностью */
-    .header-center,
-    .header-preview,
-    .preview-thumb,
-    .preview-title {
-        display: none !important;
-    }
-
-    /* перестраиваем шапку в столбик */
-    #site-header {
-        padding: 15px 0;
-    }
-
-    .header-left {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-
-    /* логотип сверху, ровно, не налезает */
-    .site-logo {
-        width: 160px;
-        height: 160px;
-        object-fit: contain;
-        display: block;
-        margin: 0 auto;
-    }
-
-    /* меню — вертикальное, крупное, под логотипом */
-    .right-menu {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    .right-menu ul {
-        display: flex;
-        flex-direction: column; /* ВЕРТИКАЛЬНОЕ МЕНЮ */
-        align-items: center;
-        gap: 18px;
-        padding: 0;
-        margin: 0;
-    }
-
-    .right-menu li {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .right-menu a {
-        font-size: 22px; /* КРУПНОЕ МЕНЮ */
-        color: #fac115;
-    }
-
-    .menu-knob {
-        width: 26px;
-        height: 26px;
-    }
-}
-/* ============================
-   МОБИЛЬНАЯ ВЕРСИЯ — ЖЁСТКИЙ ФИКС
-============================ */
-@media (max-width: 600px) {
-
-    /* скрываем превью полностью */
-    .header-center,
-    .header-preview,
-    #header-preview,
-    .preview-thumb,
-    #preview-thumb,
-    .preview-title,
-    #preview-title {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-
-    /* шапка в столбик */
-    #site-header {
-        padding: 0;
-        margin: 0;
-    }
-
-    /* ЛОГОТИП НА ВСЮ ШИРИНУ */
-    .header-left {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .site-logo {
-        width: 100% !important;   /* ВОТ ЭТО ДЕЛАЕТ ЛОГОТИП НА ВСЮ ШИРИНУ */
-        height: auto !important;
-        max-width: 100% !important;
-        object-fit: contain !important;
-        display: block !important;
-    }
-
-    /* МЕНЮ — ВЕРТИКАЛЬНОЕ, КРУПНОЕ */
-    .right-menu {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 15px 0 !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-    .right-menu ul {
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important; /* ВЕРТИКАЛЬНО */
-        align-items: center !important;
-        gap: 20px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .right-menu li {
-        display: flex !important;
-        align-items: center !important;
-        gap: 12px !important;
-    }
-
-    .right-menu a {
-        font-size: 26px !important; /* КРУПНОЕ МЕНЮ */
-        color: #fac115 !important;
-    }
-
-    .menu-knob {
-        width: 28px !important;
-        height: 28px !important;
-    }
-}
-/* ============================
-   МОБИЛЬНАЯ ВЕРСИЯ — МЕНЮ СЛЕВА И КРУПНОЕ
-============================ */
-@media (max-width: 600px) {
-
-    /* скрываем превью */
-    .header-center,
-    .header-preview,
-    #header-preview,
-    .preview-thumb,
-    #preview-thumb,
-    .preview-title,
-    #preview-title {
-        display: none !important;
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        visibility: hidden !important;
-    }
-
-    /* логотип на всю ширину */
-    .header-left {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .site-logo {
-        width: 100% !important;
-        height: auto !important;
-        max-width: 100% !important;
-        object-fit: contain !important;
-        display: block !important;
-    }
-
-    /* ==============================
-   МЕНЮ — ВЕРТИКАЛЬНОЕ, СЛЕВА, КРУПНОЕ 
-   ================================== */
-    .right-menu {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: flex-start !important; /* ВЫРАВНИВАЕМ ВЛЕВО */
-        padding-left: 20px !important;
-        margin-top: 10px !important;
-    }
-
-    .right-menu ul {
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important; /* ВЕРТИКАЛЬНО */
-        align-items: flex-start !important; /* ВЫРАВНИВАЕМ ВЛЕВО */
-        gap: 22px !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-
-    .right-menu li {
-        display: flex !important;
-        align-items: center !important;
-        gap: 14px !important;
-    }
-
-    .right-menu a {
-        font-size: 28px !important; /* КРУПНОЕ МЕНЮ */
-        color: #fac115 !important;
-        font-weight: 600 !important;
-    }
-
-    .menu-knob {
-        width: 30px !important;
-        height: 30px !important;
-    }
-}
-/* ============================
-  СТРАНИЦА КОММЕНТАРИЕВ
-============================ */
-  .mini-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -880,112 +368,18 @@ body {
     padding: 8px 12px;
     border-bottom: 1px solid #333;
     height: 100px;
-    box-sizing: border-box;
-    overflow: hidden; /* не даём логотипу вылезать */
 }
 
 .mini-logo {
-    height: 100px;      /* фиксируем высоту */
-    width: auto;       /* ширина подстраивается */
-    max-width: 120px;  /* не даём убежать вправо */
+    height: 100px;
+    max-width: 120px;
     object-fit: contain;
 }
 
-.back-btn {
-    color: #fac115;
-    font-size: 16px;
-    cursor: pointer;
-    white-space: nowrap;
-}
-/* Внешний центрирующий контейнер */
-.comments-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-/* Контейнер комментариев */
-.comments-container {
-    width: 100%;
-    max-width: 700px;
-    padding: 20px;
-    box-sizing: border-box;
-}
-.comment-form {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.comment-form textarea {
-    width: 100%;
-    height: 90px;
-    padding: 10px;
-    background: #1a1a1a;
-    color: white;
-    border: 1px solid #444;
-    border-radius: 6px;
-    resize: vertical;
-    font-size: 15px;
-}
-
-.comment-form button {
-    margin-top: 10px;
-    padding: 10px 18px;
-    background: #fac115;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    color: #111;
-}
-.comment-item {
-    background: #1a1a1a;
-    padding: 12px;
-    border-radius: 6px;
-    margin-bottom: 12px;
-}
-
-.comment-text {
-    color: white;
-    font-size: 15px;
-}
-
-.comment-date {
-    color: #888;
-    font-size: 12px;
-    margin-top: 6px;
-}
 .comments-container {
     max-width: 700px;
-    margin: 0 auto;
+    margin: auto;
     padding: 20px;
-    box-sizing: border-box;
-}
-
-.comment-form textarea {
-    width: 100%;
-    height: 90px;
-    padding: 10px;
-    background: #1a1a1a;
-    color: #fff;
-    border: 1px solid #444;
-    border-radius: 6px;
-    resize: vertical;
-    font-size: 15px;
-}
-
-.comment-form button {
-    margin-top: 10px;
-    padding: 10px 18px;
-    background: #fac115;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    color: #111;
 }
 
 .comment-item {
@@ -995,32 +389,93 @@ body {
     margin-bottom: 12px;
 }
 
-.comment-text {
-    color: #fff;
-    font-size: 15px;
-}
-
-.comment-date {
-    color: #888;
-    font-size: 12px;
-    margin-top: 6px;
-}
-[Дед, весь твой CSS остаётся без изменений — я вставляю только блок ниже]
 
 /* ============================
-   АДАПТАЦИЯ ДЛЯ ТЕЛЕВИЗОРОВ (1800px+)
-   МАСШТАБИРОВАНИЕ ВСЕГО САЙТА
+   АДАПТИВ 768px
+============================ */
+@media (max-width: 768px) {
+
+    .header-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .site-logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .preview-thumb {
+        width: 300px;
+        height: 130px;
+    }
+
+    .video-thumb {
+        height: 140px;
+    }
+
+    .ad-card {
+        height: 200px;
+    }
+}
+
+
+/* ============================
+   АДАПТИВ 600px — КЛАССИЧЕСКИЙ МОБИЛЬНЫЙ
+============================ */
+@media (max-width: 600px) {
+
+    /* скрываем превью */
+    .header-preview,
+    .preview-thumb,
+    .preview-title {
+        display: none;
+    }
+
+    /* перестраиваем шапку */
+    .header-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    /* логотип */
+    .site-logo {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* меню */
+    .right-menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+    }
+
+    /* видео */
+    .video-thumb {
+        height: 120px;
+    }
+
+    /* реклама */
+    .ad-card {
+        height: 160px;
+    }
+
+    /* посты */
+    .post-container {
+        padding: 0 15px;
+    }
+}
+
+
+/* ============================
+   ТВ 1800px+
 ============================ */
 @media (min-width: 1800px) {
 
-    /* Увеличиваем базовый размер текста */
     html {
         font-size: 22px;
-    }
-
-    /* ШАПКА — крупнее, шире, масштабируется */
-    #site-header {
-        padding: 30px 0;
     }
 
     .header-row {
@@ -1031,128 +486,20 @@ body {
     .site-logo {
         width: 18vw;
         height: 18vw;
-        object-fit: contain;
     }
 
     .preview-thumb {
         width: 30vw;
         height: 14vw;
-        border-radius: 14px;
     }
 
-    .preview-title {
-        font-size: 1.3vw;
-    }
-
-    /* МЕНЮ — крупное, удобное */
-    .right-menu a {
-        font-size: 1.4vw;
-    }
-
-    .menu-knob {
-        width: 2vw;
-        height: 2vw;
-    }
-
-    /* СЕТКА ВИДЕО — масштабируемая */
     #video-list {
         max-width: 1800px;
-        margin: 0 auto;
         grid-template-columns: repeat(auto-fill, minmax(18vw, 1fr));
         gap: 2vw;
-        padding: 2vw;
-    }
-
-    .video-card {
-        border-radius: 1vw;
     }
 
     .video-thumb {
         height: 12vw;
     }
-
-    .video-title {
-        font-size: 1.2vw;
-        padding: 1.2vw;
-    }
-
-    /* РЕКЛАМНАЯ КАРТОЧКА */
-    .ad-card {
-        height: 16vw;
-    }
-
-    /* СТРАНИЦА ПРОСМОТРА — широкая */
-    .video-page {
-        max-width: 80vw;
-        padding: 2vw;
-    }
-
-    .player-wrapper {
-        max-width: 70vw;
-    }
-
-    .video-player-container iframe {
-        width: 100%;
-        height: calc(70vw * 0.5625); /* 16:9 */
-    }
-
-    .video-title-page {
-        font-size: 2vw;
-    }
-
-    .video-description {
-        font-size: 1.2vw;
-    }
-
-    /* КНОПКИ ПОД ПЛЕЕРОМ */
-    .action-panel {
-        max-width: 70vw;
-        font-size: 1.3vw;
-    }
-
-    .panel-section {
-        padding: 1vw 0;
-    }
-
-    .stars span {
-        font-size: 1.8vw;
-    }
-
-    /* ПОХОЖИЕ ВИДЕО */
-    #related-videos {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2vw;
-    }
-
-    .related-title-text {
-        font-size: 1.2vw;
-        height: 3.5vw;
-    }
-
-    /* ПОДВАЛ */
-    .footer-content {
-        max-width: 1800px;
-        gap: 3vw;
-        padding: 0 2vw;
-    }
-
-    .footer-left h3 {
-        font-size: 1.8vw;
-    }
-
-    .footer-center a {
-        font-size: 1.2vw;
-    }
-
-    .footer-right p {
-        font-size: 1.1vw;
-    }
 }
- 
-
-
-
-
-
-
-
