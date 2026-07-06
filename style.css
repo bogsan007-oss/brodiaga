@@ -36,8 +36,8 @@ body {
 }
 
 .site-logo {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     object-fit: contain;
 }
 
@@ -55,8 +55,8 @@ body {
 }
 
 .preview-thumb {
-    width: 420px;
-    height: 180px;
+    width: 380px;
+    height: 160px;
     object-fit: cover;
     border-radius: 10px;
 }
@@ -106,6 +106,7 @@ body {
     transform: rotate(180deg);
 }
 
+
 /* ============================
    АДАПТИВ 768px
 ============================ */
@@ -117,8 +118,13 @@ body {
     }
 
     .site-logo {
-        width: 180px;
-        height: 180px;
+        width: 150px;
+        height: 150px;
+    }
+
+    .preview-thumb {
+        width: 300px;
+        height: 130px;
     }
 
     .right-menu ul {
@@ -129,15 +135,14 @@ body {
     }
 }
 
+
 /* ============================
    АДАПТИВ 600px — МОБИЛЬНЫЙ
 ============================ */
 @media (max-width: 600px) {
 
-    /* скрываем превью */
-    .header-preview,
-    .preview-thumb {
-        display: none !important;
+    .header-preview {
+        display: none;
     }
 
     .header-row {
@@ -147,17 +152,17 @@ body {
     }
 
     .site-logo {
-        width: 150px;
-        height: 150px;
+        width: 130px;
+        height: 130px;
     }
 
     .right-menu ul {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
     }
 }
+
 
 
 
