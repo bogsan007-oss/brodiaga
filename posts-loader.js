@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const container = document.getElementById('posts-root');
+    const container = document.getElementById('video-list');
     if (!container) return;
 
     try {
@@ -26,14 +26,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             const postDoc = parser.parseFromString(postText, 'text/html');
 
             const title = postDoc.querySelector('h1')?.innerText || 'Без названия';
-            const desc = postDoc.querySelector('p')?.innerText || 'Описание отсутствует';
+            const img = postDoc.querySelector('img')?.getAttribute('src') || '/images/default-post.jpg';
 
-            const card = document.createElement('a');
-            card.href = postUrl;
-            card.className = 'post-card';
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            card.onclick = () => location.href = postUrl;
+
             card.innerHTML = `
-                <div class="post-card-title">${title}</div>
-                <div class="post-card-desc">${desc}</div>
+                <img src="${img}" class="video-thumb">
+                <div class="video-title">${title}</div>
             `;
 
             container.appendChild(card);
