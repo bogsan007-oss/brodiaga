@@ -197,6 +197,15 @@ body {
     line-height: 1.6;
     margin-bottom: 15px;
 }
+.after-show-more-ad {
+    width: 100%;
+    text-align: center; /* центрирует рекламу */
+    margin: 20px 0;
+}
+
+.ad-wrapper {
+    display: inline-block; /* чтобы реклама не растягивалась */
+}
 
 
 /* ============================
