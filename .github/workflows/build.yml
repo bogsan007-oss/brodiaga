@@ -18,31 +18,28 @@ jobs:
           echo "export const playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
 
       - name: Prepare dist
-        run: |
-          rm -rf dist
-          mkdir dist
+  run: |
+    rm -rf dist
+    mkdir dist
 
-          # Основные файлы
-          cp index.html dist/
-          cp style.css dist/
-          cp player.js dist/
-          cp watch.js dist/
-          cp keys.js dist/
+    # Основные файлы
+    cp index.html dist/
+    cp style.css dist/
+    cp player.js dist/
+    cp watch.js dist/
+    cp keys.js dist/
+    cp watch.html dist/   # ← ЭТОГО НЕ ХВАТАЛО
 
-          # Изображения и ассеты
-          cp favicon.svg dist/
-          cp rucka.png dist/
-          cp radio.brodiaga.jpg dist/ || true
-          cp -r img dist/ || true
-          cp -r assets dist/ || true
+    # Изображения и ассеты
+    cp favicon.svg dist/
+    cp rucka.png dist/
+    cp radio.brodiaga.jpg dist/ || true
+    cp -r img dist/ || true
+    cp -r assets dist/ || true
 
-          # Страницы
-          cp -r pages dist/ || true
+    # Страницы
+    cp -r pages dist/ || true
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
 
   deploy:
     needs: build
