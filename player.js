@@ -5,8 +5,8 @@ let allVideos = [];
 let videosPerPage = 14; // 14 видео + реклама = 15 элементов
 let currentIndex = 0;
 
-const apiKey = "AIzaSyBsgFd3dCjYQcKdMRtvCW-bwKrifH1n80w";
-const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
+const apiKey = "${{ secrets.API_KEY }}";
+const playlistId = "${{ secrets.PLAYLIST_ID }}";
 
 
 /* ============================
