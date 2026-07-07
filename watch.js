@@ -2,12 +2,14 @@ console.log("watch.js загружен");
 console.log("goToComments вызвана");
 
 /* ============================
+   ИМПОРТ КЛЮЧЕЙ
+============================ */
+import { apiKey, playlistId } from "./keys.js";
+
+/* ============================
    ЗАГРУЗКА ОСНОВНОГО ВИДЕО
 ============================ */
 async function loadVideo() {
-    const apiKey = "AIzaSyBsgFd3dCjYQcKdMRtvCW-bwKrifH1n80w";
-    const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
-   
     try {
         // Получаем ID из URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -51,7 +53,7 @@ async function loadVideo() {
             titleEl.textContent = video.snippet.title;
         }
 
-        // ⭐ ФУНКЦИЯ ДЛЯ КЛИКАБЕЛЬНЫХ ССЫЛОК ⭐
+        // ⭐ Делаем ссылки кликабельными ⭐
         function makeLinksClickable(text) {
             return text.replace(
                 /(https?:\/\/[^\s]+)/g,
@@ -59,7 +61,7 @@ async function loadVideo() {
             );
         }
 
-        // Описание: чистим HTML и делаем ссылки кликабельными
+        // Описание
         const descEl = document.getElementById("video-description");
         if (descEl) {
             const cleanDescription = (video.snippet.description || "").replace(/<[^>]+>/g, "");
@@ -87,9 +89,6 @@ async function loadVideo() {
    ПОХОЖИЕ ВИДЕО — СЛУЧАЙНЫЕ
 ============================ */
 async function loadRelatedVideos(currentId) {
-    const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
-    const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
-
     try {
         const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
         const res = await fetch(url);
@@ -205,7 +204,6 @@ function goToComments() {
 
     window.location.href = "/pages/comments.html?video=" + videoId;
 }
-
 
 
 /* ============================
