@@ -4,7 +4,7 @@ console.log("goToComments вызвана");
 /* ============================
    ИМПОРТ КЛЮЧЕЙ
 ============================ */
-import { apiKey, playlistId } from "./keys.js";
+import { apiKey, playlistId } from "/keys.js";
 
 /* ============================
    ЗАГРУЗКА ОСНОВНОГО ВИДЕО
