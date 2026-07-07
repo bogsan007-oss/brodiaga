@@ -124,12 +124,15 @@ function renderMoreVideos() {
             adCard.className = "video-card ad-card";
 
             adCard.innerHTML = `
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-7483662712371460"
-                     data-ad-slot="1747457051"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+               
+<!-- Радио один блок для карточки‑рекламы -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7483662712371460"
+     data-ad-slot="1747457051"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+
             `;
 
             container.appendChild(adCard);
