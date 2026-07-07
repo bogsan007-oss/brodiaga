@@ -5,13 +5,12 @@ let allVideos = [];
 let videosPerPage = 14; // 14 видео + реклама = 15 элементов
 let currentIndex = 0;
 
-const apiKey = "${{ secrets.API_KEY }}";
-const playlistId = "${{ secrets.PLAYLIST_ID }}";
-
+import { apiKey, playlistId } from "./keys.js";
 
 /* ============================
    ЗАГРУЗКА МИНИ-ПРЕВЬЮ
 ============================ */
+
 async function loadLeastViewedVideo() {
     try {
         const listUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
