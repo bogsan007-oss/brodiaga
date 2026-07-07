@@ -17,10 +17,15 @@ jobs:
           echo "export const apiKey = '${{ secrets.API_KEY }}';" > keys.js
           echo "export const playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
 
+      - name: Prepare dist
+        run: |
+          mkdir dist
+          cp -r * dist
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./
+          path: ./dist
 
   deploy:
     needs: build
