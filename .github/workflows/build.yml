@@ -12,6 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Create keys.js
+        run: |
+          echo "export const apiKey = '${{ secrets.API_KEY }}';" > keys.js
+          echo "export const playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
+
       - name: Prepare dist
         run: |
           rm -rf dist
