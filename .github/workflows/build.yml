@@ -21,7 +21,15 @@ jobs:
         run: |
           rm -rf dist
           mkdir dist
-          cp -r . dist
+          cp index.html dist/
+          cp style.css dist/
+          cp player.js dist/
+          cp keys.js dist/
+          cp favicon.svg dist/
+          cp rucka.png dist/
+          cp radio.brodiaga.jpg dist/ || true
+          cp -r img dist/ || true
+          cp -r assets dist/ || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
