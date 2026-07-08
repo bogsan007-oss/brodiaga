@@ -28,8 +28,10 @@ jobs:
           cp watch.js dist/
           cp watch.html dist/
 
-          cp keys-module.js dist/
-          cp keys-global.js dist/
+          # УБРАЛИ ПРОБЛЕМНЫЙ ФАЙЛ
+          # cp keys-module.js dist/
+
+          cp keys-global.js dist/ || true
           cp keys.js dist/
 
           cp favicon.svg dist/
@@ -37,7 +39,6 @@ jobs:
           cp radio.brodiaga.jpg dist/ || true
           cp -r img dist/ || true
           cp -r assets dist/ || true
-
           cp -r pages dist/ || true
 
       - name: Upload artifact
