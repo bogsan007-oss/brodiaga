@@ -120,21 +120,23 @@ function renderMoreVideos() {
         if (item.type === "ad") {
 
             /* ⭐ ИСПРАВЛЕННЫЙ РЕКЛАМНЫЙ БЛОК ДЛЯ КАРТОЧКИ ⭐ */
-            const adCard = document.createElement("div");
-            adCard.className = "video-card ad-card";
+          const adCard = document.createElement("div");
+adCard.className = "video-card ad-card";
 
-            adCard.innerHTML = `<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7483662712371460"
-     data-ad-slot="1747457051"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>`;
+adCard.innerHTML = `
+    <ins class="adsbygoogle"
+         style="display:block;"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="YYYYYYYYYY"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+`;
 
-            container.appendChild(adCard);
+container.appendChild(adCard);
 
-            try {
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            } catch {}
+try {
+    (adsbygoogle = window.adsbygoogle || []).push({});
+} catch {}  
 
         } else {
             const videoId = item.snippet.resourceId.videoId;
