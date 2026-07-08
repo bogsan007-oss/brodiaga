@@ -125,7 +125,7 @@ adCard.className = "video-card ad-card";
 
 adCard.innerHTML = `
     <ins class="adsbygoogle"
-         style="display:block"
+         style="display:inline-block;width:240px;height:260px"
          data-ad-client="ca-pub-7483662712371460"
          data-ad-slot="1747457051"
          data-ad-format="auto"
