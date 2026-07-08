@@ -83,6 +83,7 @@ async function loadVideo() {
         }
 
         const video = data.items[0];
+        initShare(videoId, video.snippet.title);
 
         const player = new Plyr('#player', {
             youtube: { noCookie: true }
@@ -126,6 +127,36 @@ async function loadVideo() {
         console.error("Ошибка loadVideo:", e);
         document.body.innerHTML = "<h2>Ошибка загрузки видео</h2>";
     }
+}
+/* ============================
+   ПОДЕЛИТЬСЯ В СОЦСЕТЯХ
+============================ */
+function initShare(videoId, title) {
+    const shareBtn = document.getElementById("shareBtn");
+    const shareMenu = document.getElementById("shareMenu");
+
+    if (!shareBtn || !shareMenu) return;
+
+    const url = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
+
+    // Открытие/закрытие меню
+    shareBtn.onclick = () => {
+        shareMenu.style.display =
+            shareMenu.style.display === "block" ? "none" : "block";
+    };
+
+    // Ссылки соцсетей
+    document.getElementById("shareVK").href =
+        `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+
+    document.getElementById("shareTG").href =
+        `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+
+    document.getElementById("shareWA").href =
+        `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
+
+    document.getElementById("shareFB").href =
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
 }
 
 /* ============================
