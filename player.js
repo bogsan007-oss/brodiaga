@@ -5,7 +5,9 @@ let allVideos = [];
 let videosPerPage = 14; // 14 видео + реклама = 15 элементов
 let currentIndex = 0;
 
-import { apiKey, playlistId } from "./keys.js";
+// ❗ БЕЗ import — теперь всё работает
+const apiKey = window.apiKey;
+const playlistId = window.playlistId;
 
 /* ============================
    ЗАГРУЗКА МИНИ-ПРЕВЬЮ
@@ -119,27 +121,25 @@ function renderMoreVideos() {
     finalItems.forEach(item => {
         if (item.type === "ad") {
 
-            /* ⭐ ИСПРАВЛЕННЫЙ РЕКЛАМНЫЙ БЛОК ДЛЯ КАРТОЧКИ ⭐ */
-          const adCard = document.createElement("div");
-adCard.className = "video-card ad-card";
+            const adCard = document.createElement("div");
+            adCard.className = "video-card ad-card";
 
-adCard.innerHTML = `
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:240px;height:260px"
-         data-ad-client="ca-pub-7483662712371460"
-         data-ad-slot="1747457051"
-         data-ad-format="rectangle"
-         data-full-width-responsive="true"></ins>
-`;
+            adCard.innerHTML = `
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:240px;height:260px"
+                     data-ad-client="ca-pub-7483662712371460"
+                     data-ad-slot="1747457051"
+                     data-ad-format="rectangle"
+                     data-full-width-responsive="true"></ins>
+            `;
 
-container.appendChild(adCard);
+            container.appendChild(adCard);
 
-// ДАЁМ БРАУЗЕРУ 1 МИЛЛИСЕКУНДУ ПРИКРЕПИТЬ ЭЛЕМЕНТ
-setTimeout(() => {
-    try {
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    } catch {}
-}, 1);
+            setTimeout(() => {
+                try {
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                } catch {}
+            }, 1);
 
         } else {
             const videoId = item.snippet.resourceId.videoId;
@@ -161,7 +161,7 @@ setTimeout(() => {
         }
     });
 
-    currentIndex = end; // увеличиваем только на 14 видео
+    currentIndex = end;
 }
 
 
@@ -170,20 +170,4 @@ setTimeout(() => {
 ============================ */
 function updateShowMoreButton() {
     const btn = document.getElementById("show-more");
-    if (btn) btn.style.display = "block";
-}
-
-const showMoreBtn = document.getElementById("show-more");
-if (showMoreBtn) {
-    showMoreBtn.onclick = () => {
-        renderMoreVideos();
-        updateShowMoreButton();
-    };
-}
-
-
-/* ============================
-   ЗАПУСК
-============================ */
-loadLeastViewedVideo();
-loadVideoCards();
+    if (btn) btn.style.display = "block
