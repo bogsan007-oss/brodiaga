@@ -119,11 +119,11 @@ body {
 .video-card {
     background: #004040;
     border-radius: 14px;
-    overflow: hidden;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     transition: transform .25s ease, box-shadow .25s ease;
+    /* overflow: hidden;  УБРАТЬ */
 }
 
 .video-card:hover {
@@ -155,7 +155,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .ad-card:hover {
