@@ -12,12 +12,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create keys.js
+      # Создаём два keys.js
+      - name: Create keys files
         run: |
-               echo "export const apiKey = '${{ secrets.API_KEY }}';" > keys.js
-               echo "export const playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
-               echo "window.apiKey = '${{ secrets.API_KEY }}';" >> keys.js
-               echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
+          echo "export const apiKey = '${{ secrets.API_KEY }}';" > keys-module.js
+          echo "export const playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys-module.js
+
+          echo "window.apiKey = '${{ secrets.API_KEY }}';" > keys-global.js
+          echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys-global.js
 
       - name: Prepare dist
         run: |
@@ -29,8 +31,11 @@ jobs:
           cp style.css dist/
           cp player.js dist/
           cp watch.js dist/
-          cp keys.js dist/
           cp watch.html dist/
+
+          # Ключи
+          cp keys-module.js dist/
+          cp keys-global.js dist/
 
           # Изображения и ассеты
           cp favicon.svg dist/
