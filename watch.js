@@ -3,11 +3,62 @@ console.log("watch.js загружен");
 /* ============================
    КЛЮЧИ ИЗ ГЛОБАЛЬНЫХ ПЕРЕМЕННЫХ
 ============================ */
-
-// ❗ Меняем const → let, чтобы не было конфликта
 let apiKey = window.apiKey;
 let playlistId = window.playlistId;
 
+/* ============================
+   ПРЕВЬЮ В ШАПКЕ (МИНИ-ВИДЕО)
+============================ */
+async function loadHeaderPreview() {
+    try {
+        const listUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
+        const listRes = await fetch(listUrl);
+        const listData = await listRes.json();
+
+        if (!listData.items) return;
+
+        const videoIds = listData.items
+            .map(v => v.snippet?.resourceId?.videoId)
+            .filter(Boolean)
+            .join(",");
+
+        const statsUrl = `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=statistics,snippet`;
+        const statsRes = await fetch(statsUrl);
+        const statsData = await statsRes.json();
+
+        if (!statsData.items) return;
+
+        const validVideos = statsData.items.filter(v =>
+            v.statistics?.viewCount &&
+            v.snippet?.thumbnails?.medium?.url
+        );
+
+        if (!validVideos.length) return;
+
+        const leastViewed = validVideos.reduce((min, v) =>
+            Number(v.statistics.viewCount) < Number(min.statistics.viewCount) ? v : min
+        );
+
+        const videoId = leastViewed.id;
+        const title = leastViewed.snippet.title;
+        const thumb = leastViewed.snippet.thumbnails.medium.url;
+
+        const thumbEl = document.getElementById("preview-thumb");
+        const titleEl = document.getElementById("preview-title");
+        const boxEl = document.getElementById("header-preview");
+
+        if (thumbEl) thumbEl.src = thumb;
+        if (titleEl) titleEl.textContent = title;
+        if (boxEl) {
+            boxEl.onclick = () => {
+                window.location.href = `watch.html?id=${videoId}`;
+            };
+        }
+
+    } catch (e) {
+        console.error("Ошибка loadHeaderPreview:", e);
+    }
+}
 
 /* ============================
    ЗАГРУЗКА ОСНОВНОГО ВИДЕО
@@ -48,9 +99,7 @@ async function loadVideo() {
         };
 
         const titleEl = document.getElementById("video-title");
-        if (titleEl) {
-            titleEl.textContent = video.snippet.title;
-        }
+        if (titleEl) titleEl.textContent = video.snippet.title;
 
         function makeLinksClickable(text) {
             return text.replace(
@@ -160,51 +209,7 @@ async function loadRelatedVideos(currentId) {
 }
 
 /* ============================
-   ЗВЁЗДЫ РЕЙТИНГА
-============================ */
-const starsContainer = document.getElementById('ratingStars');
-if (starsContainer) {
-    const stars = starsContainer.querySelectorAll('span');
-
-    stars.forEach(star => {
-        star.addEventListener('click', () => {
-            const value = star.getAttribute('data-value');
-
-            stars.forEach(s => {
-                s.classList.remove('active');
-                if (s.getAttribute('data-value') <= value) {
-                    s.classList.add('active');
-                }
-            });
-
-            console.log("Оценка:", value);
-        });
-    });
-}
-
-/* ============================
-   ПЕРЕХОД В КОММЕНТАРИИ
-============================ */
-function goToComments() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const videoId = urlParams.get("id");
-
-    if (!videoId) {
-        alert("Ошибка: ID видео не найден");
-        return;
-    }
-
-    window.location.href = "/pages/comments.html?video=" + videoId;
-}
-
-/* ============================
-   ОТКРЫТИЕ ПРИВАТНОЙ ФОРМЫ
-============================ */
-function openPrivateForm() {
-    alert("Открываем приватную форму… (позже сделаем красиво)");
-}
-
-/* ============================
    СТАРТ
 ============================ */
+loadHeaderPreview();
 loadVideo();
