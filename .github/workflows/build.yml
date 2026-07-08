@@ -13,10 +13,11 @@ jobs:
         uses: actions/checkout@v4
 
       # Создаём два keys.js
-   - name: Create keys.js
-      run: |
-          echo "window.apiKey = '${{ secrets.API_KEY }}';" > keys.js
-           echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
+      - name: Create keys.js
+        run: |
+                   echo "window.apiKey = '${{ secrets.API_KEY }}';" > keys.js
+                    echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
+
 
 
       - name: Prepare dist
