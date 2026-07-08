@@ -1,17 +1,16 @@
 console.log("watch.js загружен");
-console.log("goToComments вызвана");
 
 /* ============================
-   ИМПОРТ КЛЮЧЕЙ
+   КЛЮЧИ ИЗ ГЛОБАЛЬНЫХ ПЕРЕМЕННЫХ
 ============================ */
-import { apiKey, playlistId } from "/keys.js";
+const apiKey = window.apiKey;
+const playlistId = window.playlistId;
 
 /* ============================
    ЗАГРУЗКА ОСНОВНОГО ВИДЕО
 ============================ */
 async function loadVideo() {
     try {
-        // Получаем ID из URL
         const urlParams = new URLSearchParams(window.location.search);
         const videoId = urlParams.get("id");
 
@@ -20,7 +19,6 @@ async function loadVideo() {
             return;
         }
 
-        // Загружаем данные видео
         const apiUrl = `https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoId}&part=snippet,statistics`;
         const res = await fetch(apiUrl);
         const data = await res.json();
@@ -32,7 +30,6 @@ async function loadVideo() {
 
         const video = data.items[0];
 
-        // Настраиваем Plyr
         const player = new Plyr('#player', {
             youtube: { noCookie: true }
         });
@@ -47,13 +44,11 @@ async function loadVideo() {
             ]
         };
 
-        // Заголовок
         const titleEl = document.getElementById("video-title");
         if (titleEl) {
             titleEl.textContent = video.snippet.title;
         }
 
-        // ⭐ Делаем ссылки кликабельными ⭐
         function makeLinksClickable(text) {
             return text.replace(
                 /(https?:\/\/[^\s]+)/g,
@@ -61,21 +56,18 @@ async function loadVideo() {
             );
         }
 
-        // Описание
         const descEl = document.getElementById("video-description");
         if (descEl) {
             const cleanDescription = (video.snippet.description || "").replace(/<[^>]+>/g, "");
             descEl.innerHTML = makeLinksClickable(cleanDescription);
         }
 
-        // Дата
         const dateEl = document.getElementById("video-date");
         if (dateEl) {
             dateEl.textContent =
                 "Дата публикации: " + new Date(video.snippet.publishedAt).toLocaleDateString("ru-RU");
         }
 
-        // Похожие видео
         loadRelatedVideos(videoId);
 
     } catch (e) {
@@ -83,7 +75,6 @@ async function loadVideo() {
         document.body.innerHTML = "<h2>Ошибка загрузки видео</h2>";
     }
 }
-
 
 /* ============================
    ПОХОЖИЕ ВИДЕО — СЛУЧАЙНЫЕ
@@ -165,7 +156,6 @@ async function loadRelatedVideos(currentId) {
     }
 }
 
-
 /* ============================
    ЗВЁЗДЫ РЕЙТИНГА
 ============================ */
@@ -189,7 +179,6 @@ if (starsContainer) {
     });
 }
 
-
 /* ============================
    ПЕРЕХОД В КОММЕНТАРИИ
 ============================ */
@@ -205,14 +194,12 @@ function goToComments() {
     window.location.href = "/pages/comments.html?video=" + videoId;
 }
 
-
 /* ============================
    ОТКРЫТИЕ ПРИВАТНОЙ ФОРМЫ
 ============================ */
 function openPrivateForm() {
     alert("Открываем приватную форму… (позже сделаем красиво)");
 }
-
 
 /* ============================
    СТАРТ
