@@ -209,6 +209,30 @@ async function loadRelatedVideos(currentId) {
 }
 
 /* ============================
+   ПЕРЕХОД В КОММЕНТАРИИ
+============================ */
+function goToComments() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoId = urlParams.get("id");
+
+    if (!videoId) {
+        alert("Ошибка: ID видео не найден");
+        return;
+    }
+
+    // относительный путь, чтобы на GitHub Pages не ломалось
+    window.location.href = "pages/comments.html?video=" + videoId;
+}
+
+/* ============================
+   ПРИВЯЗКА КНОПКИ КОММЕНТАРИЕВ
+============================ */
+const commentsBtn = document.getElementById("comments-btn");
+if (commentsBtn) {
+    commentsBtn.onclick = goToComments;
+}
+
+/* ============================
    СТАРТ
 ============================ */
 loadHeaderPreview();
