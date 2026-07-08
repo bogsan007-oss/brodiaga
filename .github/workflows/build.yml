@@ -12,7 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Создаём один keys.js
       - name: Create keys.js
         run: |
           echo "window.apiKey = '${{ secrets.API_KEY }}';" > keys.js
@@ -33,6 +32,7 @@ jobs:
           # Ключи
           cp keys-module.js dist/
           cp keys-global.js dist/
+          cp keys.js dist/
 
           # Изображения и ассеты
           cp favicon.svg dist/
