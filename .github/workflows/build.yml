@@ -13,13 +13,10 @@ jobs:
         uses: actions/checkout@v4
 
       # Создаём два keys.js
-      - name: Create keys files
+      - name: Create keys.js
         run: |
-          echo "export const apiKey = '${{ secrets.API_KEY }}';" > keys-module.js
-          echo "export const playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys-module.js
-
-          echo "window.apiKey = '${{ secrets.API_KEY }}';" > keys-global.js
-          echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys-global.js
+                   echo "window.apiKey = '${{ secrets.API_KEY }}';" > keys.js
+                    echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
 
       - name: Prepare dist
         run: |
