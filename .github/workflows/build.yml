@@ -22,26 +22,22 @@ jobs:
           rm -rf dist
           mkdir dist
 
-          # Основные файлы
           cp index.html dist/
           cp style.css dist/
           cp player.js dist/
           cp watch.js dist/
           cp watch.html dist/
 
-          # Ключи
           cp keys-module.js dist/
           cp keys-global.js dist/
           cp keys.js dist/
 
-          # Изображения и ассеты
           cp favicon.svg dist/
           cp rucka.png dist/
           cp radio.brodiaga.jpg dist/ || true
           cp -r img dist/ || true
           cp -r assets dist/ || true
 
-          # Страницы
           cp -r pages dist/ || true
 
       - name: Upload artifact
