@@ -14,9 +14,10 @@ jobs:
 
       - name: Create keys.js
         run: |
-          echo "window.apiKey = '${{ secrets.API_KEY }}';" > keys.js
-          echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
-
+               echo "export const apiKey = '${{ secrets.API_KEY }}';" > keys.js
+               echo "export const playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
+               echo "window.apiKey = '${{ secrets.API_KEY }}';" >> keys.js
+               echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
 
       - name: Prepare dist
         run: |
