@@ -170,4 +170,20 @@ function renderMoreVideos() {
 ============================ */
 function updateShowMoreButton() {
     const btn = document.getElementById("show-more");
-    if (btn) btn.style.display = "block
+    if (btn) btn.style.display = "block";
+}
+
+const showMoreBtn = document.getElementById("show-more");
+if (showMoreBtn) {
+    showMoreBtn.onclick = () => {
+        renderMoreVideos();
+        updateShowMoreButton();
+    };
+}
+
+
+/* ============================
+   ЗАПУСК
+============================ */
+loadLeastViewedVideo();
+loadVideoCards();
