@@ -3,8 +3,11 @@ console.log("watch.js загружен");
 /* ============================
    КЛЮЧИ ИЗ ГЛОБАЛЬНЫХ ПЕРЕМЕННЫХ
 ============================ */
-const apiKey = window.apiKey;
-const playlistId = window.playlistId;
+
+// ❗ Меняем const → let, чтобы не было конфликта
+let apiKey = window.apiKey;
+let playlistId = window.playlistId;
+
 
 /* ============================
    ЗАГРУЗКА ОСНОВНОГО ВИДЕО
