@@ -135,64 +135,33 @@ function initShare(videoId, title) {
     const shareBtn = document.getElementById("shareBtn");
     const shareMenu = document.getElementById("shareMenu");
 
-    // Если кнопки нет — выходим
     if (!shareBtn || !shareMenu) return;
 
-    // Формируем URL видео
     const url = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
 
-    // Открытие/закрытие меню
     shareBtn.onclick = () => {
         shareMenu.style.display =
             shareMenu.style.display === "block" ? "none" : "block";
     };
 
-    // VK
     document.getElementById("shareVK").href =
         `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
 
-    // Telegram
     document.getElementById("shareTG").href =
         `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
 
-    // WhatsApp
     document.getElementById("shareWA").href =
         `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
 
-    // Facebook
     document.getElementById("shareFB").href =
         `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
 
-    // OK
     document.getElementById("okShare").href =
         `https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=${encodeURIComponent(url)}`;
 
-    // Instagram (нет шаринга ссылок)
-    document.getElementById("igShare").href =
-        "https://www.instagram.com/";
-
-    // TikTok (нет шаринга ссылок)
-    document.getElementById("ttShare").href =
-        "https://www.tiktok.com/";
+    document.getElementById("igShare").href = "https://www.instagram.com/";
+    document.getElementById("ttShare").href = "https://www.tiktok.com/";
 }
-       const tooltip = document.getElementById("tooltip");
-
-document.querySelectorAll(".social-icon").forEach(icon => {
-    icon.addEventListener("mouseenter", (e) => {
-        const title = icon.getAttribute("data-title");
-        tooltip.textContent = title;
-
-        const rect = icon.getBoundingClientRect();
-
-        tooltip.style.left = rect.left + rect.width / 2 + "px";
-        tooltip.style.top = rect.top - 40 + "px"; // НАД кнопкой
-        tooltip.style.opacity = 1;
-    });
-
-    icon.addEventListener("mouseleave", () => {
-        tooltip.style.opacity = 0;
-    });
-});
 
 
 /* ============================
