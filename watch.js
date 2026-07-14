@@ -175,6 +175,25 @@ function initShare(videoId, title) {
     document.getElementById("ttShare").href =
         "https://www.tiktok.com/";
 }
+       const tooltip = document.getElementById("tooltip");
+
+document.querySelectorAll(".social-icon").forEach(icon => {
+    icon.addEventListener("mouseenter", (e) => {
+        const title = icon.getAttribute("data-title");
+        tooltip.textContent = title;
+
+        const rect = icon.getBoundingClientRect();
+
+        tooltip.style.left = rect.left + rect.width / 2 + "px";
+        tooltip.style.top = rect.top - 40 + "px"; // НАД кнопкой
+        tooltip.style.opacity = 1;
+    });
+
+    icon.addEventListener("mouseleave", () => {
+        tooltip.style.opacity = 0;
+    });
+});
+
 
 /* ============================
    ПОХОЖИЕ ВИДЕО — СЛУЧАЙНЫЕ
