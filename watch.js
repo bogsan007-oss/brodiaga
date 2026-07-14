@@ -131,37 +131,64 @@ async function loadVideo() {
 /* ============================
    ПОДЕЛИТЬСЯ В СОЦСЕТЯХ
 ============================ */
+/* ============================
+   ПОДЕЛИТЬСЯ В СОЦСЕТЯХ
+============================ */
 function initShare(videoId, title) {
     const shareBtn = document.getElementById("shareBtn");
     const shareMenu = document.getElementById("shareMenu");
 
+    // Если кнопки нет — выходим
     if (!shareBtn || !shareMenu) return;
 
+    // Формируем URL видео
     const url = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
 
+    // Открытие/закрытие меню
     shareBtn.onclick = () => {
         shareMenu.style.display =
             shareMenu.style.display === "block" ? "none" : "block";
     };
 
+    // VK
     document.getElementById("shareVK").href =
         `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
 
+    // Telegram
     document.getElementById("shareTG").href =
         `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
 
+    // WhatsApp
     document.getElementById("shareWA").href =
         `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
 
+    // Facebook
     document.getElementById("shareFB").href =
         `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
 
+    // OK
     document.getElementById("okShare").href =
         `https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=${encodeURIComponent(url)}`;
 
+    // Instagram
     document.getElementById("igShare").href = "https://www.instagram.com/";
+
+    // TikTok
     document.getElementById("ttShare").href = "https://www.tiktok.com/";
 }
+
+
+/* ============================
+   АВТОЗАПУСК initShare()
+============================ */
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const videoId = params.get("id");      // Берём ID видео из URL
+    const title = document.title;          // Берём заголовок страницы
+
+    initShare(videoId, title);             // Запускаем функцию
+});
+
 
 
 /* ============================
