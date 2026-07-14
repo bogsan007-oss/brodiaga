@@ -322,33 +322,33 @@ body {
 /* Контейнер иконки */
 .social-icon {
     position: relative;
+    display: inline-block; /* фиксирует позицию подсказки */
     overflow: visible !important;
     z-index: 10;
 }
 
-/* CSS‑подсказка */
 .social-icon::after {
     content: attr(data-title);
     position: absolute;
     top: -35px;
     left: 50%;
     transform: translateX(-50%);
-    background: #7a682f;
+    background: #7a682f !important; /* золотой фон */
     color: #fff;
     padding: 4px 8px;
     font-size: 12px;
     border-radius: 6px;
     white-space: nowrap;
     opacity: 0;
-    pointer-events: none; /* НЕ блокирует клики */
+    pointer-events: none;
     transition: opacity .25s ease;
     z-index: 99999;
 }
 
-/* Появление подсказки */
 .social-icon:hover::after {
     opacity: 1;
 }
+
 
 
 
