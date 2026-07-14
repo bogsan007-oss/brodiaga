@@ -271,28 +271,6 @@ body {
 }
 
 /* ============================
-      СОЦИАЛЬНЫЕ СЕТИ (HEADER)
-   ============================ */
-
-.header-social {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.header-social .social-icon img {
-    width: 28px;
-    height: 28px;
-    transition: 0.3s;
-}
-
-.header-social .social-icon img:hover {
-    transform: rotate(15deg) scale(1.1);
-    opacity: 0.85;
-}
-
-/* ============================
    КНОПКИ ПОД ПЛЕЕРОМ
 ============================ */
 .action-panel {
@@ -309,7 +287,7 @@ body {
 /* ЛЕВАЯ ЗОНА — соцсети */
 .share-section {
     flex: 2;
-    background: #5a4a1f; /* тёмное золото */
+    background: #5a4a1f;
     padding: 8px 10px;
 }
 
@@ -320,18 +298,7 @@ body {
     flex-wrap: wrap;
 }
 
-.social-icon img {
-    width: 26px;
-    height: 26px;
-    border-radius: 6px;
-    transition: transform .2s ease, opacity .2s ease;
-}
-
-.social-icon img:hover {
-    transform: scale(1.15);
-    opacity: 0.85;
-}
-/* Вращение иконок соцсетей */
+/* Иконки */
 .social-icon img {
     width: 26px;
     height: 26px;
@@ -340,61 +307,49 @@ body {
     transition: transform .2s ease, opacity .2s ease;
 }
 
-/* Ускорение при наведении */
 .social-icon img:hover {
     animation-duration: 2s;
     transform: scale(1.15);
     opacity: 0.85;
 }
 
-/* Ключевые кадры вращения */
+/* Вращение */
 @keyframes spin {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
 }
-/* Иконка — контейнер */
+
+/* Контейнер иконки */
 .social-icon {
     position: relative;
-    overflow: visible !important; /* разрешаем выходить наружу */
-    z-index: 10; /* чтобы не пряталась */
+    overflow: visible !important;
+    z-index: 10;
 }
 
-/* Подсказка — появляется СВЕРХУ */
+/* CSS‑подсказка */
 .social-icon::after {
     content: attr(data-title);
     position: absolute;
-    top: -35px; /* ПОДСКАЗКА НАД КНОПКОЙ */
+    top: -35px;
     left: 50%;
     transform: translateX(-50%);
-    background: #7a682f; /* светлее золото */
-    color: #fff; /* белый текст — читается всегда */
+    background: #7a682f;
+    color: #fff;
     padding: 4px 8px;
     font-size: 12px;
     border-radius: 6px;
     white-space: nowrap;
     opacity: 0;
-    pointer-events: none;
+    pointer-events: none; /* НЕ блокирует клики */
     transition: opacity .25s ease;
-    z-index: 99999; /* поверх всего */
+    z-index: 99999;
 }
 
-/* Появление */
+/* Появление подсказки */
 .social-icon:hover::after {
     opacity: 1;
 }
-.tooltip {
-    position: fixed;
-    padding: 6px 10px;
-    background: #7a682f; /* светлое золото */
-    color: #fff;
-    border-radius: 6px;
-    font-size: 13px;
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity .2s ease;
-    z-index: 999999; /* поверх всего */
-}
+
 
 
 /* ПРАВАЯ ЗОНА — комментарий */
