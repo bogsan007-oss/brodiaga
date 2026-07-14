@@ -29,6 +29,17 @@ body {
     font-weight: 600;
     letter-spacing: 1px;
 }
+.site-logo {
+    max-width: 48px;
+    height: auto;
+    border-radius: 6px;
+}
+
+@media (max-width: 480px) {
+    .site-logo {
+        max-width: 34px; /* маленький логотип на телефоне */
+    }
+}
 
 .ch-center {
     color: #e6c27a;
@@ -47,13 +58,16 @@ body {
 
 .ch-back:hover {
     opacity: 1;
+    color: #ffdd8a;
+    text-shadow: 0 0 6px #e6c27a;
 }
 .ch-back, .back {
-    color: #ffffff;
+    color: #e6c27a;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 18px;
+   font-weight: bold;
     opacity: 0.85;
-
+    transition: color .2s ease, text-shadow .2s ease;
     white-space: nowrap;      /* ← текст не переносится */
     max-width: 200px;         /* ← ограничиваем ширину */
     overflow: hidden;         /* ← если вдруг длинный текст */
