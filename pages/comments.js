@@ -146,4 +146,21 @@ if (videoId2) {
     // Ссылка на просмотр
     document.getElementById("watchLink").href = `../watch.html?id=${videoId2}`;
 }
+//скрипт пинга для супобазы
+async function supabasePing() {
+  try {
+    await fetch("https://uyclsolpcfmlhdpvnfji.supabase.co", {
+      headers: {
+        "apikey": "sb_publishable_5RFic9tFvNRGRvYmNnDWnA_QXjuCSDy"
+      }
+    });
+  } catch (e) {
+    // ничего не делаем — это просто ping
+  }
+}
 
+// первый ping сразу
+supabasePing();
+
+// повторяем раз в сутки
+setInterval(supabasePing, 24 * 60 * 60 * 1000);
