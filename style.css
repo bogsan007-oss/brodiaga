@@ -357,11 +357,24 @@ body {
     transform: scale(1.02);
     box-shadow: 0 0 15px rgba(255,255,255,0.15);
 }
+
 .related-title-text {
     padding: 10px;
     font-size: 15px;
     color: #fac115;
     background: #111;
+}
+
+/* 📱 АДАПТИВНОСТЬ: на телефоне один столбик */
+@media (max-width: 600px) {
+    #related-videos {
+        grid-template-columns: 1fr; /* один столбик */
+        gap: 16px; /* чуть меньше расстояние */
+    }
+
+    .related-card {
+        width: 100%; /* карточка растягивается */
+    }
 }
 
 /* ============================
