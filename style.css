@@ -360,8 +360,27 @@ body {
         gap: 12px;
     }
 }
+     /* Вращение иконок соцсетей */
+.social-icon img {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    animation: spin 6s linear infinite;
+    transition: transform .2s ease, opacity .2s ease;
+}
 
+/* Ускорение при наведении */
+.social-icon img:hover {
+    animation-duration: 2s;
+    transform: scale(1.15);
+    opacity: 0.85;
+}
 
+/* Ключевые кадры вращения */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
 
 /* ============================
    ПОХОЖИЕ ВИДЕО
