@@ -64,20 +64,6 @@ async function loadLeastViewedVideo() {
     }
 }
 
- // Ссылки соцсетей
-    document.getElementById("shareVK").href =
-        `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
-
-    document.getElementById("shareTG").href =
-        `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
-
-    document.getElementById("shareWA").href =
-        `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
-
-    document.getElementById("shareFB").href =
-        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-}
-
 /* ============================
    ЗАГРУЗКА ВСЕХ ВИДЕО
 ============================ */
