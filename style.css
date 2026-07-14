@@ -296,44 +296,71 @@ body {
    КНОПКИ ПОД ПЛЕЕРОМ
 ============================ */
 .action-panel {
-    margin-top: 2px;
+    margin-top: 15px;
     width: 100%;
     max-width: 720px;
     display: flex;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.25);
     border-radius: 8px;
     overflow: hidden;
     background: #001a1a;
 }
 
-.panel-section {
-    flex: 1;
-    padding: 4px 0;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
-    font-size: 15px;
-    transition: background 0.2s, opacity 0.2s;
-}
-
-.rating-section {
+/* ЛЕВАЯ ЗОНА — соцсети */
+.share-section {
+    flex: 2;
     background: #002222;
+    padding: 8px 10px;
 }
 
+.share-box {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-icon img {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+.social-icon img:hover {
+    transform: scale(1.15);
+    opacity: 0.85;
+}
+
+/* ПРАВАЯ ЗОНА — комментарий */
 .comment-section {
-    background: #e6c27a;
-    color: #001f1f;
-    font-weight: bold;
-}
-
-.private-section {
+    flex: 1;
     background: #001f1f;
     color: #e6c27a;
+    text-align: center;
+    padding: 12px 0;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
-.panel-section:hover {
-    opacity: 0.8;
+/* 📱 Адаптивность */
+@media (max-width: 600px) {
+    .action-panel {
+        flex-direction: column;
+    }
+
+    .share-section,
+    .comment-section {
+        width: 100%;
+    }
+
+    .share-box {
+        justify-content: flex-start;
+        gap: 12px;
+    }
 }
+
 
 
 /* ============================
