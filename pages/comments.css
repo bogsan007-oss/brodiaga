@@ -64,15 +64,16 @@ body {
 .ch-back-link {
     white-space: nowrap;
     display: inline-block;
-}
-
-.ch-back, .back {
     color: #e6c27a;
     text-decoration: none;
     font-size: 18px;
    font-weight: bold;
     opacity: 0.85;
     transition: color .2s ease, text-shadow .2s ease;
+}
+
+.ch-back, .back {
+   
     white-space: nowrap;      /* ← текст не переносится */
     max-width: 200px;         /* ← ограничиваем ширину */
     overflow: hidden;         /* ← если вдруг длинный текст */
