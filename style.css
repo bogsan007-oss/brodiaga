@@ -354,16 +354,17 @@ body {
 }
 .social-icon {
     position: relative;
+    overflow: visible; /* важно! позволяет подсказке выходить наружу */
 }
 
-/* Подсказка */
+/* Подсказка сверху */
 .social-icon::after {
     content: attr(data-title);
     position: absolute;
-    bottom: -28px;
+    top: -32px; /* ПОДСКАЗКА НАД КНОПКОЙ */
     left: 50%;
     transform: translateX(-50%);
-    background: #4d3f19; /* тёмное золото */
+    background: #6b5a28; /* более светлое золото */
     color: #e6c27a;
     padding: 4px 8px;
     font-size: 12px;
@@ -372,9 +373,10 @@ body {
     opacity: 0;
     pointer-events: none;
     transition: opacity .25s ease;
+    z-index: 9999; /* чтобы всегда была сверху */
 }
 
-/* Появление при наведении */
+/* Появление */
 .social-icon:hover::after {
     opacity: 1;
 }
