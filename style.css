@@ -382,6 +382,20 @@ body {
 .social-icon:hover::after {
     opacity: 1;
 }
+.tooltip {
+    position: fixed;
+    padding: 6px 10px;
+    background: #7a682f; /* светлое золото */
+    color: #fff;
+    border-radius: 6px;
+    font-size: 13px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s ease;
+    z-index: 999999; /* поверх всего */
+}
+
 
 /* ПРАВАЯ ЗОНА — комментарий */
 .comment-section {
