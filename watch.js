@@ -177,49 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ============================
-   ПОДСКАЗКИ (красивые, как раньше)
-============================ */
-
-// создаём tooltip-элемент, если его нет
-let tooltip = document.getElementById("tooltip");
-if (!tooltip) {
-    tooltip = document.createElement("div");
-    tooltip.id = "tooltip";
-    tooltip.style.position = "fixed";
-    tooltip.style.padding = "6px 12px";
-    tooltip.style.background = "#7a682f";
-    tooltip.style.color = "#fff";
-    tooltip.style.borderRadius = "6px";
-    tooltip.style.fontSize = "13px";
-    tooltip.style.whiteSpace = "nowrap";
-    tooltip.style.opacity = "0";
-    tooltip.style.transition = "opacity .2s ease";
-    tooltip.style.pointerEvents = "none";
-    tooltip.style.zIndex = "999999";
-    document.body.appendChild(tooltip);
-}
-
-// наведение на иконку
-document.querySelectorAll(".social-icon").forEach(icon => {
-    icon.addEventListener("mouseenter", () => {
-        const title = icon.getAttribute("data-title");
-        tooltip.textContent = title;
-
-        const rect = icon.getBoundingClientRect();
-
-        tooltip.style.left = rect.left + rect.width / 2 + "px";
-        tooltip.style.top = rect.top - 40 + "px";
-        tooltip.style.opacity = "1";
-    });
-
-    icon.addEventListener("mouseleave", () => {
-        tooltip.style.opacity = "0";
-    });
-});
-
-
-
-/* ============================
    ПОХОЖИЕ ВИДЕО — СЛУЧАЙНЫЕ
 ============================ */
 async function loadRelatedVideos(currentId) {
