@@ -132,18 +132,20 @@ async function loadVideo() {
    ПОДЕЛИТЬСЯ В СОЦСЕТЯХ
 ============================ */
 function initShare(videoId, title) {
-    const shareBtn = document.getElementById("shareBtn");
-    const shareMenu = document.getElementById("shareMenu");
-
-    if (!shareBtn || !shareMenu) return;
+    const shareBtn  = document.getElementById("shareBtn");   // может и не быть
+    const shareMenu = document.getElementById("shareMenu");  // может и не быть
 
     const url = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
 
-    shareBtn.onclick = () => {
-        shareMenu.style.display =
-            shareMenu.style.display === "block" ? "none" : "block";
-    };
+    // если есть кнопка — вешаем открытие меню
+    if (shareBtn && shareMenu) {
+        shareBtn.onclick = () => {
+            shareMenu.style.display =
+                shareMenu.style.display === "block" ? "none" : "block";
+        };
+    }
 
+    // ссылки соцсетей ставим ВСЕГДА, даже если нет shareBtn
     document.getElementById("shareVK").href =
         `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
 
@@ -163,47 +165,17 @@ function initShare(videoId, title) {
     document.getElementById("ttShare").href = "https://www.tiktok.com/";
 }
 
-
 /* ============================
-   ПОДСКАЗКИ (JS-Tooltip)
+   АВТОЗАПУСК initShare()
 ============================ */
+document.addEventListener("DOMContentLoaded", () => {
+    const params  = new URLSearchParams(window.location.search);
+    const videoId = params.get("id");
+    const title   = document.title;
 
-// создаём tooltip-элемент, если его нет
-let tooltip = document.getElementById("tooltip");
-if (!tooltip) {
-    tooltip = document.createElement("div");
-    tooltip.id = "tooltip";
-    tooltip.style.position = "fixed";
-    tooltip.style.padding = "6px 10px";
-    tooltip.style.background = "#7a682f";
-    tooltip.style.color = "#fff";
-    tooltip.style.borderRadius = "6px";
-    tooltip.style.fontSize = "13px";
-    tooltip.style.whiteSpace = "nowrap";
-    tooltip.style.opacity = "0";
-    tooltip.style.transition = "opacity .2s ease";
-    tooltip.style.pointerEvents = "none";
-    tooltip.style.zIndex = "999999";
-    document.body.appendChild(tooltip);
-}
-
-// наведение на иконку
-document.querySelectorAll(".social-icon").forEach(icon => {
-    icon.addEventListener("mouseenter", () => {
-        const title = icon.getAttribute("data-title");
-        tooltip.textContent = title;
-
-        const rect = icon.getBoundingClientRect();
-
-        tooltip.style.left = rect.left + rect.width / 2 + "px";
-        tooltip.style.top = rect.top - 35 + "px";
-        tooltip.style.opacity = "1";
-    });
-
-    icon.addEventListener("mouseleave", () => {
-        tooltip.style.opacity = "0";
-    });
+    initShare(videoId, title);
 });
+
 
 
 /* ============================
