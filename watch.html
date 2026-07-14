@@ -102,33 +102,51 @@
         </div>
 
         <!-- Панель под плеером -->
-        <div class="action-panel">
+<div class="action-panel">
 
-            <div class="panel-section rating-section">
-    <div class="share-box">
-        <button id="shareBtn" class="share-btn">Поделиться</button>
+    <!-- ЛЕВАЯ ЗОНА — соцсети -->
+    <div class="panel-section share-section">
+        <div class="share-box">
 
-        <div id="shareMenu" class="share-menu">
-            <a id="shareVK" target="_blank">ВКонтакте</a>
-            <a id="shareTG" target="_blank">Telegram</a>
-            <a id="shareWA" target="_blank">WhatsApp</a>
-            <a id="shareFB" target="_blank">Facebook</a>
+            <a class="social-icon" id="shareVK" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/Vk3.png" alt="VK">
+            </a>
+
+            <a class="social-icon" id="okShare" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/Ok3.png" alt="OK">
+            </a>
+
+            <a class="social-icon" id="shareWA" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/WhayZap2.png" alt="WhatsApp">
+            </a>
+
+            <a class="social-icon" id="igShare" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/instagram2.png" alt="Instagram">
+            </a>
+
+            <a class="social-icon" id="shareFB" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/facebooc2.png" alt="Facebook">
+            </a>
+
+            <a class="social-icon" id="shareTG" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/telegram2.png" alt="Telegram">
+            </a>
+
+            <a class="social-icon" id="ttShare" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/tiktok2.png" alt="TikTok">
+            </a>
+
         </div>
     </div>
-</div>
 
+    <!-- ПРАВАЯ ЗОНА — комментарий -->
+    <div class="panel-section comment-section" onclick="goToComments()">
+        Комментарий
+    </div>
 
-            <div class="panel-section comment-section" onclick="goToComments()">
-                Комментарий
-            </div>
+</div>    <!-- /action-panel -->
 
-            <div class="panel-section private-section" onclick="openPrivateForm()">
-                В приват
-            </div>
-
-        </div> <!-- /action-panel -->
-
-    </div> <!-- /player-wrapper -->
+</div> <!-- /player-wrapper -->
 
 
     <!-- Контент страницы (широкий контейнер) -->
