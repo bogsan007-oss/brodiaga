@@ -309,7 +309,7 @@ body {
 /* ЛЕВАЯ ЗОНА — соцсети */
 .share-section {
     flex: 2;
-    background: #002222;
+    background: #5a4a1f; /* тёмное золото */
     padding: 8px 10px;
 }
 
