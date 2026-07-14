@@ -61,6 +61,11 @@ body {
     color: #ffdd8a;
     text-shadow: 0 0 6px #e6c27a;
 }
+.ch-back-link {
+    white-space: nowrap;
+    display: inline-block;
+}
+
 .ch-back, .back {
     color: #e6c27a;
     text-decoration: none;
@@ -73,6 +78,7 @@ body {
     overflow: hidden;         /* ← если вдруг длинный текст */
     text-overflow: ellipsis;  /* ← добавляет "…" вместо обрезания */
 }
+
 /* ============================
    МОБИЛЬНАЯ ВЕРСИЯ — ШАПКА КОММЕНТАРИЕВ
 ============================ */
