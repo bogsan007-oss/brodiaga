@@ -331,6 +331,53 @@ body {
     transform: scale(1.15);
     opacity: 0.85;
 }
+/* Вращение иконок соцсетей */
+.social-icon img {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    animation: spin 6s linear infinite;
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+/* Ускорение при наведении */
+.social-icon img:hover {
+    animation-duration: 2s;
+    transform: scale(1.15);
+    opacity: 0.85;
+}
+
+/* Ключевые кадры вращения */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.social-icon {
+    position: relative;
+}
+
+/* Подсказка */
+.social-icon::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4d3f19; /* тёмное золото */
+    color: #e6c27a;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+}
+
+/* Появление при наведении */
+.social-icon:hover::after {
+    opacity: 1;
+}
 
 /* ПРАВАЯ ЗОНА — комментарий */
 .comment-section {
@@ -360,27 +407,7 @@ body {
         gap: 12px;
     }
 }
-     /* Вращение иконок соцсетей */
-.social-icon img {
-    width: 26px;
-    height: 26px;
-    border-radius: 6px;
-    animation: spin 6s linear infinite;
-    transition: transform .2s ease, opacity .2s ease;
-}
 
-/* Ускорение при наведении */
-.social-icon img:hover {
-    animation-duration: 2s;
-    transform: scale(1.15);
-    opacity: 0.85;
-}
-
-/* Ключевые кадры вращения */
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-}
 
 /* ============================
    ПОХОЖИЕ ВИДЕО
