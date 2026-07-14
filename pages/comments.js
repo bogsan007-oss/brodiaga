@@ -149,18 +149,16 @@ if (videoId2) {
 //скрипт пинга для супобазы
 async function supabasePing() {
   try {
-    await fetch("https://uyclsolpcfmlhdpvnfji.supabase.co", {
+    await fetch("https://uyclsolpcfmlhdpvnfji.supabase.co/data/v1", {
+      method: "GET",
       headers: {
         "apikey": "sb_publishable_5RFic9tFvNRGRvYmNnDWnA_QXjuCSDy"
       }
     });
   } catch (e) {
-    // ничего не делаем — это просто ping
+    // тихий ping
   }
 }
 
-// первый ping сразу
 supabasePing();
-
-// повторяем раз в сутки
 setInterval(supabasePing, 24 * 60 * 60 * 1000);
