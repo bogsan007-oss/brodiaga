@@ -12,39 +12,41 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create keys.js
+      - name: Prepare docs folder
         run: |
-          echo "window.apiKey = '${{ secrets.API_KEY }}';" > keys.js
-          echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> keys.js
+          rm -rf docs
+          mkdir docs
 
-      - name: Prepare dist
+      - name: Create keys.js in docs
         run: |
-          rm -rf dist
-          mkdir dist
+          echo "window.apiKey = '${{ secrets.API_KEY }}';" > docs/keys.js
+          echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> docs/keys.js
 
-          cp index.html dist/
-          cp style.css dist/
-          cp player.js dist/
-          cp watch.js dist/
-          cp watch.html dist/
+      - name: Copy site files to docs
+        run: |
+          cp index.html docs/
+          cp style.css docs/
+          cp player.js docs/
+          cp watch.js docs/
+          cp watch.html docs/
 
-          # УБРАЛИ ПРОБЛЕМНЫЙ ФАЙЛ
-          # cp keys-module.js dist/
+          cp favicon.svg docs/
+          cp rucka.png docs/
+          cp radio.brodiaga.jpg docs/ || true
 
-          cp keys-global.js dist/ || true
-          cp keys.js dist/
+          cp -r img docs/ || true
+          cp -r assets docs/ || true
+          cp -r pages docs/ || true
+          cp -r posts docs/ || true
 
-          cp favicon.svg dist/
-          cp rucka.png dist/
-          cp radio.brodiaga.jpg dist/ || true
-          cp -r img dist/ || true
-          cp -r assets dist/ || true
-          cp -r pages dist/ || true
+          cp robots.txt docs/
+          cp sitemap.xml docs/
+          cp manifest.json docs/ || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: docs
 
   deploy:
     needs: build
