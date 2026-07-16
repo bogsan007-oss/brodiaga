@@ -99,6 +99,55 @@ async function loadVideo() {
             ]
         };
 
+        /* ============================
+           ВСТАВЛЯЕМ SEO-МЕТАТЕГИ
+        ============================ */
+
+        // TITLE
+        document.title = video.snippet.title;
+
+        // META DESCRIPTION
+        const metaDesc = document.getElementById("dynamic-description");
+        if (metaDesc) metaDesc.content = video.snippet.description;
+
+        // OG TITLE
+        const ogTitle = document.getElementById("og-title");
+        if (ogTitle) ogTitle.content = video.snippet.title;
+
+        // OG DESCRIPTION
+        const ogDesc = document.getElementById("og-description");
+        if (ogDesc) ogDesc.content = video.snippet.description;
+
+        // OG IMAGE
+        const ogImg = document.getElementById("og-image");
+        if (ogImg) ogImg.content = video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url;
+
+        // CANONICAL
+        const canonical = document.getElementById("canonical-link");
+        if (canonical) canonical.href = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
+
+        /* ============================
+           JSON-LD VideoObject
+        ============================ */
+        const jsonLd = document.getElementById("video-jsonld");
+        if (jsonLd) {
+            const jsonData = {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "name": video.snippet.title,
+                "description": video.snippet.description,
+                "thumbnailUrl": video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url,
+                "uploadDate": video.snippet.publishedAt,
+                "embedUrl": `https://www.youtube.com/embed/${videoId}`,
+                "contentUrl": `https://radio.brodiaga.com/watch.html?id=${videoId}`
+            };
+            jsonLd.textContent = JSON.stringify(jsonData);
+        }
+
+        /* ============================
+           ВСТАВЛЯЕМ ТЕКСТ НА СТРАНИЦУ
+        ============================ */
+
         const titleEl = document.getElementById("video-title");
         if (titleEl) titleEl.textContent = video.snippet.title;
 
@@ -128,16 +177,16 @@ async function loadVideo() {
         document.body.innerHTML = "<h2>Ошибка загрузки видео</h2>";
     }
 }
+
 /* ============================
    ПОДЕЛИТЬСЯ В СОЦСЕТЯХ
 ============================ */
 function initShare(videoId, title) {
-    const shareBtn  = document.getElementById("shareBtn");   // может и не быть
-    const shareMenu = document.getElementById("shareMenu");  // может и не быть
+    const shareBtn  = document.getElementById("shareBtn");
+    const shareMenu = document.getElementById("shareMenu");
 
     const url = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
 
-    // если есть кнопка — вешаем открытие меню
     if (shareBtn && shareMenu) {
         shareBtn.onclick = () => {
             shareMenu.style.display =
@@ -145,7 +194,6 @@ function initShare(videoId, title) {
         };
     }
 
-    // ссылки соцсетей ставим ВСЕГДА, даже если нет shareBtn
     document.getElementById("shareVK").href =
         `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
 
@@ -268,7 +316,6 @@ function goToComments() {
         return;
     }
 
-    // относительный путь, чтобы на GitHub Pages не ломалось
     window.location.href = "pages/comments.html?video=" + videoId;
 }
 
