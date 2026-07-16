@@ -19,9 +19,18 @@ jobs:
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
+          # Добавляем все HTML-файлы
           find . -name "*.html" | while read file; do
             url="https://radio.brodiaga.com/${file#./}"
             echo "<url><loc>$url</loc></url>" >> sitemap.xml
+          done
+
+          # Получаем список видео с YouTube API
+          curl -s "https://www.googleapis.com/youtube/v3/search?key=${{ secrets.API_KEY }}&channelId=${{ secrets.CHANNEL_ID }}&part=snippet,id&order=date&maxResults=50" > videos.json
+
+          # Добавляем страницы просмотра видео
+          cat videos.json | jq -r '.items[] | select(.id.kind=="youtube#video") | .id.videoId' | while read id; do
+            echo "<url><loc>https://radio.brodiaga.com/watch.html?id=$id</loc></url>" >> sitemap.xml
           done
 
           echo '</urlset>' >> sitemap.xml
