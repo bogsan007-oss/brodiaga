@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Комментарии — Radio Brodiaga</title>
+    <meta name="description" content="Комментарии к видео на Radio Brodiaga. Обсуждение, мнения и обратная связь.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Комментарии — Radio Brodiaga">
+    <meta property="og:description" content="Комментарии к видео на Radio Brodiaga.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://radio.brodiaga.com/pages/comments.html">
+    <meta property="og:image" content="/favicon.svg">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://radio.brodiaga.com/pages/comments.html">
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="comments.css">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7483662712371460"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- Шапка -->
+<header class="comments-header">
+    <div class="ch-left"><img class="site-logo" src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/radio.brodiaga.jpg" alt="Radio Brodiaga"/></div>    
+    <div class="ch-center">Комментарии</div>
+    <div class="ch-back"><a class="ch-back-link" href="../index.html">← Вернуться на главную</a></div>
+</header>
+
+
+    <!-- Основной контейнер -->
+    <div class="comments-wrapper">
+
+        <!-- Тёмный блок превью -->
+        <div class="preview-block">
+    <img id="previewThumb" src="" alt="Превью">
+    <div class="preview-info">
+        <h2 id="videoTitle">Название видео</h2>
+        <a id="watchLink" class="watch-btn" href="#">Смотреть видео</a>
+    </div>
+         </div>
+
+
+        <!-- Светлая форма комментариев -->
+        <div class="comment-form">
+            <h2>Оставить комментарий</h2>
+
+            <textarea id="commentText" placeholder="Ваш комментарий..."></textarea>
+            <button id="sendComment">Отправить</button>
+        </div>
+
+        <!-- Вывод комментариев -->
+        <h2>Все комментарии</h2>
+        <div class="comment-form" id="commentsList"></div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js?v=5"></script>
+    <script src="comments.js?v=20"></script>
+
+</body>
+</html>
