@@ -217,85 +217,95 @@
     </section>
 
     <!-- ===== РЕКОМЕНДАЦИИ ===== -->
-    <h2 class="rec-title">Песни, которые стоит послушать</h2>
-    <div id="recommended-videos" class="related-container"></div>
+<section class="recommend-block">
+    <h2>Песни, которые стоит послушать</h2>
 
-</main>
-
-<footer>
-    © 2024–2026 Старый Клоун<br>
-    <a href="#">Политика конфиденциальности и cookies</a>
-</footer>
+    <div id="recommend-cards" class="cards"></div>
+</section>
 
 <script>
-    // Берём значения, которые должны быть заданы раньше, например в secrets.js:
-    // window.apiKey = "ТВОЙ_КЛЮЧ";
-    // window.playlistId = "ТВОЙ_ПЛЕЙЛИСТ";
+    // Загружаем список видео из твоего JSON (тот же, что на главной)
+    fetch('assets/videos.json')
+        .then(response => response.json())
+        .then(videos => {
+            // Берём 3 случайных видео
+            const shuffled = videos.sort(() => 0.5 - Math.random());
+            const selected = shuffled.slice(0, 3);
 
-    let apiKey = window.apiKey;
-    let playlistId = window.playlistId;
+            const container = document.getElementById('recommend-cards');
 
-    async function loadRecommendedVideos() {
-        try {
-            const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
-            const res = await fetch(url);
-            const data = await res.json();
-
-            const container = document.getElementById("recommended-videos");
-            if (!container) return;
-
-            container.innerHTML = "";
-
-            if (!data.items || !data.items.length) {
-                container.innerHTML = "<p style='color:white;text-align:center;'>Нет видео</p>";
-                return;
-            }
-
-            const items = data.items.filter(item =>
-                item.snippet &&
-                item.snippet.resourceId &&
-                item.snippet.resourceId.videoId &&
-                item.snippet.thumbnails &&
-                item.snippet.thumbnails.medium
-            );
-
-            const used = new Set();
-            const randomVideos = [];
-
-            while (randomVideos.length < 6 && used.size < items.length) {
-                const idx = Math.floor(Math.random() * items.length);
-                if (used.has(idx)) continue;
-
-                randomVideos.push(items[idx]);
-                used.add(idx);
-            }
-
-            randomVideos.forEach(item => {
-                const videoId = item.snippet.resourceId.videoId;
-                const title = item.snippet.title;
-                const thumb = item.snippet.thumbnails.medium.url;
-
-                const card = document.createElement("div");
-                card.className = "related-card";
-                card.onclick = () => {
-                    window.location.href = `watch.html?id=${videoId}`;
-                };
+            selected.forEach(video => {
+                const card = document.createElement('a');
+                card.href = `watch.html?id=${video.id}`;
+                card.className = 'card';
 
                 card.innerHTML = `
-                    <img class="related-thumb" src="${thumb}" alt="">
-                    <div class="related-title-text">${title}</div>
+                    <img src="${video.thumbnail}" alt="${video.title}">
+                    <div class="card-info">
+                        <h3>${video.title}</h3>
+                        <p>${video.description || ''}</p>
+                    </div>
                 `;
 
                 container.appendChild(card);
             });
+        });
+</script>
 
-        } catch (e) {
-            console.error("Ошибка loadRecommendedVideos:", e);
-        }
+<style>
+    .recommend-block {
+        margin-top: 40px;
+        padding: 20px;
     }
 
-    loadRecommendedVideos();
-</script>
+    .recommend-block h2 {
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
+
+    .cards {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        display: block;
+        width: 30%;
+        background: #1a1a1a;
+        border-radius: 10px;
+        overflow: hidden;
+        text-decoration: none;
+        color: white;
+        transition: 0.2s;
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+    }
+
+    .card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .card-info {
+        padding: 10px;
+    }
+
+    .card-info h3 {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .card-info p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        opacity: 0.7;
+    }
+</style>
+
 
 
 
