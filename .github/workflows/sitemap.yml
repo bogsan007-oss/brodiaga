@@ -19,16 +19,13 @@ jobs:
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
-          # Добавляем все HTML-файлы
           find . -name "*.html" | while read file; do
             url="https://radio.brodiaga.com/${file#./}"
             echo "<url><loc>$url</loc></url>" >> sitemap.xml
           done
 
-          # Список всех плейлистов
           PLAYLIST_IDS="PLFaaHMye1-yZBk5Z4EzxkzRf9j1m_NX-E PLFaaHMye1-yapSv6zpzE2d3CzmigR-yGg PLFaaHMye1-yakkCa3Un2YDFhoZjLt_qSI PLFaaHMye1-yZbC7gtMl55N_Gv45wBjS2k PLFaaHMye1-yZjsgMXCngGbqPKVLZfT8vR"
 
-          # Перебор всех плейлистов
           for playlist in $PLAYLIST_IDS; do
             curl -s "https://www.googleapis.com/youtube/v3/playlistItems?key=${{ secrets.API_KEY }}&playlistId=$playlist&part=contentDetails&maxResults=50" > playlist.json
 
@@ -45,4 +42,9 @@ jobs:
           git config user.email "actions@github.com"
           git add sitemap.xml
           git commit -m "Auto-update sitemap" || echo "No changes"
-          git push
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
