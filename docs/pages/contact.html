@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Обратная связь — Radio Brodiaga</title>
+
+    <meta name="description" content="Страница обратной связи Radio Brodiaga. Напишите сообщение, предложите идею или задайте вопрос.">
+    <meta name="keywords" content="Radio Brodiaga, обратная связь, написать сообщение, контакт, песни старого клоуна">
+
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Старый Клоун">
+    <meta name="theme-color" content="#0A3A3A">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Обратная связь — Radio Brodiaga">
+    <meta property="og:description" content="Напишите мне сообщение или предложение.">
+    <meta property="og:image" content="URL_ТВОЕЙ_КАРТИНКИ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://radio.brodiaga.com/contact.html">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Обратная связь — Radio Brodiaga">
+    <meta name="twitter:description" content="Напишите мне сообщение или предложение.">
+    <meta name="twitter:image" content="URL_ТВОЕЙ_КАРТИНКИ">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://radio.brodiaga.com/contact.html">
+
+    <style>
+        body {
+            background: #0A3A3A;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== ШАПКА ===== */
+        .comments-header {
+            background: #0A3A3A;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid #D4A94A;
+        }
+
+        .site-logo {
+            height: 55px;
+            border-radius: 6px;
+        }
+
+        .ch-center {
+            font-size: 24px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .ch-back-link {
+            color: #D4A94A;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* ===== ФОРМА ===== */
+        .contact-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .contact-card {
+            width: 700px;
+            background: #0A3A3A;
+            padding: 30px;
+            border-radius: 12px;
+            border-top: 3px solid #D4A94A;
+            box-shadow: 0 0 25px rgba(0,0,0,0.4);
+        }
+
+        .contact-title {
+            font-size: 26px;
+            margin-bottom: 25px;
+            color: #FFFFFF;
+            text-align: center;
+        }
+
+        .contact-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #E0E0E0;
+            font-size: 15px;
+        }
+
+        .contact-input,
+        .contact-textarea {
+            width: 100%;
+            background: #71AAAA;
+            border: 1px solid #006666;
+            border-radius: 8px;
+            padding: 12px;
+            color: #000000;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-textarea {
+            height: 180px;
+            resize: vertical;
+        }
+
+        .contact-button {
+            width: 100%;
+            background: #D4A94A;
+            color: #000000;
+            padding: 14px;
+            font-size: 17px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .contact-button:hover {
+            background: #E8C46D;
+        }
+
+        /* ===== РЕКОМЕНДАЦИИ ===== */
+        .rec-title {
+            text-align: center;
+            color: #fff;
+            margin-top: 40px;
+            font-size: 24px;
+        }
+
+        .related-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 40px auto;
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .related-card {
+            cursor: pointer;
+            background: #0A3A3A;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            border: 1px solid #006666;
+        }
+
+        .related-card:hover {
+            transform: scale(1.03);
+        }
+
+        .related-thumb {
+            width: 100%;
+            display: block;
+        }
+
+        .related-title-text {
+            padding: 10px;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* ===== ФУТЕР ===== */
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #0A3A3A;
+            border-top: 3px solid #D4A94A;
+            text-align: center;
+            color: #fff;
+        }
+
+        footer a {
+            color: #D4A94A;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="comments-header">
+    <div class="ch-left">
+        <img class="site-logo" src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/radio.brodiaga.jpg" alt="Radio Brodiaga"/>
+    </div>
+
+    <div class="ch-center">Обратная связь</div>
+
+    <div class="ch-back">
+        <a class="ch-back-link" href="../index.html">← Вернуться на главную</a>
+    </div>
+</header>
+
+<main>
+
+    <!-- ===== ФОРМА ===== -->
+    <section class="contact-wrapper">
+        <div class="contact-card">
+            <h2 class="contact-title">Напишите мне</h2>
+
+            <form action="https://formspree.io/f/your-id" method="POST" class="contact-form">
+                <label class="contact-label">Ваш email</label>
+                <input type="email" name="email" class="contact-input" required>
+
+                <label class="contact-label">Сообщение</label>
+                <textarea name="message" class="contact-textarea" required></textarea>
+
+                <button type="submit" class="contact-button">Отправить сообщение</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== РЕКОМЕНДАЦИИ ===== -->
+    <h2 class="rec-title">Песни, которые стоит послушать</h2>
+    <div id="recommended-videos" class="related-container"></div>
+
+</main>
+
+<footer>
+    © 2024–2026 Старый Клоун<br>
+    <a href="#">Политика конфиденциальности и cookies</a>
+</footer>
+
+<script>
+    // Берём значения, которые должны быть заданы раньше, например в secrets.js:
+    // window.apiKey = "ТВОЙ_КЛЮЧ";
+    // window.playlistId = "ТВОЙ_ПЛЕЙЛИСТ";
+
+    let apiKey = window.apiKey;
+    let playlistId = window.playlistId;
+
+    async function loadRecommendedVideos() {
+        try {
+            const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
+            const res = await fetch(url);
+            const data = await res.json();
+
+            const container = document.getElementById("recommended-videos");
+            if (!container) return;
+
+            container.innerHTML = "";
+
+            if (!data.items || !data.items.length) {
+                container.innerHTML = "<p style='color:white;text-align:center;'>Нет видео</p>";
+                return;
+            }
+
+            const items = data.items.filter(item =>
+                item.snippet &&
+                item.snippet.resourceId &&
+                item.snippet.resourceId.videoId &&
+                item.snippet.thumbnails &&
+                item.snippet.thumbnails.medium
+            );
+
+            const used = new Set();
+            const randomVideos = [];
+
+            while (randomVideos.length < 6 && used.size < items.length) {
+                const idx = Math.floor(Math.random() * items.length);
+                if (used.has(idx)) continue;
+
+                randomVideos.push(items[idx]);
+                used.add(idx);
+            }
+
+            randomVideos.forEach(item => {
+                const videoId = item.snippet.resourceId.videoId;
+                const title = item.snippet.title;
+                const thumb = item.snippet.thumbnails.medium.url;
+
+                const card = document.createElement("div");
+                card.className = "related-card";
+                card.onclick = () => {
+                    window.location.href = `watch.html?id=${videoId}`;
+                };
+
+                card.innerHTML = `
+                    <img class="related-thumb" src="${thumb}" alt="">
+                    <div class="related-title-text">${title}</div>
+                `;
+
+                container.appendChild(card);
+            });
+
+        } catch (e) {
+            console.error("Ошибка loadRecommendedVideos:", e);
+        }
+    }
+
+    loadRecommendedVideos();
+</script>
+
+
+
+</body>
+</html>

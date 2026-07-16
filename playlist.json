@@ -1,0 +1,19 @@
+{
+  "kind": "youtube#playlistItemListResponse",
+  "etag": "vUCqWaDE3edEojPXFv1xAvpnTGY",
+  "items": [
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "y0NuBBaxryjN0RIf5BgjZyKYTz4",
+      "id": "UExGYWFITXllMS15WmpzZ01YQ25nR2JxUEtWTFpmVDh2Ui41NkI0NEY2RDEwNTU3Q0M2",
+      "contentDetails": {
+        "videoId": "VEKw31V4khY",
+        "videoPublishedAt": "2025-11-28T23:00:46Z"
+      }
+    }
+  ],
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 50
+  }
+}
