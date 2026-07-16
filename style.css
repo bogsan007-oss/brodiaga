@@ -587,18 +587,9 @@ body {
         gap: 2vw;
     }
 /* Скрываем ВСЕ H1 и H2, которые стоят напрямую в body */
-body > h1,
-body > h2 {
+.main-title,
+.section-title {
     position: absolute !important;
-    left: -99999px !important;
-    top: -99999px !important;
-
-    width: 1px !important;
-    height: 1px !important;
-    overflow: hidden !important;
-
-    opacity: 0 !important;
-    visibility: hidden !important;
-
-    pointer-events: none !important;
+    left: -9999px !important;
+    top: -9999px !important;
 }
