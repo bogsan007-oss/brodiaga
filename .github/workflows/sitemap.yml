@@ -14,6 +14,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Ensure site folder exists
+        run: |
+          mkdir -p site
+
       - name: Generate sitemap
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?>' > site/sitemap.xml
@@ -26,7 +30,6 @@ jobs:
             echo "<url><loc>$url</loc></url>" >> site/sitemap.xml
           done
 
-          # Плейлисты YouTube
           PLAYLIST_IDS="PLFaaHMye1-yZBk5Z4EzxkzRf9j1m_NX-E PLFaaHMye1-yapSv6zpzE2d3CzmigR-yGg PLFaaHMye1-yakkCa3Un2YDFhoZjLt_qSI PLFaaHMye1-yZbC7gtMl55N_Gv45wBjS2k PLFaaHMye1-yZjsgMXCngGbqPKVLZfT8vR"
 
           for playlist in $PLAYLIST_IDS; do
