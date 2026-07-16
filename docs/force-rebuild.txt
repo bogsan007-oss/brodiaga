@@ -1,3 +1,0 @@
-git add force-rebuild.txt
-git commit -m "Force rebuild"
-git push
