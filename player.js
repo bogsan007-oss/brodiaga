@@ -5,14 +5,12 @@ let allVideos = [];
 let videosPerPage = 14; // 14 видео + реклама = 15 элементов
 let currentIndex = 0;
 
-// ❗ БЕЗ import — теперь всё работает
 let apiKey = window.apiKey;
 let playlistId = window.playlistId;
 
 /* ============================
    ЗАГРУЗКА МИНИ-ПРЕВЬЮ
 ============================ */
-
 async function loadLeastViewedVideo() {
     try {
         const listUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
@@ -95,8 +93,6 @@ async function loadVideoCards() {
     }
 }
 
-
-
 /* ============================
    ОТРИСОВКА ПОРЦИИ (14 видео + реклама)
 ============================ */
@@ -110,7 +106,6 @@ function renderMoreVideos() {
     const finalItems = [];
 
     slice.forEach((item, i) => {
-        // Вставляем рекламу на 6-е место (после 5 видео)
         if (i === 5) {
             finalItems.push({ type: "ad" });
         }
@@ -151,9 +146,10 @@ function renderMoreVideos() {
                 window.location.href = `watch.html?id=${videoId}`;
             };
 
+            /* ⭐ ВСТАВЛЯЕМ H3 ДЛЯ SEO */
             card.innerHTML = `
                 <img class="video-thumb" src="${thumb}">
-                <div class="video-title">${title}</div>
+                <h3 class="video-title">${title}</h3>
             `;
 
             container.appendChild(card);
@@ -162,7 +158,6 @@ function renderMoreVideos() {
 
     currentIndex = end;
 }
-
 
 /* ============================
    КНОПКА "ПОКАЗАТЬ БОЛЬШЕ"
@@ -179,7 +174,6 @@ if (showMoreBtn) {
         updateShowMoreButton();
     };
 }
-
 
 /* ============================
    ЗАПУСК
