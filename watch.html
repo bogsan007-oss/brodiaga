@@ -3,19 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- SEO -->
-    <title>Просмотр видео — Radio Brodiaga</title>
-    <meta name="description" content="Просмотр видео на Radio Brodiaga — музыка, клипы, эфиры и лучшие моменты.">
 
-    <!-- Open Graph (для Google, соцсетей, мессенджеров) -->
-    <meta property="og:title" content="Просмотр видео — Radio Brodiaga">
-    <meta property="og:description" content="Видео на Radio Brodiaga — музыка, клипы, эфиры и лучшие моменты.">
+    <!-- ДИНАМИЧЕСКИЕ SEO-МЕТАТЕГИ -->
+    <title id="dynamic-title">Просмотр видео — Radio Brodiaga</title>
+    <meta id="dynamic-description" name="description" content="Просмотр видео на Radio Brodiaga — музыка, клипы, эфиры и лучшие моменты.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" id="og-title" content="Просмотр видео — Radio Brodiaga">
+    <meta property="og:description" id="og-description" content="Видео на Radio Brodiaga — музыка, клипы, эфиры и лучшие моменты.">
     <meta property="og:type" content="video.other">
-    <meta property="og:url" content="https://radio.brodiaga.com/p/prosmotr.html">
-    <meta property="og:image" content="/favicon.svg">
+    <meta property="og:url" id="og-url" content="https://radio.brodiaga.com/p/prosmotr.html">
+    <meta property="og:image" id="og-image" content="/favicon.svg">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://radio.brodiaga.com/p/prosmotr.html">
+    <link id="canonical-link" rel="canonical" href="https://radio.brodiaga.com/p/prosmotr.html">
+
+    <!-- JSON-LD VideoObject (заполняется через JS) -->
+    <script type="application/ld+json" id="video-jsonld">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "",
+      "description": "",
+      "thumbnailUrl": "",
+      "uploadDate": "",
+      "embedUrl": "",
+      "contentUrl": ""
+    }
+    </script>
 
     <!-- Стили -->
     <link rel="stylesheet" href="/style.css">
@@ -27,7 +42,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-    <!-- Глобальный код AdSense -->
+    <!-- AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7483662712371460"
         crossorigin="anonymous"></script>
 </head>
@@ -63,102 +78,89 @@
 
 <div class="video-page">
 
-    <!-- Узкий контейнер для плеера и панели -->
     <div class="player-wrapper">
 
         <div class="video-player-container">
             <video id="player" playsinline controls></video>
         </div>
 
-        <!-- Панель под плеером -->
 <div class="action-panel">
 
-    <!-- ЛЕВАЯ ЗОНА — соцсети -->
-    
     <div class="panel-section share-section">
         <div class="share-box">
 
-            <a class="social-icon" id="shareVK" data-title="ВКонтакте" target="_blank">
-    <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/Vk3.png" alt="VK">
-</a>
+            <a class="social-icon" id="shareVK" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/Vk3.png" alt="VK">
+            </a>
 
-<a class="social-icon" id="okShare" data-title="Одноклассники" target="_blank">
-    <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/Ok3.png" alt="OK">
-</a>
+            <a class="social-icon" id="okShare" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/Ok3.png" alt="OK">
+            </a>
 
-<a class="social-icon" id="shareWA" data-title="WhatsApp" target="_blank">
-    <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/WhayZap2.png" alt="WhatsApp">
-</a>
+            <a class="social-icon" id="shareWA" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/WhayZap2.png" alt="WhatsApp">
+            </a>
 
-<a class="social-icon" id="igShare" data-title="Instagram" target="_blank">
-    <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/instagram2.png" alt="Instagram">
-</a>
+            <a class="social-icon" id="igShare" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/instagram2.png" alt="Instagram">
+            </a>
 
-<a class="social-icon" id="shareFB" data-title="Facebook" target="_blank">
-    <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/facebooc2.png" alt="Facebook">
-</a>
+            <a class="social-icon" id="shareFB" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/facebooc2.png" alt="Facebook">
+            </a>
 
-<a class="social-icon" id="shareTG" data-title="Telegram" target="_blank">
-    <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/telegram2.png" alt="Telegram">
-</a>
+            <a class="social-icon" id="shareTG" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/telegram2.png" alt="Telegram">
+            </a>
 
-<a class="social-icon" id="ttShare" data-title="TikTok" target="_blank">
-    <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/tiktok2.png" alt="TikTok">
-</a>
+            <a class="social-icon" id="ttShare" target="_blank">
+                <img src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/Soz/tiktok2.png" alt="TikTok">
+            </a>
 
         </div>
-        
     </div>
 
-
-    <!-- ПРАВАЯ ЗОНА — комментарий -->
     <div class="panel-section comment-section" onclick="goToComments()">
         Оставьте Комментарий
     </div>
 
-</div>    <!-- /action-panel -->
+</div>
 
-</div> <!-- /player-wrapper -->
+</div>
 
 
-    <!-- Контент страницы (широкий контейнер) -->
-    <h1 id="video-title" class="video-title-page"></h1>
-    <p id="video-description" class="video-description"></p>
-    <p id="video-date" class="video-date"></p>
+<h1 id="video-title" class="video-title-page"></h1>
+<p id="video-description" class="video-description"></p>
+<p id="video-date" class="video-date"></p>
 
-    <h2 class="related-title">Похожие видео</h2>
+<h2 class="related-title">Похожие видео</h2>
 
-    <!-- Широкий контейнер для 3 карточек -->
-    <div id="related-videos"></div>
+<div id="related-videos"></div>
 
-    <!-- Реклама под похожими видео -->
-    <div class="watch-ad">
-        <ins class="adsbygoogle"
-             style="display:block; width:100%; min-height:200px;"
-             data-ad-client="ca-pub-7483662712371460"
-             data-ad-slot="7897698404"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-    </div>
+<div class="watch-ad">
+    <ins class="adsbygoogle"
+         style="display:block; width:100%; min-height:200px;"
+         data-ad-client="ca-pub-7483662712371460"
+         data-ad-slot="7897698404"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+</div>
 
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
-    <!-- Временный футер -->
-    <footer class="footer-temp">
-        © Radio Brodiaga — временный футер<br><center>
-                <!-- Yandex.Metrika informer -->
-<a href="https://metrika.yandex.ru/stat/?id=51410035&amp;from=informer" target="_blank" rel="nofollow">
-    <img src="https://informer.yandex.ru/informer/51410035/1_1_205F60FF_003F40FF_1_uniques"
-         style="width:80px; height:15px; border:0;"
-         alt="Яндекс.Метрика"
-         title="Яндекс.Метрика: данные за сегодня (уникальные посетители)"
-        class="ym-advanced-informer" data-cid="51410035" data-lang="ru"/>
-</a>
-<!-- /Yandex.Metrika informer -->
+<footer class="footer-temp">
+    © Radio Brodiaga — временный футер<br><center>
 
-<!-- Yandex.Metrika counter -->
+    <a href="https://metrika.yandex.ru/stat/?id=51410035&amp;from=informer" target="_blank" rel="nofollow">
+        <img src="https://informer.yandex.ru/informer/51410035/1_1_205F60FF_003F40FF_1_uniques"
+             style="width:80px; height:15px; border:0;"
+             alt="Яндекс.Метрика"
+             title="Яндекс.Метрика: данные за сегодня (уникальные посетители)"
+            class="ym-advanced-informer" data-cid="51410035" data-lang="ru"/>
+    </a>
+
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -169,17 +171,17 @@
 
     ym(51410035, 'init', {trackHash:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/51410035" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-            </center>
-    </footer>
 
-</div> <!-- /video-page -->
+<noscript><div><img src="https://mc.yandex.ru/watch/51410035" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+</center>
+</footer>
+
+</div>
 
 <script src="/keys.js"></script>
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 <script src="/watch.js"></script>
-
 
 </body>
 </html>
