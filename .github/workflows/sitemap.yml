@@ -35,4 +35,21 @@ jobs:
             curl -s "https://www.googleapis.com/youtube/v3/playlistItems?key=${{ secrets.API_KEY }}&playlistId=$playlist&part=contentDetails&maxResults=50" > playlist.json
 
             cat playlist.json | jq -r '.items[].contentDetails.videoId' | while read id; do
-              echo "<url><loc>https://radio.brodiaga.com/docs/watch
+              echo "<url><loc>https://radio.brodiaga.com/docs/watch.html?id=$id</loc></url>" >> docs/sitemap.xml
+            done
+          done
+
+          echo '</urlset>' >> docs/sitemap.xml
+
+      - name: Commit sitemap
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add docs/sitemap.xml
+          git commit -m "Auto-update sitemap" || echo "No changes"
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs
