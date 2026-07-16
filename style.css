@@ -586,6 +586,20 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(18vw, 1fr));
         gap: 2vw;
     }
+/* ============================
+   SEO: скрываем H1 и H2, но оставляем для поисковиков
+============================ */
+.main-title,
+.section-title {
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
 
     .video-thumb {
         height: 12vw;
