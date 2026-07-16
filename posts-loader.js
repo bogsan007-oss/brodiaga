@@ -44,3 +44,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Ошибка загрузки постов:', err);
     }
 });
+/* rebuild */
