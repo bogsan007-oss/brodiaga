@@ -228,8 +228,12 @@
 </footer>
 
 <script>
-    const apiKey = "API_KEY";
-    const playlistId = "PLAYLIST_ID";
+    // Берём значения, которые должны быть заданы раньше, например в secrets.js:
+    // window.apiKey = "ТВОЙ_КЛЮЧ";
+    // window.playlistId = "ТВОЙ_ПЛЕЙЛИСТ";
+
+    let apiKey = window.apiKey;
+    let playlistId = window.playlistId;
 
     async function loadRecommendedVideos() {
         try {
@@ -271,19 +275,19 @@
                 const title = item.snippet.title;
                 const thumb = item.snippet.thumbnails.medium.url;
 
-            const card = document.createElement("div");
-            card.className = "related-card";
-            card.onclick = () => {
-                window.location.href = `watch.html?id=${videoId}`;
-            };
+                const card = document.createElement("div");
+                card.className = "related-card";
+                card.onclick = () => {
+                    window.location.href = `watch.html?id=${videoId}`;
+                };
 
-            card.innerHTML = `
-                <img class="related-thumb" src="${thumb}" alt="">
-                <div class="related-title-text">${title}</div>
-            `;
+                card.innerHTML = `
+                    <img class="related-thumb" src="${thumb}" alt="">
+                    <div class="related-title-text">${title}</div>
+                `;
 
-            container.appendChild(card);
-        });
+                container.appendChild(card);
+            });
 
         } catch (e) {
             console.error("Ошибка loadRecommendedVideos:", e);
@@ -292,6 +296,8 @@
 
     loadRecommendedVideos();
 </script>
+
+
 
 </body>
 </html>
