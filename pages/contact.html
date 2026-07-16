@@ -4,35 +4,36 @@
     <meta charset="UTF-8">
     <title>Обратная связь — Radio Brodiaga</title>
 
-<meta name="description" content="Страница обратной связи Radio Brodiaga. Напишите сообщение, предложите идею или задайте вопрос.">
-<meta name="keywords" content="Radio Brodiaga, обратная связь, написать сообщение, контакт, песни старого клоуна">
+    <meta name="description" content="Страница обратной связи Radio Brodiaga. Напишите сообщение, предложите идею или задайте вопрос.">
+    <meta name="keywords" content="Radio Brodiaga, обратная связь, написать сообщение, контакт, песни старого клоуна">
 
-<meta name="robots" content="index, follow">
-<meta name="author" content="Старый Клоун">
-<meta name="theme-color" content="#0A3A3A">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Старый Клоун">
+    <meta name="theme-color" content="#0A3A3A">
 
-<!-- Open Graph -->
-<meta property="og:title" content="Обратная связь — Radio Brodiaga">
-<meta property="og:description" content="Напишите мне сообщение или предложение.">
-<meta property="og:image" content="URL_ТВОЕЙ_КАРТИНКИ">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://radio.brodiaga.com/contact.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Обратная связь — Radio Brodiaga">
+    <meta property="og:description" content="Напишите мне сообщение или предложение.">
+    <meta property="og:image" content="URL_ТВОЕЙ_КАРТИНКИ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://radio.brodiaga.com/contact.html">
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Обратная связь — Radio Brodiaga">
-<meta name="twitter:description" content="Напишите мне сообщение или предложение.">
-<meta name="twitter:image" content="URL_ТВОЕЙ_КАРТИНКИ">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Обратная связь — Radio Brodiaga">
+    <meta name="twitter:description" content="Напишите мне сообщение или предложение.">
+    <meta name="twitter:image" content="URL_ТВОЕЙ_КАРТИНКИ">
 
-<!-- Canonical -->
-<link rel="canonical" href="https://radio.brodiaga.com/contact.html">
+    <!-- Canonical -->
+    <link rel="canonical" href="https://radio.brodiaga.com/contact.html">
 
     <style>
         body {
-    background: #0A3A3A; /* тёмно-бирюзовый фон всей страницы */
-    margin: 0;
-    padding: 0;
-              }
+            background: #0A3A3A;
+            margin: 0;
+            padding: 0;
+        }
+
         /* ===== ШАПКА ===== */
         .comments-header {
             background: #0A3A3A;
@@ -69,10 +70,10 @@
 
         .contact-card {
             width: 700px;
-            background: #0A3A3A; /* тёмно-бирюзовый */
+            background: #0A3A3A;
             padding: 30px;
             border-radius: 12px;
-            border-top: 3px solid #D4A94A; /* золотая линия */
+            border-top: 3px solid #D4A94A;
             box-shadow: 0 0 25px rgba(0,0,0,0.4);
         }
 
@@ -93,8 +94,8 @@
         .contact-input,
         .contact-textarea {
             width: 100%;
-            background: #71AAAA; /* светло-бирюзовый */
-            border: 1px solid #006666; /* бирюзовая рамка */
+            background: #71AAAA;
+            border: 1px solid #006666;
             border-radius: 8px;
             padding: 12px;
             color: #000000;
@@ -109,7 +110,7 @@
 
         .contact-button {
             width: 100%;
-            background: #D4A94A; /* золотая кнопка */
+            background: #D4A94A;
             color: #000000;
             padding: 14px;
             font-size: 17px;
@@ -124,6 +125,13 @@
         }
 
         /* ===== РЕКОМЕНДАЦИИ ===== */
+        .rec-title {
+            text-align: center;
+            color: #fff;
+            margin-top: 40px;
+            font-size: 24px;
+        }
+
         .related-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -172,47 +180,6 @@
             color: #D4A94A;
             text-decoration: none;
         }
-        .rec-title {
-    text-align: center;
-    color: #fff;
-    margin-top: 40px;
-    font-size: 24px;
-}
-
-.related-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin: 40px auto;
-    width: 90%;
-    max-width: 900px;
-}
-
-.related-card {
-    cursor: pointer;
-    background: #0A3A3A;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s;
-    border: 1px solid #006666;
-}
-
-.related-card:hover {
-    transform: scale(1.03);
-}
-
-.related-thumb {
-    width: 100%;
-    display: block;
-}
-
-.related-title-text {
-    padding: 10px;
-    font-size: 14px;
-    color: #fff;
-    text-align: center;
-}
-
     </style>
 </head>
 
@@ -238,7 +205,6 @@
             <h2 class="contact-title">Напишите мне</h2>
 
             <form action="https://formspree.io/f/your-id" method="POST" class="contact-form">
-
                 <label class="contact-label">Ваш email</label>
                 <input type="email" name="email" class="contact-input" required>
 
@@ -250,10 +216,11 @@
         </div>
     </section>
 
+    <!-- ===== РЕКОМЕНДАЦИИ ===== -->
+    <h2 class="rec-title">Песни, которые стоит послушать</h2>
+    <div id="recommended-videos" class="related-container"></div>
+
 </main>
-      <!-- ===== РЕКОМЕНДАЦИИ ===== -->
-    <h2 style="text-align:center; color:#fff; margin-top:40px;">Песни, которые стоит послушать</h2>
-    <div id="recommended-videos" class="related-container"></div>     
 
 <footer>
     © 2024–2026 Старый Клоун<br>
@@ -304,19 +271,19 @@
                 const title = item.snippet.title;
                 const thumb = item.snippet.thumbnails.medium.url;
 
-                const card = document.createElement("div");
-                card.className = "related-card";
-                card.onclick = () => {
-                    window.location.href = `watch.html?id=${videoId}`;
-                };
+            const card = document.createElement("div");
+            card.className = "related-card";
+            card.onclick = () => {
+                window.location.href = `watch.html?id=${videoId}`;
+            };
 
-                card.innerHTML = `
-                    <img class="related-thumb" src="${thumb}" alt="">
-                    <div class="related-title-text">${title}</div>
-                `;
+            card.innerHTML = `
+                <img class="related-thumb" src="${thumb}" alt="">
+                <div class="related-title-text">${title}</div>
+            `;
 
-                container.appendChild(card);
-            });
+            container.appendChild(card);
+        });
 
         } catch (e) {
             console.error("Ошибка loadRecommendedVideos:", e);
