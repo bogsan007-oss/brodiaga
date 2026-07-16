@@ -586,11 +586,9 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(18vw, 1fr));
         gap: 2vw;
     }
-/* ============================
-   SEO: скрываем H1 и H2 с классами main-title и section-title
-============================ */
-.main-title,
-.section-title {
+/* Скрываем ВСЕ H1 и H2, которые стоят напрямую в body */
+body > h1,
+body > h2 {
     position: absolute !important;
     left: -99999px !important;
     top: -99999px !important;
@@ -603,6 +601,4 @@ body {
     visibility: hidden !important;
 
     pointer-events: none !important;
-    z-index: -1 !important;
 }
-
