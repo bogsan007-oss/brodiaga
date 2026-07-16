@@ -586,10 +586,28 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(18vw, 1fr));
         gap: 2vw;
     }
-/* Скрываем ВСЕ H1 и H2, которые стоят напрямую в body */
+
+/* ============================
+   SEO: полный скрывающий блок (как первый рабочий)
+============================ */
 .main-title,
 .section-title {
     position: absolute !important;
     left: -9999px !important;
     top: -9999px !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    overflow: hidden !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+
+    pointer-events: none !important;
+    z-index: -1 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
 }
