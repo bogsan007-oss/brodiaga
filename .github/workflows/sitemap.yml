@@ -25,12 +25,16 @@ jobs:
             echo "<url><loc>$url</loc></url>" >> sitemap.xml
           done
 
-          # Получаем список видео с YouTube API
-          curl -s "https://www.googleapis.com/youtube/v3/search?key=${{ secrets.API_KEY }}&channelId=${{ secrets.CHANNEL_ID }}&part=snippet,id&order=date&maxResults=50" > videos.json
+          # Список всех плейлистов
+          PLAYLIST_IDS="PLFaaHMye1-yZBk5Z4EzxkzRf9j1m_NX-E PLFaaHMye1-yapSv6zpzE2d3CzmigR-yGg PLFaaHMye1-yakkCa3Un2YDFhoZjLt_qSI PLFaaHMye1-yZbC7gtMl55N_Gv45wBjS2k PLFaaHMye1-yZjsgMXCngGbqPKVLZfT8vR"
 
-          # Добавляем страницы просмотра видео
-          cat videos.json | jq -r '.items[] | select(.id.kind=="youtube#video") | .id.videoId' | while read id; do
-            echo "<url><loc>https://radio.brodiaga.com/watch.html?id=$id</loc></url>" >> sitemap.xml
+          # Перебор всех плейлистов
+          for playlist in $PLAYLIST_IDS; do
+            curl -s "https://www.googleapis.com/youtube/v3/playlistItems?key=${{ secrets.API_KEY }}&playlistId=$playlist&part=contentDetails&maxResults=50" > playlist.json
+
+            cat playlist.json | jq -r '.items[].contentDetails.videoId' | while read id; do
+              echo "<url><loc>https://radio.brodiaga.com/watch.html?id=$id</loc></url>" >> sitemap.xml
+            done
           done
 
           echo '</urlset>' >> sitemap.xml
