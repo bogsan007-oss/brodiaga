@@ -42,6 +42,10 @@ jobs:
           cp robots.txt site/
           cp manifest.json site/ || true
 
+      - name: Add CNAME (фикс домена)
+        run: |
+          echo "radio.brodiaga.com" > site/CNAME
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
