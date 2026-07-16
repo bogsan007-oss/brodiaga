@@ -587,22 +587,22 @@ body {
         gap: 2vw;
     }
 /* ============================
-   SEO: скрываем H1 и H2, но оставляем для поисковиков
+   SEO: скрываем H1 и H2 полностью
 ============================ */
 .main-title,
 .section-title {
     position: absolute !important;
     left: -9999px !important;
     top: -9999px !important;
-    width: 1px !important;
-    height: 1px !important;
-    overflow: hidden !important;
+
+    visibility: hidden !important;
     opacity: 0 !important;
+
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+
     pointer-events: none !important;
 }
 
-    .video-thumb {
-        height: 12vw;
-    }
-}
 /* rebuild */
