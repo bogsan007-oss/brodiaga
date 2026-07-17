@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://radio.brodiaga.com/sitemap.xml
+# Блокируем мусорные Blogger-страницы
+Disallow: /p/blog-page_*
+Disallow: /p/*?*
 
-# rebuild
+# Указываем карту сайта
+Sitemap: https://radio.brodiaga.com/sitemap.xml
