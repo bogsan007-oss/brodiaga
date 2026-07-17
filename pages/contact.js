@@ -7,7 +7,8 @@ async function loadContactVideos() {
         const res = await fetch(url);
         const data = await res.json();
 
-        const container = document.getElementById("cards");
+        // ✔ правильный контейнер из contact.html
+        const container = document.getElementById("recommend-cards");
         if (!container) return;
 
         container.innerHTML = "";
@@ -38,8 +39,6 @@ async function loadContactVideos() {
             if (used.has(idx)) continue;
 
             const item = items[idx];
-            const videoId = item.snippet.resourceId.videoId;
-
             randomVideos.push(item);
             used.add(idx);
         }
@@ -54,15 +53,17 @@ async function loadContactVideos() {
             const title = item.snippet.title;
             const thumb = item.snippet.thumbnails.medium.url;
 
-            const card = document.createElement("div");
+            // ✔ карточка строго под твой CSS (.card)
+            const card = document.createElement("a");
             card.className = "card";
-            card.onclick = () => {
-                window.location.href = `watch.html?id=${videoId}`;   // ← исправлено
-            };
+            card.href = `watch.html?id=${videoId}`;
 
+            // ✔ структура строго под твой CSS (.card img + .card-info)
             card.innerHTML = `
-                <img class="related-thumb" src="${thumb}" alt="">
-                <div class="related-title-text">${title}</div>
+                <img src="${thumb}" alt="">
+                <div class="card-info">
+                    <h3>${title}</h3>
+                </div>
             `;
 
             container.appendChild(card);
