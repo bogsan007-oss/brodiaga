@@ -1,0 +1,4 @@
+ok
+git add force-rebuild-2.txt
+git commit -m "Force rebuild 2"
+git push
