@@ -7,7 +7,7 @@ async function loadContactVideos() {
         const res = await fetch(url);
         const data = await res.json();
 
-        const container = document.getElementById("recommend-cards");
+        const container = document.getElementById("cards");
         if (!container) return;
 
         container.innerHTML = "";
