@@ -85,6 +85,7 @@ main {
     background: #0F4A4A;
     color: #fff;
     font-size: 16px;
+    box-sizing: border-box; /* ← вот это решает проблему */
 }
 
 .contact-textarea {
