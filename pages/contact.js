@@ -57,7 +57,7 @@ async function loadContactVideos() {
             const card = document.createElement("div");
             card.className = "related-card";
             card.onclick = () => {
-                window.location.href = `../watch.html?id=${videoId}`;
+                window.location.href = `watch.html?id=${videoId}`;   // ← исправлено
             };
 
             card.innerHTML = `
