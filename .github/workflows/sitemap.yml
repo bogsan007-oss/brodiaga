@@ -17,12 +17,14 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
       - name: Generate sitemap
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
-          # Все HTML-файлы в корне репозитория
           find . -name "*.html" | while read file; do
             clean="${file#./}"
             url="https://radio.brodiaga.com/$clean"
@@ -34,7 +36,7 @@ jobs:
           for playlist in $PLAYLIST_IDS; do
             curl -s "https://www.googleapis.com/youtube/v3/playlistItems?key=${{ secrets.API_KEY }}&playlistId=$playlist&part=contentDetails&maxResults=50" > playlist.json
 
-            cat playlist.json | jq -r '.items[].contentDetails.videoId' | while read id; do
+            jq -r '.items[].contentDetails.videoId' playlist.json | while read id; do
               echo "<url><loc>https://radio.brodiaga.com/watch.html?id=$id</loc></url>" >> sitemap.xml
             done
           done
