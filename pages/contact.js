@@ -55,7 +55,7 @@ async function loadContactVideos() {
             const thumb = item.snippet.thumbnails.medium.url;
 
             const card = document.createElement("div");
-            card.className = "related-card";
+            card.className = "card";
             card.onclick = () => {
                 window.location.href = `watch.html?id=${videoId}`;   // ← исправлено
             };
