@@ -1,4 +1,4 @@
-fetch('../assets/videos.json')
+fetch('../../assets/videos.json')
     .then(response => response.json())
     .then(videos => {
         const shuffled = videos.sort(() => 0.5 - Math.random());
@@ -21,4 +21,5 @@ fetch('../assets/videos.json')
 
             container.appendChild(card);
         });
-    });
+    })
+    .catch(error => console.error('Ошибка загрузки JSON:', error));
