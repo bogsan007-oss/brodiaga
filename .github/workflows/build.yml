@@ -22,10 +22,10 @@ jobs:
           echo "window.apiKey = '${{ secrets.API_KEY }}';" > site/keys.js
           echo "window.playlistId = '${{ secrets.PLAYLIST_ID }}';" >> site/keys.js
 
-       - name: Copy site files
-         run: |
+      - name: Copy site files
+        run: |
           cp index.html site/
-          cp contact.html site/        # ← добавили контактную страницу
+          cp contact.html site/
           cp style.css site/
           cp player.js site/
           cp watch.js site/
