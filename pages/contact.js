@@ -1,6 +1,3 @@
-const apiKey = "AIzaSyDJAfqTtSmIfxH_BMKKuBVMp0qnz7Q5lOg";
-const playlistId = "UUIRgBQwdKyIY5Sr0JDn4uPQ";
-
 async function loadRecommendedVideos() {
     try {
         const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
@@ -11,11 +8,6 @@ async function loadRecommendedVideos() {
         if (!container) return;
 
         container.innerHTML = "";
-
-        if (!data.items || !data.items.length) {
-            container.innerHTML = "<p>Нет видео</p>";
-            return;
-        }
 
         const items = data.items.filter(item =>
             item.snippet &&
@@ -38,7 +30,7 @@ async function loadRecommendedVideos() {
             card.className = "card";
 
             card.innerHTML = `
-                <img src="${thumb}" alt="">
+                <img class="thumb" src="${thumb}">
                 <div class="card-info">
                     <h3>${title}</h3>
                 </div>
