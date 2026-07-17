@@ -25,7 +25,7 @@ jobs:
       - name: Copy site files
         run: |
           cp index.html site/
-          cp contact.html site/
+          cp pages/contact.html site/        # ← правильный путь
           cp style.css site/
           cp player.js site/
           cp watch.js site/
