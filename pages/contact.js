@@ -1,3 +1,6 @@
+let apiKey = window.apiKey;
+let playlistId = window.playlistId;
+
 async function loadRecommendedVideos() {
     try {
         const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=50`;
