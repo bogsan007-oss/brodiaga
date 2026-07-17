@@ -36,6 +36,8 @@ body {
     display: flex;
     justify-content: center;
     margin: 40px 0;
+    width: 100%;          /* ← важно */
+    box-sizing: border-box; /* ← важно */
 }
 
 .contact-card {
