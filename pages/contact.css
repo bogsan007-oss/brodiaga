@@ -160,15 +160,12 @@ main {
     color: #D4A94A;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
 
     .comments-header {
-        display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: center !important;
         gap: 12px !important;
-        width: 100% !important;
         text-align: center !important;
     }
 
@@ -181,7 +178,6 @@ main {
     }
 
     .cards {
-        display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         width: 100% !important;
