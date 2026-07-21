@@ -601,3 +601,14 @@ body {
     line-height: 0 !important;
     font-size: 0 !important;
 }
+@media (max-width: 600px) {
+    .right-menu-container,
+    .menu-container,
+    .top-menu,
+    .header,
+    .icons {
+        text-align: left !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+    }
+}
