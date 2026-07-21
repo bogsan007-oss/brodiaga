@@ -41,6 +41,7 @@ jobs:
 
           cp robots.txt site/
           cp manifest.json site/ || true
+          cp sitemap.xml site/        # ← добавлено
 
       - name: Add CNAME
         run: |
@@ -60,8 +61,4 @@ jobs:
 
     permissions:
       pages: write
-      id-token: write
-
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      id-token:
