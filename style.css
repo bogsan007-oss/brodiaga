@@ -502,37 +502,46 @@ body {
 ============================ */
 @media (max-width: 600px) {
 
+    /* скрываем превью */
     .header-preview,
     .preview-thumb,
     .preview-title {
         display: none;
     }
 
+    /* ШАПКА В РЯД */
     .header-row {
-        flex-direction: row;      /* ← было column */
+        flex-direction: row;          /* ← было column */
         justify-content: space-between;
         align-items: center;
-        gap: 10px;
+        width: 100%;
+        padding: 0 15px;
     }
 
+    /* ЛОГОТИП */
     .site-logo {
         width: 140px;
         height: 140px;
     }
 
+    /* МЕНЮ В СТОЛБИК */
     .right-menu ul {
-        flex-direction: row;      /* ← было column */
-        gap: 12px;
+        flex-direction: column;       /* ← оставляем как было */
+        align-items: flex-end;        /* красиво прижимаем вправо */
+        gap: 18px;
     }
 
+    /* видео */
     .video-thumb {
         height: 120px;
     }
 
+    /* реклама */
     .ad-card {
         height: 160px;
     }
 
+    /* посты */
     .post-container {
         padding: 0 15px;
     }
