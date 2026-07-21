@@ -503,6 +503,9 @@ body {
 @media (max-width: 600px) {
 
     /* Контейнер меню */
+    .post-card img {
+        display: none !important;
+    }
     .right-menu {
         width: 100%;
         padding-left: 20px;
