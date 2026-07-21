@@ -603,18 +603,15 @@ body {
     font-size: 0 !important;
 }
 @media (max-width: 600px) {
-    .right-menu-container,
-    .menu-container,
-    .top-menu,
-    .header,
-    .icons {
-        text-align: left !important;
-        justify-content: flex-start !important;
-        align-items: flex-start !important;
+
+    /* Скрываем весь средний блок, как было раньше */
+    .header-ctnter {
+        display: none !important;
     }
-}
-@media (max-width: 600px) {
-    .post-card img {
+
+    /* Скрываем превью, если оно вынесено отдельно */
+    .preview-thumb {
         display: none !important;
     }
 }
+
