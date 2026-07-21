@@ -78,4 +78,20 @@ jobs:
           echo "radio.brodiaga.com" > site/CNAME
 
       - name: Upload artifact
-        uses: actions/upload
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy
