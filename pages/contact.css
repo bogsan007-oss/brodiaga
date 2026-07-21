@@ -229,11 +229,10 @@ main {
 }
 @media (max-width: 1600px) {
 
-    /* Отключаем flex, включаем GRID */
     .comments-header {
         display: grid !important;
-        grid-template-columns: 140px 1fr !important; /* Эмблема слева, текст справа */
-        grid-template-rows: auto auto !important;    /* Две строки */
+        grid-template-columns: 140px 1fr !important;
+        grid-template-rows: auto auto !important;
         grid-template-areas:
             "left center"
             "left back" !important;
@@ -245,7 +244,6 @@ main {
         border-bottom: 3px solid #D4A94A !important;
     }
 
-    /* Эмблема — квадрат */
     .ch-left {
         grid-area: left !important;
         width: 140px !important;
@@ -262,15 +260,13 @@ main {
         border-radius: 6px !important;
     }
 
-    /* Название — верхний правый блок */
     .ch-center {
         grid-area: center !important;
-        font-size: 32px !important;      /* крупный шрифт */
+        font-size: 32px !important;
         font-weight: bold !important;
         text-align: left !important;
     }
 
-    /* Ссылка — нижний правый блок */
     .ch-back {
         grid-area: back !important;
         text-align: left !important;
@@ -280,6 +276,7 @@ main {
         font-size: 22px !important;
     }
 }
+
 
 @media (max-width: 1600px) {
 
