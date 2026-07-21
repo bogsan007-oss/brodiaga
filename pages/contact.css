@@ -164,44 +164,38 @@ main {
 @media (max-width: 1600px) {
 
     /* ============================
-       Вся страница
+       ГЛАВНЫЙ КОНТЕЙНЕР СТРАНИЦЫ
+       — ВСЁ ДОЛЖНО БЫТЬ ОДНОЙ ШИРИНЫ
     ============================= */
-    body {
-        padding: 0 !important;
-        margin: 0 !important;
-        box-sizing: border-box !important;
-    }
-
-    main {
-        max-width: 100% !important;
+    body,
+    main,
+    .comments-header,
+    .footer {
+        max-width: 360px !important;
         width: 100% !important;
-        margin: 0 !important;
-        padding: 10px !important;
+        margin: 0 auto !important;
         box-sizing: border-box !important;
     }
 
     /* ============================
-       Шапка (отключаем flex → включаем GRID)
+       ШАПКА — отключаем flex → GRID
     ============================= */
     .comments-header {
         display: grid !important;
-        grid-template-columns: 140px 1fr !important;
+        grid-template-columns: 120px 1fr !important;
         grid-template-rows: auto auto !important;
         grid-template-areas:
             "left center"
             "left back" !important;
-        align-items: center !important;
-        width: 100% !important;
         padding: 15px 20px !important;
-        box-sizing: border-box !important;
         background: #0A3A3A !important;
         border-bottom: 3px solid #D4A94A !important;
     }
 
     .ch-left {
         grid-area: left !important;
-        width: 140px !important;
-        height: 140px !important;
+        width: 120px !important;
+        height: 120px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -211,69 +205,38 @@ main {
         width: 100% !important;
         height: 100% !important;
         object-fit: cover !important;
-        border-radius: 6px !important;
     }
 
     .ch-center {
         grid-area: center !important;
-        font-size: 32px !important;
+        font-size: 26px !important;
         font-weight: bold !important;
-        text-align: left !important;
     }
 
     .ch-back {
         grid-area: back !important;
-        text-align: left !important;
     }
 
     .ch-back-link {
-        font-size: 22px !important;
+        font-size: 20px !important;
     }
 
     /* ============================
-       Контактная форма
+       ФОРМА
     ============================= */
     .contact-wrapper {
-        display: block !important;
         width: 100% !important;
-        padding: 0 !important;
         margin: 0 auto !important;
-        box-sizing: border-box !important;
     }
 
     .contact-card {
         width: 100% !important;
         max-width: 360px !important;
-        margin: 0 auto !important;
         padding: 20px !important;
-        box-sizing: border-box !important;
-    }
-
-    .contact-title {
-        text-align: center !important;
-        font-size: 26px !important;
-        margin-bottom: 20px !important;
-        width: 100% !important;
-    }
-
-    .contact-input,
-    .contact-textarea {
-        width: 100% !important;
-        font-size: 18px !important;
-        padding: 12px !important;
-        margin-bottom: 12px !important;
-        box-sizing: border-box !important;
-    }
-
-    .contact-button {
-        width: 100% !important;
-        font-size: 18px !important;
-        padding: 14px !important;
-        box-sizing: border-box !important;
     }
 
     /* ============================
-       Карточки рекомендаций
+       КАРТОЧКИ
     ============================= */
     .cards {
         flex-direction: column !important;
@@ -285,5 +248,14 @@ main {
         width: 100% !important;
         max-width: 360px !important;
         margin-bottom: 20px !important;
+    }
+
+    /* ============================
+       ФУТЕР
+    ============================= */
+    .footer {
+        padding: 20px !important;
+        text-align: center !important;
+        border-top: 3px solid #D4A94A !important;
     }
 }
