@@ -161,7 +161,7 @@ main {
 }
 
 /* Адаптив всей страницы + формы */
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
 
     /* Вся страница */
     body {
@@ -227,7 +227,7 @@ main {
         margin-bottom: 20px !important;
     }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
 
     /* Отключаем flex, включаем GRID */
     .comments-header {
@@ -275,7 +275,7 @@ main {
         font-size: 22px !important;
     }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
 
     .comments-header {
         display: grid !important;
@@ -290,7 +290,7 @@ main {
         box-sizing: border-box !important;
     }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
     main {
         max-width: 100% !important;
         width: 100% !important;
