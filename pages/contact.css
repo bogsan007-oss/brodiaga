@@ -275,4 +275,19 @@ main {
         font-size: 22px !important;
     }
 }
+@media (max-width: 1200px) {
+
+    .comments-header {
+        display: grid !important;
+        grid-template-columns: 140px 1fr !important;
+        grid-template-rows: auto auto !important;
+        grid-template-areas:
+            "left center"
+            "left back" !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding: 15px 20px !important;
+        box-sizing: border-box !important;
+    }
+}
 
