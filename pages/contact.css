@@ -162,40 +162,38 @@ main {
 
 @media (max-width: 600px) {
 
-    /* ===== ШАПКА КОНТАКТОВ ===== */
+    /* Шапка остаётся флексом */
     .comments-header {
-        flex-direction: column;      /* ставим элементы в колонку */
-        align-items: center;         /* центрируем */
-        gap: 12px;
-        text-align: center;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10px;
     }
 
-    /* Эмблема остаётся как есть */
-    .ch-left .site-logo {
-        width: 80px;
-        height: auto;
+    /* Эмблема остаётся слева */
+    .ch-left {
+        display: flex;
+        align-items: center;
     }
 
-    /* Название страницы */
-    .ch-center {
-        font-size: 26px;
-        margin: 0;
-    }
-
-    /* Контейнер ссылки */
+    /* Центральный блок: название + ссылка в колонку */
+    .ch-center,
     .ch-back {
+        display: block;
+        text-align: left;
         width: 100%;
-        text-align: center;
     }
 
-    /* Ссылка под названием */
+    .ch-center {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
     .ch-back-link {
         font-size: 18px;
         display: inline-block;
-        margin-top: 5px;
     }
 
-    /* ===== КАРТОЧКИ ПРЕВЬЮ В КОЛОНКУ ===== */
+    /* Карточки в колонку */
     .cards {
         flex-direction: column;
         align-items: center;
