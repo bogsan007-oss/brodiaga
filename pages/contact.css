@@ -161,24 +161,24 @@ main {
 }
 
 /* Адаптив всей страницы + формы */
+/* ============================
+   Адаптив всей страницы
+============================ */
 @media (max-width: 1600px) {
 
-    /* ============================
-       ГЛАВНЫЙ КОНТЕЙНЕР СТРАНИЦЫ
-       — ВСЁ ДОЛЖНО БЫТЬ ОДНОЙ ШИРИНЫ
-    ============================= */
+    /* Главный контейнер — ВСЁ становится одной ширины */
     body,
     main,
     .comments-header,
     .footer {
-        max-width: 360px !important;
         width: 100% !important;
+        max-width: 100% !important;   /* ← вот это позволяет растягиваться на телефоне */
         margin: 0 auto !important;
         box-sizing: border-box !important;
     }
 
     /* ============================
-       ШАПКА — отключаем flex → GRID
+       Шапка — GRID
     ============================= */
     .comments-header {
         display: grid !important;
@@ -222,7 +222,7 @@ main {
     }
 
     /* ============================
-       ФОРМА
+       Контактная форма
     ============================= */
     .contact-wrapper {
         width: 100% !important;
@@ -231,12 +231,12 @@ main {
 
     .contact-card {
         width: 100% !important;
-        max-width: 360px !important;
+        max-width: 360px !important; /* ← форма остаётся аккуратной */
         padding: 20px !important;
     }
 
     /* ============================
-       КАРТОЧКИ
+       Карточки
     ============================= */
     .cards {
         flex-direction: column !important;
@@ -251,7 +251,7 @@ main {
     }
 
     /* ============================
-       ФУТЕР
+       Футер
     ============================= */
     .footer {
         padding: 20px !important;
