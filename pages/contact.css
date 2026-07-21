@@ -163,73 +163,26 @@ main {
 /* Адаптив всей страницы + формы */
 @media (max-width: 1600px) {
 
-    /* Вся страница */
+    /* ============================
+       Вся страница
+    ============================= */
     body {
         padding: 0 !important;
         margin: 0 !important;
         box-sizing: border-box !important;
     }
 
-    /* Контейнер страницы */
-    .contact-wrapper {
-        display: block !important;
+    main {
+        max-width: 100% !important;
         width: 100% !important;
-        padding: 0 !important;
-        margin: 0 auto !important;
+        margin: 0 !important;
+        padding: 10px !important;
         box-sizing: border-box !important;
     }
 
-    /* Карточка формы */
-    .contact-card {
-        width: 100% !important;
-        max-width: 360px !important;
-        margin: 0 auto !important;
-        padding: 20px !important;
-        box-sizing: border-box !important;
-    }
-
-    /* Заголовок */
-    .contact-title {
-        text-align: center !important;
-        font-size: 26px !important;
-        margin-bottom: 20px !important;
-        width: 100% !important;
-    }
-
-    /* Поля */
-    .contact-input,
-    .contact-textarea {
-        width: 100% !important;
-        font-size: 18px !important;
-        padding: 12px !important;
-        margin-bottom: 12px !important;
-        box-sizing: border-box !important;
-    }
-
-    /* Кнопка */
-    .contact-button {
-        width: 100% !important;
-        font-size: 18px !important;
-        padding: 14px !important;
-        box-sizing: border-box !important;
-    }
-
-    /* Блок рекомендаций */
-    .cards {
-        flex-direction: column !important;
-        align-items: center !important;
-        width: 100% !important;
-    }
-
-    .card {
-        width: 100% !important;
-        max-width: 360px !important;
-        margin-bottom: 20px !important;
-    }
-}
-
-@media (max-width: 1600px) {
-
+    /* ============================
+       Шапка (отключаем flex → включаем GRID)
+    ============================= */
     .comments-header {
         display: grid !important;
         grid-template-columns: 140px 1fr !important;
@@ -276,32 +229,61 @@ main {
     .ch-back-link {
         font-size: 22px !important;
     }
-}
 
+    /* ============================
+       Контактная форма
+    ============================= */
+    .contact-wrapper {
+        display: block !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
 
-@media (max-width: 1600px) {
+    .contact-card {
+        width: 100% !important;
+        max-width: 360px !important;
+        margin: 0 auto !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
+    }
 
-    .comments-header {
-        display: grid !important;
-        grid-template-columns: 140px 1fr !important;
-        grid-template-rows: auto auto !important;
-        grid-template-areas:
-            "left center"
-            "left back" !important;
+    .contact-title {
+        text-align: center !important;
+        font-size: 26px !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+    }
+
+    .contact-input,
+    .contact-textarea {
+        width: 100% !important;
+        font-size: 18px !important;
+        padding: 12px !important;
+        margin-bottom: 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    .contact-button {
+        width: 100% !important;
+        font-size: 18px !important;
+        padding: 14px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* ============================
+       Карточки рекомендаций
+    ============================= */
+    .cards {
+        flex-direction: column !important;
         align-items: center !important;
         width: 100% !important;
-        padding: 15px 20px !important;
-        box-sizing: border-box !important;
     }
-}
 
-@media (max-width: 1600px) {
-    main {
-        max-width: 100% !important;
+    .card {
         width: 100% !important;
-        margin: 0 !important;
-        padding: 10px !important;
-        box-sizing: border-box !important;
+        max-width: 360px !important;
+        margin-bottom: 20px !important;
     }
 }
-
