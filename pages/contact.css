@@ -229,6 +229,7 @@ main {
 }
 @media (max-width: 1200px) {
 
+    /* Отключаем flex, включаем GRID */
     .comments-header {
         display: grid !important;
         grid-template-columns: 140px 1fr !important; /* Эмблема слева, текст справа */
@@ -241,6 +242,7 @@ main {
         padding: 15px 20px !important;
         box-sizing: border-box !important;
         background: #0A3A3A !important;
+        border-bottom: 3px solid #D4A94A !important;
     }
 
     /* Эмблема — квадрат */
@@ -251,8 +253,6 @@ main {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        background-size: cover !important;
-        background-position: center !important;
     }
 
     /* Название — верхний правый блок */
@@ -275,3 +275,4 @@ main {
         font-size: 22px !important;
     }
 }
+
