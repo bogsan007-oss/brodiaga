@@ -507,7 +507,8 @@ body {
         width: 100% !important;
         display: flex !important;
         flex-direction: column !important;
-        align-items: flex-start !important; /* МЕНЮ СЛЕВА */
+        align-items: flex-start !important; /* ВЫРАВНИВАНИЕ СЛЕВА */
+        justify-content: flex-start !important;
         padding-left: 20px !important;      /* ОТСТУП СЛЕВА */
         padding-right: 20px !important;     /* ОТСТУП СПРАВА */
         margin-top: 10px !important;
@@ -518,7 +519,8 @@ body {
         width: 100% !important;
         display: flex !important;
         flex-direction: column !important;
-        align-items: flex-start !important; /* ВЫРАВНИВАНИЕ СЛЕВА */
+        align-items: flex-start !important; /* ВСЁ СЛЕВА */
+        justify-content: flex-start !important;
         gap: 22px !important;
         padding: 0 !important;
         margin: 0 !important;
@@ -529,7 +531,8 @@ body {
         width: 100% !important;
         display: flex !important;
         align-items: center !important;
-        gap: 12px !important; /* расстояние между иконкой и текстом */
+        justify-content: flex-start !important; /* ИКОНКА + ТЕКСТ СЛЕВА */
+        gap: 12px !important;
     }
 
     /* Ссылки меню */
@@ -541,7 +544,6 @@ body {
         width: auto !important;
     }
 }
-
 
 
 /* ============================
