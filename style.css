@@ -612,3 +612,8 @@ body {
         align-items: flex-start !important;
     }
 }
+@media (max-width: 600px) {
+    .post-card img {
+        display: none !important;
+    }
+}
