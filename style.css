@@ -472,8 +472,10 @@ body {
 @media (max-width: 768px) {
 
     .header-row {
-        flex-direction: column;
-        gap: 20px;
+        flex-direction: row;      /* ← было column */
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
     }
 
     .site-logo {
@@ -500,48 +502,42 @@ body {
 ============================ */
 @media (max-width: 600px) {
 
-    /* скрываем превью */
     .header-preview,
     .preview-thumb,
     .preview-title {
         display: none;
     }
 
-    /* перестраиваем шапку */
     .header-row {
-        flex-direction: column;
+        flex-direction: row;      /* ← было column */
+        justify-content: space-between;
         align-items: center;
-        gap: 15px;
+        gap: 10px;
     }
 
-    /* логотип */
     .site-logo {
-        width: 160px;
-        height: 160px;
+        width: 140px;
+        height: 140px;
     }
 
-    /* меню */
     .right-menu ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 18px;
+        flex-direction: row;      /* ← было column */
+        gap: 12px;
     }
 
-    /* видео */
     .video-thumb {
         height: 120px;
     }
 
-    /* реклама */
     .ad-card {
         height: 160px;
     }
 
-    /* посты */
     .post-container {
         padding: 0 15px;
     }
 }
+
 
 /* ============================
    ТВ 1800px+
