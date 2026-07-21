@@ -604,14 +604,20 @@ body {
 }
 @media (max-width: 600px) {
 
-    /* Скрываем весь средний блок, как было раньше */
+    /* Скрываем весь средний блок превью */
     .header-ctnter {
         display: none !important;
     }
 
-    /* Скрываем превью, если оно вынесено отдельно */
+    /* Скрываем картинку превью */
     .preview-thumb {
         display: none !important;
     }
+
+    /* Скрываем текст превью */
+    .preview-title {
+        display: none !important;
+    }
 }
+
 
