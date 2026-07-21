@@ -165,7 +165,7 @@ main {
     /* ===== ШАПКА КОНТАКТОВ ===== */
     .comments-header {
         flex-direction: column;      /* ставим элементы в колонку */
-        align-items: center;         /* выравниваем по центру */
+        align-items: center;         /* центрируем */
         gap: 12px;
         text-align: center;
     }
@@ -176,26 +176,33 @@ main {
         height: auto;
     }
 
-    /* Название и ссылка идут друг под другом */
+    /* Название страницы */
     .ch-center {
         font-size: 26px;
         margin: 0;
     }
 
+    /* Контейнер ссылки */
+    .ch-back {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Ссылка под названием */
     .ch-back-link {
         font-size: 18px;
-        display: block;
+        display: inline-block;
         margin-top: 5px;
     }
 
     /* ===== КАРТОЧКИ ПРЕВЬЮ В КОЛОНКУ ===== */
     .cards {
-        flex-direction: column;   /* ставим карточки вертикально */
-        align-items: center;      /* центрируем */
+        flex-direction: column;
+        align-items: center;
     }
 
     .card {
-        width: 100%;              /* карточка на всю ширину */
-        max-width: 360px;         /* но не слишком широкая */
+        width: 100%;
+        max-width: 360px;
     }
 }
