@@ -227,6 +227,7 @@ main {
         margin-bottom: 20px !important;
     }
 }
+
 @media (max-width: 1600px) {
 
     .comments-header {
@@ -293,6 +294,7 @@ main {
         box-sizing: border-box !important;
     }
 }
+
 @media (max-width: 1600px) {
     main {
         max-width: 100% !important;
