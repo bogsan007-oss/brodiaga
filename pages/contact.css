@@ -162,30 +162,31 @@ main {
 
 @media (max-width: 600px) {
 
-    /* Шапка остаётся флексом */
     .comments-header {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        text-align: center;
+        width: 100%;
     }
 
-    /* Эмблема остаётся слева */
     .ch-left {
         display: flex;
-        align-items: center;
-    }
-
-    /* Центральный блок: название + ссылка в колонку */
-    .ch-center,
-    .ch-back {
-        display: block;
-        text-align: left;
+        justify-content: center;
         width: 100%;
     }
 
     .ch-center {
+        display: block;
+        width: 100%;
         font-size: 24px;
-        margin-bottom: 5px;
+        margin-bottom: 6px;
+    }
+
+    .ch-back {
+        display: block;
+        width: 100%;
+        margin-top: 4px;
     }
 
     .ch-back-link {
@@ -193,10 +194,10 @@ main {
         display: inline-block;
     }
 
-    /* Карточки в колонку */
     .cards {
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 
     .card {
