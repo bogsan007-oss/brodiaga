@@ -159,3 +159,43 @@ main {
 .footer a {
     color: #D4A94A;
 }
+
+@media (max-width: 600px) {
+
+    /* ===== ШАПКА КОНТАКТОВ ===== */
+    .comments-header {
+        flex-direction: column;      /* ставим элементы в колонку */
+        align-items: center;         /* выравниваем по центру */
+        gap: 12px;
+        text-align: center;
+    }
+
+    /* Эмблема остаётся как есть */
+    .ch-left .site-logo {
+        width: 80px;
+        height: auto;
+    }
+
+    /* Название и ссылка идут друг под другом */
+    .ch-center {
+        font-size: 26px;
+        margin: 0;
+    }
+
+    .ch-back-link {
+        font-size: 18px;
+        display: block;
+        margin-top: 5px;
+    }
+
+    /* ===== КАРТОЧКИ ПРЕВЬЮ В КОЛОНКУ ===== */
+    .cards {
+        flex-direction: column;   /* ставим карточки вертикально */
+        align-items: center;      /* центрируем */
+    }
+
+    .card {
+        width: 100%;              /* карточка на всю ширину */
+        max-width: 360px;         /* но не слишком широкая */
+    }
+}
