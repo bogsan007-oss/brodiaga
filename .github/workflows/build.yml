@@ -25,7 +25,6 @@ jobs:
       - name: Copy site files
         run: |
           cp index.html site/
-          cp pages/contact.html site/        # ← правильный путь
           cp style.css site/
           cp player.js site/
           cp watch.js site/
@@ -43,7 +42,7 @@ jobs:
           cp robots.txt site/
           cp manifest.json site/ || true
 
-      - name: Add CNAME (фикс домена)
+      - name: Add CNAME
         run: |
           echo "radio.brodiaga.com" > site/CNAME
 
