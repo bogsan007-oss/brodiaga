@@ -227,3 +227,51 @@ main {
         margin-bottom: 20px !important;
     }
 }
+@media (max-width: 1200px) {
+
+    .comments-header {
+        display: grid !important;
+        grid-template-columns: 120px 1fr !important; /* Эмблема слева, справа текст */
+        grid-template-rows: auto auto !important;    /* Две строки */
+        grid-template-areas:
+            "left center"
+            "left back" !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 6px !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Эмблема — квадрат */
+    .ch-left {
+        grid-area: left !important;
+        width: 120px !important;
+        height: 120px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+
+    /* Название — верхний правый блок */
+    .ch-center {
+        grid-area: center !important;
+        font-size: 28px !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        white-space: nowrap !important;
+    }
+
+    /* Ссылка — нижний правый блок */
+    .ch-back {
+        grid-area: back !important;
+        text-align: left !important;
+        white-space: nowrap !important;
+    }
+
+    .ch-back-link {
+        font-size: 20px !important;
+    }
+}
