@@ -646,3 +646,11 @@ body {
         text-align: left !important;
     }
 }
+@media (max-width: 600px) {
+    .preview,
+    #preview,
+    .thumbnail,
+    .video-preview {
+        display: none !important;
+    }
+}
