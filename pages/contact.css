@@ -255,26 +255,32 @@ main {
         justify-content: center !important;
     }
 
+    .ch-left .site-logo {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 6px !important;
+    }
+
     /* Название — верхний правый блок */
     .ch-center {
         grid-area: center !important;
         font-size: 32px !important;      /* крупный шрифт */
         font-weight: bold !important;
         text-align: left !important;
-        white-space: nowrap !important;
     }
 
     /* Ссылка — нижний правый блок */
     .ch-back {
         grid-area: back !important;
         text-align: left !important;
-        white-space: nowrap !important;
     }
 
     .ch-back-link {
         font-size: 22px !important;
     }
 }
+
 @media (max-width: 1600px) {
 
     .comments-header {
