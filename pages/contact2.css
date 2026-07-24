@@ -5,11 +5,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: #111;
+    background: #007f80; /* новый фон страницы */
     color: #fff;
 }
-
-
 
 /* ============================
    ШАПКА — ПК
@@ -20,7 +18,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
-    background: #000;
+    background: #003f40; /* новый фон шапки */
     border-bottom: 2px solid #444;
 }
 
@@ -44,6 +42,7 @@ body {
 .contact-back:hover {
     color: #ffd66c;
 }
+
 
 
 
