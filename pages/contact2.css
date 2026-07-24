@@ -110,6 +110,11 @@ body {
 /* ============================
    РЕКОМЕНДАЦИИ — КАРТОЧКИ
 ============================ */
+.songs-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 25px;
+}
 
 .cards {
     display: grid;
