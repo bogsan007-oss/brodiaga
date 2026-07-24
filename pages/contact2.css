@@ -61,6 +61,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    background: #0A3A3A;        /* фон карточки */
+    padding: 30px;              /* внутренние отступы */
+    border-radius: 12px;        /* скругление */
+    border-top: 3px solid #D4A94A;
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
 }
 
 .contact-form input,
@@ -71,25 +77,31 @@ body {
     border-radius: 8px;
     border: none;
     outline: none;
+
+    background: #0F4A4A;        /* фон полей */
+    color: #fff;
 }
 
 .contact-form textarea {
     height: 180px;
-    resize: none;
+    resize: vertical;           /* можно менять высоту */
 }
 
 .contact-form button {
     padding: 15px;
     font-size: 22px;
-    background: #f0c040;
+    background: #D4A94A;
+    color: #000;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .contact-form button:hover {
     background: #ffd66c;
 }
+
 
 
 
