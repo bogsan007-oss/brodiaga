@@ -1,0 +1,129 @@
+/* ============================
+   ОБЩИЕ СТИЛИ
+============================ */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #fff;
+}
+
+
+
+/* ============================
+   ШАПКА — ПК
+============================ */
+.contact-header {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    background: #000;
+    border-bottom: 2px solid #444;
+}
+
+.contact-logo {
+    width: 150px;
+    height: 150px;
+}
+
+.contact-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.contact-back {
+    font-size: 20px;
+    color: #f0c040;
+    text-decoration: none;
+}
+
+.contact-back:hover {
+    color: #ffd66c;
+}
+
+
+
+/* ============================
+   ФОРМА ОБРАТНОЙ СВЯЗИ
+============================ */
+.contact-form-section {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.contact-form {
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+.contact-form textarea {
+    height: 180px;
+    resize: none;
+}
+
+.contact-form button {
+    padding: 15px;
+    font-size: 22px;
+    background: #f0c040;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background: #ffd66c;
+}
+
+
+
+/* ============================
+   ПЕСНИ, КОТОРЫЕ СТОИТ ПОСЛУШАТЬ
+============================ */
+.songs-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.songs-title {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.songs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 0 40px;
+}
+
+.song-thumb {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.song-thumb:hover {
+    transform: scale(1.05);
+}
+
+
+
+/* =================
