@@ -21,13 +21,20 @@
 
     <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
     <section class="contact-form-section">
-        <form class="contact-form">
-            <input type="text" placeholder="Ваше имя" required>
-            <input type="email" placeholder="Ваш Email" required>
-            <textarea placeholder="Ваше сообщение" required></textarea>
-            <button type="submit">Отправить</button>
-        </form>
-    </section>
+    <!-- ★★★ Рабочая форма Formspree ★★★ -->
+    <form action="https://formspree.io/f/xnjepgkv" method="POST" class="contact-form">
+
+        <label class="contact-label">Ваш email</label>
+        <input type="email" name="email" class="contact-input" required>
+
+        <label class="contact-label">Сообщение</label>
+        <textarea name="message" class="contact-textarea" required></textarea>
+
+        <button type="submit" class="contact-button">Отправить сообщение</button>
+
+    </form>
+    <!-- ★★★ Конец рабочей формы ★★★ -->
+</section>
 
 
     <!-- ПЕСНИ, КОТОРЫЕ СТОИТ ПОСЛУШАТЬ -->
