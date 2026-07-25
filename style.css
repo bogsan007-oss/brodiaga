@@ -334,7 +334,7 @@ body {
 /* Контейнер иконки */
 .social-icon {
     position: relative;
-    display: inline-block; /* фиксирует позицию подсказки */
+    display: inline-block;
     overflow: visible !important;
     z-index: 10;
 }
@@ -345,7 +345,7 @@ body {
     top: -35px;
     left: 50%;
     transform: translateX(-50%);
-    background: #7a682f !important; /* золотой фон */
+    background: #7a682f !important;
     color: #fff;
     padding: 4px 8px;
     font-size: 12px;
@@ -375,13 +375,16 @@ body {
 
 /* 📱 Адаптивность */
 @media (max-width: 600px) {
+
     .action-panel {
         flex-direction: column;
+        max-width: 100% !important;   /* 🔥 ключевое исправление */
+        width: 100% !important;       /* 🔥 ключевое исправление */
     }
 
     .share-section,
     .comment-section {
-        width: 100%;
+        width: 100% !important;
     }
 
     .share-box {
@@ -389,6 +392,7 @@ body {
         gap: 12px;
     }
 }
+
 
 /* ============================
    ПОХОЖИЕ ВИДЕО
