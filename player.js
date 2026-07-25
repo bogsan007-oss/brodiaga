@@ -43,14 +43,27 @@ async function loadLeastViewedVideo() {
 
         const videoId = leastViewed.id;
         const title = leastViewed.snippet.title;
-        const thumb = leastViewed.snippet.thumbnails.medium.url;
+
+        // 🔥 Выбираем лучшую доступную картинку
+        const thumb =
+            leastViewed.snippet.thumbnails.maxres?.url ||
+            leastViewed.snippet.thumbnails.high?.url ||
+            leastViewed.snippet.thumbnails.medium.url;
+
+        // 🔥 ПОЛНОЕ ОПИСАНИЕ ДЛЯ SEO
+        const description = leastViewed.snippet.description;
 
         const thumbEl = document.getElementById("preview-thumb");
         const titleEl = document.getElementById("preview-title");
+        const descEl = document.getElementById("preview-desc");
         const boxEl = document.getElementById("header-preview");
 
         if (thumbEl) thumbEl.src = thumb;
         if (titleEl) titleEl.textContent = title;
+
+        // 🔥 ВСТАВЛЯЕМ ПОЛНОЕ ОПИСАНИЕ В СКРЫТЫЙ БЛОК
+        if (descEl) descEl.textContent = description;
+
         if (boxEl) {
             boxEl.onclick = () => {
                 window.location.href = `watch.html?id=${videoId}`;
@@ -61,6 +74,7 @@ async function loadLeastViewedVideo() {
         console.error("Ошибка loadLeastViewedVideo:", e);
     }
 }
+
 
 /* ============================
    ЗАГРУЗКА ВСЕХ ВИДЕО
