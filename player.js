@@ -110,6 +110,19 @@ async function loadVideoCards() {
 /* ============================
    ОТРИСОВКА ПОРЦИИ (14 видео + реклама)
 ============================ */
+function cleanDescription(text) {
+    if (!text) return "";
+
+    return text
+        // Удаляем ссылки полностью
+        .replace(/https?:\/\/\S+/g, "")
+        .replace(/www\.\S+/g, "")
+        .replace(/youtu\.be\/\S+/g, "")
+        .replace(/youtube\.com\/\S+/g, "")
+        // Убираем лишние пробелы
+        .replace(/\s+/g, " ")
+        .trim();
+}
 function renderMoreVideos() {
     const container = document.getElementById("video-list");
     if (!container) return;
