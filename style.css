@@ -375,11 +375,10 @@ body {
 
 /* 📱 Адаптивность */
 @media (max-width: 600px) {
-
     .action-panel {
-        flex-direction: column;
-        max-width: 100% !important;   /* 🔥 ключевое исправление */
-        width: 100% !important;       /* 🔥 ключевое исправление */
+        display: block !important;      /* 🔥 ключ */
+        max-width: 100% !important;     /* 🔥 ключ */
+        width: 100% !important;         /* 🔥 ключ */
     }
 
     .share-section,
