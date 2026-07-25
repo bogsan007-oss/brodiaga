@@ -166,7 +166,7 @@ function renderMoreVideos() {
             const videoId = item.snippet.resourceId.videoId;
             const title = item.snippet.title;
             const thumb = item.snippet.thumbnails.medium.url;
-            const description = item.snippet.description; // 🔥 ПОЛНОЕ ОПИСАНИЕ
+            const description = cleanDescription(item.snippet.description); // 🔥 очищенное описание
 
             const card = document.createElement("div");
             card.className = "video-card";
