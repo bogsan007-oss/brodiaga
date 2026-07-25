@@ -153,6 +153,7 @@ function renderMoreVideos() {
             const videoId = item.snippet.resourceId.videoId;
             const title = item.snippet.title;
             const thumb = item.snippet.thumbnails.medium.url;
+            const description = item.snippet.description; // 🔥 ПОЛНОЕ ОПИСАНИЕ
 
             const card = document.createElement("div");
             card.className = "video-card";
@@ -160,10 +161,16 @@ function renderMoreVideos() {
                 window.location.href = `watch.html?id=${videoId}`;
             };
 
-            /* ⭐ ВСТАВЛЯЕМ H3 ДЛЯ SEO */
+            /* ⭐ ОБОРАЧИВАЕМ КАРТИНКУ В КОНТЕЙНЕР + СКРЫТОЕ ОПИСАНИЕ */
             card.innerHTML = `
-                <img class="video-thumb" src="${thumb}">
+                <div class="video-thumb">
+                    <img src="${thumb}" alt="${title}">
+                </div>
+
                 <h3 class="video-title">${title}</h3>
+
+                <!-- 🔥 Скрытый SEO‑текст -->
+                <div class="video-desc">${description}</div>
             `;
 
             container.appendChild(card);
@@ -172,6 +179,7 @@ function renderMoreVideos() {
 
     currentIndex = end;
 }
+
 
 /* ============================
    КНОПКА "ПОКАЗАТЬ БОЛЬШЕ"
