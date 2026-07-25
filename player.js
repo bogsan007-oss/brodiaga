@@ -164,7 +164,7 @@ function renderMoreVideos() {
             /* ⭐ ОБОРАЧИВАЕМ КАРТИНКУ В КОНТЕЙНЕР + СКРЫТОЕ ОПИСАНИЕ */
             card.innerHTML = `
                 <div class="video-thumb">
-                    <img src="${thumb}" alt="${title}">
+                    <img src="${thumb}"  alt="Песня ${title} — Radio Brodiaga">
                 </div>
 
                 <h3 class="video-title">${title}</h3>
