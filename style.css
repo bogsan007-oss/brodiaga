@@ -64,6 +64,10 @@ body {
     font-size: 14px;
     color: #fac115;
 }
+.seo-desc {
+    display: none;
+}
+
 
 /* ============================
    МЕНЮ
