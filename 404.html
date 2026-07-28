@@ -9,7 +9,7 @@
 </head>
 <body style="background:#ffffff; text-align:center; font-family:Arial, sans-serif;">
 
-  <audio autoplay preload="auto">
+  <audio autoplay preload="auto" loop>
     <source src="https://raw.githubusercontent.com/bogsan007-oss/brodiaga/main/per404.mp3" type="audio/mpeg">
   </audio>
 
@@ -53,6 +53,17 @@
     — Или <a href="https://radio.brodiaga.com/watch.html?id=_grf6Po0Al4">послушать полную версию мелодии</a>,
     которая играет на этой странице.
   </p>
+<script>
+const audio = document.querySelector("audio");
+
+function tryPlay() {
+  audio.play().catch(() => {
+    setTimeout(tryPlay, 300);
+  });
+}
+
+tryPlay();
+</script>
 
 </body>
 </html>
