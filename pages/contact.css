@@ -42,8 +42,13 @@ body {
 .contact-back:hover {
     color: #ffd66c;
 }
-
-
+.contact-seo {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px 15px;
+    text-align: center;
+    opacity: 0.85;
+}
 
 
 /* ============================
