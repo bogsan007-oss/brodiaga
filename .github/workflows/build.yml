@@ -30,6 +30,7 @@ jobs:
           cp player.js site/
           cp watch.js site/
           cp watch.html site/
+          cp archive.html site/
 
           cp favicon.svg site/
           cp rucka.png site/
