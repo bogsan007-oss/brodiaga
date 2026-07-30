@@ -16,7 +16,22 @@
     <meta property="og:image" id="og-image" content="/favicon.svg">
 
     <!-- Canonical -->
-    <link id="canonical-link" rel="canonical" href="https://radio.brodiaga.com/p/prosmotr.html">
+   <!-- ⭐ ДИНАМИЧЕСКИЙ CANONICAL -->
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const videoId = params.get("id");
+
+    if (videoId) {
+        const canonicalUrl = "https://radio.brodiaga.com/watch.html?id=" + videoId;
+
+        const canonicalTag = document.getElementById("canonical-link");
+        canonicalTag.href = canonicalUrl;
+
+        const ogUrl = document.getElementById("og-url");
+        if (ogUrl) ogUrl.content = canonicalUrl;
+    }
+</script>
+
 
     <script type="application/ld+json">
 {
