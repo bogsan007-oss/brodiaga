@@ -74,6 +74,36 @@ jobs:
 
           echo '</urlset>' >> site/sitemap.xml
 
+      - name: Generate archive list with titles
+        run: |
+          echo "Generating archive list..."
+
+          PLAYLIST_IDS="PLFaaHMye1-yZBk5Z4EzxkzRf9j1m_NX-E PLFaaHMye1-yapSv6zpzE2d3CzmigR-yGg PLFaaHMye1-yakkCa3Un2YDFhoZjLt_qSI PLFaaHMye1-yZbC7gtMl55N_Gv45wBjS2k PLFaaHMye1-yZjsgMXCngGbqPKVLZfT8vR"
+
+          ARCHIVE_TEMP="archive_list.html"
+          > $ARCHIVE_TEMP
+
+          for playlist in $PLAYLIST_IDS; do
+            curl -s "https://www.googleapis.com/youtube/v3/playlistItems?key=${{ secrets.API_KEY }}&playlistId=$playlist&part=contentDetails&maxResults=50" > playlist.json
+
+            for id in $(jq -r '.items[].contentDetails.videoId' playlist.json); do
+              TITLE=$(curl -s "https://www.googleapis.com/youtube/v3/videos?key=${{ secrets.API_KEY }}&id=$id&part=snippet" | jq -r '.items[0].snippet.title')
+              echo "<a href=\"watch.html?id=$id\">$TITLE</a>" >> $ARCHIVE_TEMP
+            done
+
+            rm -f playlist.json
+          done
+
+          # Replace archive-grid content
+          awk -v new="$(cat $ARCHIVE_TEMP)" '
+            /<div class="archive-grid">/ {print; print new; skip=1; next}
+            /<\/div>/ && skip==1 {skip=0; next}
+            !skip
+          ' archive.html > archive_new.html
+
+          mv archive_new.html archive.html
+          cp archive.html site/archive.html
+
       - name: Add CNAME
         run: |
           echo "radio.brodiaga.com" > site/CNAME
