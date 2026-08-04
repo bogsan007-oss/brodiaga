@@ -324,6 +324,11 @@ body {
     transform: scale(1.15);
     opacity: 0.85;
 }
+/* времено добавлен */
+.action-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+}
 
 /* Вращение */
 @keyframes spin {
