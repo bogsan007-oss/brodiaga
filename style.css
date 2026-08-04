@@ -78,6 +78,15 @@ body {
 /* ============================
    МЕНЮ
 ============================ */
+nav.right-menu {
+    outline: 3px solid blue; /* 🔥 видно, как меню давит на логотип */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 20px; /* подгони сам */
+}
+
 .right-menu ul {
     outline: 3px solid blue; /* 🔥 видно, как меню давит на логотип */
     list-style: none;
