@@ -317,6 +317,10 @@ body {
     border-radius: 6px;
     animation: spin 6s linear infinite;
     transition: transform .2s ease, opacity .2s ease;
+
+    display: block;            /* 🔥 убирает невидимые отступы */
+    max-width: 100%;           /* 🔥 картинка сжимается */
+    overflow: hidden;          /* 🔥 ничего не вылазит */
 }
 
 .social-icon img:hover {
