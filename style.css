@@ -356,28 +356,6 @@ body {
     z-index: 10;
 }
 
-.social-icon::after {
-    content: attr(data-title);
-    position: absolute;
-    top: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #7a682f !important;
-    color: #fff;
-    padding: 4px 8px;
-    font-size: 12px;
-    border-radius: 6px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .25s ease;
-    z-index: 99999;
-}
-
-.social-icon:hover::after {
-    opacity: 1;
-}
-
 /* ПРАВАЯ ЗОНА — комментарий */
 .comment-section {
     flex: 1;
