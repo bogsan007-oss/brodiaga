@@ -351,8 +351,10 @@ body {
 /* Контейнер иконки */
 .social-icon {
     position: relative;
-    display: inline-block;
-    overflow: visible !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden !important;
     z-index: 10;
 }
 
