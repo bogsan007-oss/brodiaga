@@ -182,36 +182,33 @@ async function loadVideo() {
    ПОДЕЛИТЬСЯ В СОЦСЕТЯХ
 ============================ */
 function initShare(videoId, title) {
-    const shareBtn  = document.getElementById("shareBtn");
-    const shareMenu = document.getElementById("shareMenu");
-
     const url = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
 
-    if (shareBtn && shareMenu) {
-        shareBtn.onclick = () => {
-            shareMenu.style.display =
-                shareMenu.style.display === "block" ? "none" : "block";
-        };
+    // Функция безопасного назначения href
+    function safeSetHref(id, href) {
+        const el = document.getElementById(id);
+        if (el) el.href = href;
     }
 
-    document.getElementById("shareVK").href =
-        `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+    safeSetHref("shareVK",
+        `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`);
 
-    document.getElementById("shareTG").href =
-        `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+    safeSetHref("shareTG",
+        `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`);
 
-    document.getElementById("shareWA").href =
-        `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
+    safeSetHref("shareWA",
+        `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`);
 
-    document.getElementById("shareFB").href =
-        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    safeSetHref("shareFB",
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
 
-    document.getElementById("okShare").href =
-        `https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=${encodeURIComponent(url)}`;
+    safeSetHref("okShare",
+        `https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=${encodeURIComponent(url)}`);
 
-    document.getElementById("igShare").href = "https://www.instagram.com/";
-    document.getElementById("ttShare").href = "https://www.tiktok.com/";
+    safeSetHref("igShare", "https://www.instagram.com/");
+    safeSetHref("ttShare", "https://www.tiktok.com/");
 }
+
 
 /* ============================
    АВТОЗАПУСК initShare()
