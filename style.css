@@ -443,6 +443,11 @@ media (max-width: 600px) {
         max-width: 100% !important;
     }
 }
+.social-icon {
+    display: flex !important;        /* 🔥 вместо inline-block */
+    justify-content: center;
+    align-items: center;
+}
 
 /* ============================
    ПОХОЖИЕ ВИДЕО
@@ -451,6 +456,9 @@ media (max-width: 600px) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+}
+.social-icon::after {
+    display: none !important;        /* 🔥 подсказки отключаем на телефоне */
 }
 
 .related-card {
