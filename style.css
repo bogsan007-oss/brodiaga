@@ -46,6 +46,7 @@ body {
 
 /* ПРЕВЬЮ */
 .header-center {
+   outline: 3px solid red; /* 🔥 видно границы шапки */
     flex: 1;
     display: flex;
     justify-content: center;
