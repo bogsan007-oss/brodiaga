@@ -373,12 +373,14 @@ body {
     white-space: nowrap;
 }
 
-/* 📱 Адаптивность */
+/* 📱 Единый адаптивный блок */
 @media (max-width: 600px) {
+
     .action-panel {
-        display: block !important;      /* 🔥 ключ */
-        max-width: 100% !important;     /* 🔥 ключ */
-        width: 100% !important;         /* 🔥 ключ */
+        display: block !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .share-section,
@@ -387,19 +389,11 @@ body {
     }
 
     .share-box {
-        justify-content: flex-start;
-        gap: 12px;
-    }
-}
-/* 📱 Мобильная версия — центрируем и увеличиваем иконки */
-@media (max-width: 600px) {
-
-    .share-box {
         display: flex !important;
         justify-content: center !important;   /* 🔥 центр */
         align-items: center !important;
         flex-wrap: wrap !important;
-        gap: 16px !important;                 /* чуть больше расстояние */
+        gap: 16px !important;
         width: 100% !important;
     }
 
@@ -408,19 +402,13 @@ body {
         height: 34px !important;
     }
 
-    .action-panel {
-        flex-direction: column !important;
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
     .comment-section {
-        width: 100% !important;
         white-space: normal !important;
         text-align: center !important;
         padding: 14px 0 !important;
     }
 }
+
 
 /* ============================
    ПОХОЖИЕ ВИДЕО
