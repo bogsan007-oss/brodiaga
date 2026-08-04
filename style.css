@@ -297,6 +297,11 @@ body {
 }
 
 /* ЛЕВАЯ ЗОНА — соцсети */
+.panel-section {
+    flex: 1 1 auto;     /* 🔥 разрешаем сжиматься */
+    min-width: 0;       /* 🔥 убираем авто-минимальную ширину */
+}
+
 .share-section {
     flex: 2;
     background: #5a4a1f;
