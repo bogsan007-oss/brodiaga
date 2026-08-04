@@ -75,7 +75,6 @@ body {
    МЕНЮ
 ============================ */
 nav.right-menu {
-    outline: 3px solid blue; /* 🔥 видно, как меню давит на логотип */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -84,7 +83,6 @@ nav.right-menu {
 }
 
 .right-menu ul {
-    outline: 3px solid blue; /* 🔥 видно, как меню давит на логотип */
     list-style: none;
     margin: 0;
     padding: 0;
@@ -94,7 +92,6 @@ nav.right-menu {
 }
 
 .right-menu li {
-   outline: 3px solid purple; /* 🔥 видно, насколько пункт растягивается */
     display: flex;
     align-items: center;
     gap: 5px;
