@@ -381,6 +381,17 @@ body {
 
 /* 📱 Единый адаптивный блок */
 @media (max-width: 600px) {
+   .panel-section {
+        flex: 1 1 100% !important;   /* 🔥 занимает всю ширину */
+        min-width: 0 !important;     /* 🔥 не вылазит */
+    }
+
+    .share-section {
+        flex: 1 1 auto !important;   /* 🔥 перестаёт растягиваться */
+        min-width: 0 !important;
+        padding: 6px 8px !important; /* 🔥 меньше отступы */
+    }
+}
 
     .action-panel {
         display: block !important;
