@@ -380,77 +380,6 @@ body {
     white-space: nowrap;
 }
 
-/* 📱 Единый адаптивный блок */
-@media (max-width: 600px) {
-   .panel-section {
-        flex: 1 1 100% !important;   /* 🔥 занимает всю ширину */
-        min-width: 0 !important;     /* 🔥 не вылазит */
-    }
-
-    .share-section {
-        flex: 1 1 auto !important;   /* 🔥 перестаёт растягиваться */
-        min-width: 0 !important;
-        padding: 6px 8px !important; /* 🔥 меньше отступы */
-    }
-}
-
-    .action-panel {
-        display: block !important;
-        flex-direction: column !important;
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
-    .share-section,
-    .comment-section {
-        width: 100% !important;
-    }
-   .share-section {
-    flex: 1 1 auto;        /* 🔥 сжимается */
-    padding: 6px 8px;
-    background: #5a4a1f;
-    min-width: 0;          /* 🔥 разрешаем сжатие */
-}
-
-    .share-box {
-        display: flex !important;
-        justify-content: center !important;   /* 🔥 центр */
-        align-items: center !important;
-        flex-wrap: wrap !important;
-        gap: 10px !important;
-        width: 100% !important;
-    }
-
-    .comment-section {
-        white-space: normal !important;
-        text-align: center !important;
-        padding: 14px 0 !important;
-    }
-}
-@media (max-width: 600px) {
-
-    .video-page {
-        max-width: 100% !important;
-        padding: 10px !important;
-        margin: 0 auto !important;
-    }
-
-    .player-wrapper {
-        max-width: 100% !important;
-        margin: 0 auto !important;
-    }
-
-    .video-player-container {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-}
-.social-icon {
-    display: flex !important;        /* 🔥 вместо inline-block */
-    justify-content: center;
-    align-items: center;
-}
-
 /* ============================
    ПОХОЖИЕ ВИДЕО
 ============================ */
@@ -550,88 +479,50 @@ body {
 }
 
 /* ============================
-   АДАПТИВ 768px
+   SEO: полный скрывающий блок (как первый рабочий)
 ============================ */
-@media (max-width: 768px) {
+.main-title,
+.section-title {
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
 
-    .header-row {
-        flex-direction: row;      /* ← было column */
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-    }
+    width: 1px !important;
+    height: 1px !important;
 
-    .site-logo {
-        width: 150px;
-        height: 150px;
-    }
+    overflow: hidden !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
 
-    .preview-thumb {
-        width: 300px;
-        height: 130px;
-    }
+    pointer-events: none !important;
+    z-index: -1 !important;
 
-    .video-thumb {
-        height: 140px;
-    }
-
-    .ad-card {
-        height: 200px;
-    }
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
 }
 
-/* ============================
-   АДАПТИВ 600px — КЛАССИЧЕСКИЙ МОБИЛЬНЫЙ
-============================ */
 @media (max-width: 600px) {
 
-    /* Контейнер меню */
-     .header-ctnter {
+    /* Скрываем весь средний блок превью */
+    .header-ctnter {
         display: none !important;
     }
-    .right-menu {
-        width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
-        margin-top: 10px;
-        text-align: left; /* меню слева */
+
+    /* Скрываем картинку превью */
+    .preview-thumb {
+        display: none !important;
     }
 
-    /* Список меню */
-    .right-menu ul {
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        gap: 22px;
-        text-align: left;
-    }
-
-    /* Пункты меню */
-    .right-menu li {
-        width: 100%;
-        gap: 12px;
-        text-align: left;
-    }
-
-    /* Ссылки меню */
-    .right-menu a {
-        font-size: 28px;
-        color: #fac115;
-        font-weight: 600;
-        text-align: left;
-        width: auto;
-    }
-
-    /* Скрываем превью */
-    .post-card img {
+    /* Скрываем текст превью */
+    .preview-title {
         display: none !important;
     }
 }
 
-
-
 /* ============================
-   ТВ 1800px+
+   📺 ТВ 1800px+
 ============================ */
 @media (min-width: 1800px) {
 
@@ -661,57 +552,160 @@ body {
     }
 }
 
+
 /* ============================
-   SEO: полный скрывающий блок (как первый рабочий)
+   📱 Планшеты 768px
 ============================ */
-.main-title,
-.section-title {
-    position: absolute !important;
-    left: -9999px !important;
-    top: -9999px !important;
+@media (max-width: 768px) {
 
-    width: 1px !important;
-    height: 1px !important;
-
-    overflow: hidden !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-
-    pointer-events: none !important;
-    z-index: -1 !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 0 !important;
-    font-size: 0 !important;
-}
-@media (max-width: 600px) {
-
-    /* Скрываем весь средний блок превью */
-    .header-ctnter {
-        display: none !important;
+    .header-row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
     }
 
-    /* Скрываем картинку превью */
+    .site-logo {
+        width: 150px;
+        height: 150px;
+    }
+
     .preview-thumb {
-        display: none !important;
+        width: 300px;
+        height: 130px;
     }
 
-    /* Скрываем текст превью */
-    .preview-title {
+    .video-thumb {
+        height: 140px;
+    }
+
+    .ad-card {
+        height: 200px;
+    }
+}
+
+
+/* ============================
+   📱 Мобильный 600px — меню
+============================ */
+@media (max-width: 600px) {
+
+    .right-menu {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .right-menu ul {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        gap: 22px;
+        text-align: left;
+    }
+
+    .right-menu li {
+        width: 100%;
+        gap: 12px;
+        text-align: left;
+    }
+
+    .right-menu a {
+        font-size: 24px;
+        color: #fac115;
+        font-weight: 600;
+        text-align: left;
+        width: auto;
+    }
+
+    .post-card img {
         display: none !important;
     }
 }
 
+
+/* ============================
+   📱 Мобильный 600px — панель соцсетей
+============================ */
 @media (max-width: 600px) {
-    .share-section {
+
+    .action-panel {
+        display: flex !important;
+        flex-direction: column !important;
         width: 100% !important;
         max-width: 100% !important;
-        min-width: 0 !important;
+    }
+
+    .panel-section {
         flex: 1 1 100% !important;
+        min-width: 0 !important;
+    }
+
+    .share-section {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 6px 8px !important;
+        background: #5a4a1f;
+    }
+
+    .share-box {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .comment-section {
+        width: 100% !important;
+        white-space: normal !important;
+        text-align: center !important;
+        padding: 14px 0 !important;
     }
 }
 
+
+/* ============================
+   📱 Мобильный 600px — страница видео
+============================ */
+@media (max-width: 600px) {
+
+    .video-page {
+        max-width: 100% !important;
+        padding: 10px !important;
+        margin: 0 auto !important;
+    }
+
+    .player-wrapper {
+        max-width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .video-player-container {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+
+/* ============================
+   📱 Мобильный — похожие видео
+============================ */
+@media (max-width: 600px) {
+
+    #related-videos {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .related-card {
+        width: 100%;
+    }
+}
 
 
 
