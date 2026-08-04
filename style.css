@@ -369,23 +369,6 @@ nav.right-menu {
     transform: scale(1.15);
     opacity: 0.85;
 }
-/* времено добавлен */
-.action-panel {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-.social-icon {
-    background: rgba(255,0,0,0.3);
-}
-
-.social-icon::after {
-    background: rgba(0,255,0,0.3);
-}
-
-.social-icon img {
-    background: rgba(0,0,255,0.3);
-}
-
 
 /* Вращение */
 @keyframes spin {
