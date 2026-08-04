@@ -391,6 +391,33 @@ body {
         gap: 12px;
     }
 }
+/* 📱 Мобильная версия — центрируем и увеличиваем иконки */
+@media (max-width: 600px) {
+
+    .share-box {
+        justify-content: center;   /* 🔥 центрируем иконки */
+        flex-wrap: wrap;
+        gap: 14px;                 /* чуть больше расстояние */
+    }
+
+    .social-icon img {
+        width: 32px;               /* 🔥 увеличиваем иконки */
+        height: 32px;
+    }
+
+    .action-panel {
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .comment-section {
+        width: 100%;
+        white-space: normal;       /* чтобы не вылазило */
+        text-align: center;
+        padding: 14px 0;
+    }
+}
 
 
 /* ============================
