@@ -597,3 +597,65 @@ body {
     font-size: 0 !important;
 }
 
+/* ============================
+   📺 ТВ 1800px+
+============================ */
+@media (min-width: 1800px) {
+
+    html {
+        font-size: 22px;
+    }
+
+    .header-row {
+        max-width: 1800px;
+        gap: 40px;
+    }
+
+    .site-logo {
+        width: 18vw;
+        height: 18vw;
+    }
+
+    .preview-thumb {
+        width: 30vw;
+        height: 14vw;
+    }
+
+    #video-list {
+        max-width: 1800px;
+        grid-template-columns: repeat(auto-fill, minmax(18vw, 1fr));
+        gap: 2vw;
+    }
+}
+
+
+/* ============================
+   📱 Планшеты 768px
+============================ */
+@media (max-width: 768px) {
+
+    .header-row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .site-logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .preview-thumb {
+        width: 300px;
+        height: 130px;
+    }
+
+    .video-thumb {
+        height: 140px;
+    }
+
+    .ad-card {
+        height: 200px;
+    }
+}
