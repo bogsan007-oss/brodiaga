@@ -398,11 +398,6 @@ body {
         width: 100% !important;
     }
 
-    .social-icon img {
-        width: 34px !important;               /* 🔥 увеличение */
-        height: 34px !important;
-    }
-
     .comment-section {
         white-space: normal !important;
         text-align: center !important;
