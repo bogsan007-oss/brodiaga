@@ -460,6 +460,7 @@ nav.right-menu {
     flex: 1 1 auto !important;
     width: 100% !important;
     min-width: 0 !important;
+    max-width: 100% !important;
     padding: 6px 8px !important;
     background: #5a4a1f;
 }
