@@ -427,7 +427,7 @@ body {
         padding: 14px 0 !important;
     }
 }
-media (max-width: 600px) {
+@media (max-width: 600px) {
 
     .video-page {
         max-width: 100% !important;
