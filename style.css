@@ -703,4 +703,16 @@ media (max-width: 600px) {
     }
 }
 
+@media (max-width: 600px) {
+    .share-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        flex: 1 1 100% !important;
+    }
+}
+
+
+
+
 
