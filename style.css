@@ -457,7 +457,7 @@ nav.right-menu {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    flex: 1 1 auto !important;
+    flex: 0 0 auto !important;
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
@@ -479,6 +479,7 @@ nav.right-menu {
         white-space: normal !important;
         text-align: center !important;
         padding: 14px 0 !important;
+        flex: 0 0 auto !important;
     }
 }
 
