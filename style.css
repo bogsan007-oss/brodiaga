@@ -388,6 +388,12 @@ body {
     .comment-section {
         width: 100% !important;
     }
+   .share-section {
+    flex: 1 1 auto;        /* 🔥 сжимается */
+    padding: 8px 10px;
+    background: #5a4a1f;
+    min-width: 0;          /* 🔥 разрешаем сжатие */
+}
 
     .share-box {
         display: flex !important;
