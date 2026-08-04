@@ -413,7 +413,24 @@ body {
         padding: 14px 0 !important;
     }
 }
+media (max-width: 600px) {
 
+    .video-page {
+        max-width: 100% !important;
+        padding: 10px !important;
+        margin: 0 auto !important;
+    }
+
+    .player-wrapper {
+        max-width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .video-player-container {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
 
 /* ============================
    ПОХОЖИЕ ВИДЕО
