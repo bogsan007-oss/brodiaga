@@ -395,30 +395,32 @@ body {
 @media (max-width: 600px) {
 
     .share-box {
-        justify-content: center;   /* 🔥 центрируем иконки */
-        flex-wrap: wrap;
-        gap: 14px;                 /* чуть больше расстояние */
+        display: flex !important;
+        justify-content: center !important;   /* 🔥 центр */
+        align-items: center !important;
+        flex-wrap: wrap !important;
+        gap: 16px !important;                 /* чуть больше расстояние */
+        width: 100% !important;
     }
 
     .social-icon img {
-        width: 32px;               /* 🔥 увеличиваем иконки */
-        height: 32px;
+        width: 34px !important;               /* 🔥 увеличение */
+        height: 34px !important;
     }
 
     .action-panel {
-        flex-direction: column;
-        width: 100%;
-        max-width: 100%;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .comment-section {
-        width: 100%;
-        white-space: normal;       /* чтобы не вылазило */
-        text-align: center;
-        padding: 14px 0;
+        width: 100% !important;
+        white-space: normal !important;
+        text-align: center !important;
+        padding: 14px 0 !important;
     }
 }
-
 
 /* ============================
    ПОХОЖИЕ ВИДЕО
