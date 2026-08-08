@@ -31,6 +31,7 @@ jobs:
           cp watch.js site/
           cp watch.html site/
           cp archive.html site/
+          cp yandex_86738088dd406a9b.html site/
 
           cp favicon.svg site/
           cp rucka.png site/
