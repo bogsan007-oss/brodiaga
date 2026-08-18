@@ -182,7 +182,8 @@ async function loadVideo() {
    ПОДЕЛИТЬСЯ В СОЦСЕТЯХ
 ============================ */
 function initShare(videoId, title) {
-    const url = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
+    // Берём реальный URL страницы, а не собираем вручную
+    const url = window.location.href;
 
     // Функция безопасного назначения href
     function safeSetHref(id, href) {
@@ -205,8 +206,19 @@ function initShare(videoId, title) {
     safeSetHref("okShare",
         `https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=${encodeURIComponent(url)}`);
 
-    safeSetHref("igShare", "https://www.instagram.com/");
-    safeSetHref("ttShare", "https://www.tiktok.com/");
+    // Instagram — нет прямого шаринга, копируем ссылку
+    const ig = document.getElementById("igShare");
+    if (ig) ig.onclick = () => {
+        navigator.clipboard.writeText(url);
+        alert("Ссылка скопирована! Вставьте её в Instagram.");
+    };
+
+    // TikTok — тоже нет прямого шаринга
+    const tt = document.getElementById("ttShare");
+    if (tt) tt.onclick = () => {
+        navigator.clipboard.writeText(url);
+        alert("Ссылка скопирована! TikTok не принимает ссылки напрямую.");
+    };
 }
 
 
@@ -220,6 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initShare(videoId, title);
 });
+
 
 /* ============================
    ПОХОЖИЕ ВИДЕО — СЛУЧАЙНЫЕ
