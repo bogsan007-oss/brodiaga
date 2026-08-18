@@ -63,6 +63,37 @@ async function loadHeaderPreview() {
 /* ============================
    ЗАГРУЗКА ОСНОВНОГО ВИДЕО
 ============================ */
+function updateOG(videoId, title) {
+    const url = window.location.href;
+    const thumbnail = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+
+    // Если maxresdefault нет — fallback
+    const fallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+    // Проверка доступности maxresdefault
+    const img = new Image();
+    img.onload = () => {
+        document.getElementById("og-image").content = thumbnail;
+        document.getElementById("tw-image").content = thumbnail;
+    };
+    img.onerror = () => {
+        document.getElementById("og-image").content = fallback;
+        document.getElementById("tw-image").content = fallback;
+    };
+    img.src = thumbnail;
+
+    // Заголовки
+    document.getElementById("og-title").content = title;
+    document.getElementById("tw-title").content = title;
+
+    // Описание
+    document.getElementById("og-description").content = "Смотрите видео на Radio Brodiaga";
+    document.getElementById("tw-description").content = "Смотрите видео на Radio Brodiaga";
+
+    // URL
+    document.getElementById("og-url").content = url;
+}
+
 async function loadVideo() {
     try {
         const urlParams = new URLSearchParams(window.location.search);
@@ -83,6 +114,11 @@ async function loadVideo() {
         }
 
         const video = data.items[0];
+
+        // 🔥 Обновляем OG-теги (вставлено)
+        updateOG(videoId, video.snippet.title);
+
+        // Кнопки поделиться
         initShare(videoId, video.snippet.title);
 
         const player = new Plyr('#player', {
@@ -98,6 +134,12 @@ async function loadVideo() {
                 }
             ]
         };
+
+    } catch (e) {
+        console.error("Ошибка loadVideo:", e);
+    }
+}
+
 
         /* ============================
            ВСТАВЛЯЕМ SEO-МЕТАТЕГИ
