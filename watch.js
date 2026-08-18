@@ -7,6 +7,35 @@ let apiKey = window.apiKey;
 let playlistId = window.playlistId;
 
 /* ============================
+   ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+============================ */
+function updateOG(videoId, title) {
+    const url = window.location.href;
+    const thumbnail = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+
+    const fallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+    const img = new Image();
+    img.onload = () => {
+        document.getElementById("og-image").content = thumbnail;
+        document.getElementById("tw-image").content = thumbnail;
+    };
+    img.onerror = () => {
+        document.getElementById("og-image").content = fallback;
+        document.getElementById("tw-image").content = fallback;
+    };
+    img.src = thumbnail;
+
+    document.getElementById("og-title").content = title;
+    document.getElementById("tw-title").content = title;
+
+    document.getElementById("og-description").content = "Смотрите видео на Radio Brodiaga";
+    document.getElementById("tw-description").content = "Смотрите видео на Radio Brodiaga";
+
+    document.getElementById("og-url").content = url;
+}
+
+/* ============================
    ПРЕВЬЮ В ШАПКЕ (МИНИ-ВИДЕО)
 ============================ */
 async function loadHeaderPreview() {
@@ -63,36 +92,6 @@ async function loadHeaderPreview() {
 /* ============================
    ЗАГРУЗКА ОСНОВНОГО ВИДЕО
 ============================ */
-function updateOG(videoId, title) {
-    const url = window.location.href;
-    const thumbnail = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
-
-    // Если maxresdefault нет — fallback
-    const fallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-
-    // Проверка доступности maxresdefault
-    const img = new Image();
-    img.onload = () => {
-        document.getElementById("og-image").content = thumbnail;
-        document.getElementById("tw-image").content = thumbnail;
-    };
-    img.onerror = () => {
-        document.getElementById("og-image").content = fallback;
-        document.getElementById("tw-image").content = fallback;
-    };
-    img.src = thumbnail;
-
-    // Заголовки
-    document.getElementById("og-title").content = title;
-    document.getElementById("tw-title").content = title;
-
-    // Описание
-    document.getElementById("og-description").content = "Смотрите видео на Radio Brodiaga";
-    document.getElementById("tw-description").content = "Смотрите видео на Radio Brodiaga";
-
-    // URL
-    document.getElementById("og-url").content = url;
-}
 
 async function loadVideo() {
     try {
