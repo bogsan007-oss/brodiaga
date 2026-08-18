@@ -121,50 +121,50 @@ async function loadVideo() {
 
         const video = data.items[0];
 
-        /* ============================
-           ВСТАВЛЯЕМ SEO-МЕТАТЕГИ
-        ============================ */
+/* ============================
+   ВСТАВЛЯЕМ SEO-МЕТАТЕГИ
+============================ */
 
-        // TITLE
-        document.title = video.snippet.title;
+// TITLE
+document.title = video.snippet.title;
 
-        // META DESCRIPTION
-        const metaDesc = document.getElementById("dynamic-description");
-        if (metaDesc) metaDesc.content = video.snippet.description;
+// META DESCRIPTION
+const metaDesc = document.getElementById("dynamic-description");
+if (metaDesc) metaDesc.content = video.snippet.description;
 
-        // OG TITLE
-        const ogTitle = document.getElementById("og-title");
-        if (ogTitle) ogTitle.content = video.snippet.title;
+// OG TITLE
+const ogTitle = document.getElementById("og-title");
+if (ogTitle) ogTitle.content = video.snippet.title;
 
-        // OG DESCRIPTION
-        const ogDesc = document.getElementById("og-description");
-        if (ogDesc) ogDesc.content = video.snippet.description;
+// OG DESCRIPTION
+const ogDesc = document.getElementById("og-description");
+if (ogDesc) ogDesc.content = video.snippet.description;
 
-        // OG IMAGE
-        const ogImg = document.getElementById("og-image");
-        if (ogImg) ogImg.content = video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url;
+// OG IMAGE
+const ogImg = document.getElementById("og-image");
+if (ogImg) ogImg.content = video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url;
 
-        // CANONICAL
-        const canonical = document.getElementById("canonical-link");
-        if (canonical) canonical.href = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
+// CANONICAL
+const canonical = document.getElementById("canonical-link");
+if (canonical) canonical.href = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
 
-        /* ============================
-           JSON-LD VideoObject
-        ============================ */
-        const jsonLd = document.getElementById("video-jsonld");
-        if (jsonLd) {
-            const jsonData = {
-                "@context": "https://schema.org",
-                "@type": "VideoObject",
-                "name": video.snippet.title,
-                "description": video.snippet.description,
-                "thumbnailUrl": video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url,
-                "uploadDate": video.snippet.publishedAt,
-                "embedUrl": `https://www.youtube.com/embed/${videoId}`,
-                "contentUrl": `https://radio.brodiaga.com/watch.html?id=${videoId}`
-            };
-            jsonLd.textContent = JSON.stringify(jsonData);
-        }
+/* ============================
+   JSON-LD VideoObject
+============================ */
+const jsonLd = document.getElementById("video-jsonld");
+if (jsonLd) {
+    const jsonData = {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": video.snippet.title,
+        "description": video.snippet.description,
+        "thumbnailUrl": video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url,
+        "uploadDate": video.snippet.publishedAt,
+        "embedUrl": `https://www.youtube.com/embed/${videoId}`,
+        "contentUrl": `https://radio.brodiaga.com/watch.html?id=${videoId}`
+    };
+    jsonLd.textContent = JSON.stringify(jsonData);
+}
 
         // Обновляем OG-теги
         updateOG(videoId, video.snippet.title);
