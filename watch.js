@@ -22,7 +22,6 @@ function updateOG(videoId, title) {
     const twDesc = document.getElementById("tw-description");
     const ogUrl = document.getElementById("og-url");
 
-    // Проверка доступности maxresdefault
     const img = new Image();
     img.onload = () => {
         if (ogImage) ogImage.content = thumbnail;
@@ -44,7 +43,7 @@ function updateOG(videoId, title) {
 }
 
 /* ============================
-   ПРЕВЬЮ В ШАПКЕ (МИНИ-ВИДЕО)
+   ПРЕВЬЮ В ШАПКЕ
 ============================ */
 async function loadHeaderPreview() {
     try {
@@ -121,55 +120,46 @@ async function loadVideo() {
 
         const video = data.items[0];
 
-/* ============================
-   ВСТАВЛЯЕМ SEO-МЕТАТЕГИ
-============================ */
+        /* ============================
+           SEO-МЕТАТЕГИ
+        ============================ */
 
-// TITLE
-document.title = video.snippet.title;
+        document.title = video.snippet.title;
 
-// META DESCRIPTION
-const metaDesc = document.getElementById("dynamic-description");
-if (metaDesc) metaDesc.content = video.snippet.description;
+        const metaDesc = document.getElementById("dynamic-description");
+        if (metaDesc) metaDesc.content = video.snippet.description;
 
-// OG TITLE
-const ogTitle = document.getElementById("og-title");
-if (ogTitle) ogTitle.content = video.snippet.title;
+        const ogTitle = document.getElementById("og-title");
+        if (ogTitle) ogTitle.content = video.snippet.title;
 
-// OG DESCRIPTION
-const ogDesc = document.getElementById("og-description");
-if (ogDesc) ogDesc.content = video.snippet.description;
+        const ogDesc = document.getElementById("og-description");
+        if (ogDesc) ogDesc.content = video.snippet.description;
 
-// OG IMAGE
-const ogImg = document.getElementById("og-image");
-if (ogImg) ogImg.content = video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url;
+        const ogImg = document.getElementById("og-image");
+        if (ogImg) ogImg.content = video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url;
 
-// CANONICAL
-const canonical = document.getElementById("canonical-link");
-if (canonical) canonical.href = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
+        const canonical = document.getElementById("canonical-link");
+        if (canonical) canonical.href = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
 
-/* ============================
-   JSON-LD VideoObject
-============================ */
-const jsonLd = document.getElementById("video-jsonld");
-if (jsonLd) {
-    const jsonData = {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "name": video.snippet.title,
-        "description": video.snippet.description,
-        "thumbnailUrl": video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url,
-        "uploadDate": video.snippet.publishedAt,
-        "embedUrl": `https://www.youtube.com/embed/${videoId}`,
-        "contentUrl": `https://radio.brodiaga.com/watch.html?id=${videoId}`
-    };
-    jsonLd.textContent = JSON.stringify(jsonData);
-}
+        /* ============================
+           JSON-LD VideoObject
+        ============================ */
+        const jsonLd = document.getElementById("video-jsonld");
+        if (jsonLd) {
+            const jsonData = {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "name": video.snippet.title,
+                "description": video.snippet.description,
+                "thumbnailUrl": video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url,
+                "uploadDate": video.snippet.publishedAt,
+                "embedUrl": `https://www.youtube.com/embed/${videoId}`,
+                "contentUrl": `https://radio.brodiaga.com/watch.html?id=${videoId}`
+            };
+            jsonLd.textContent = JSON.stringify(jsonData);
+        }
 
-        // Обновляем OG-теги
         updateOG(videoId, video.snippet.title);
-
-        // Кнопки поделиться
         initShare(videoId, video.snippet.title);
 
         const player = new Plyr('#player', {
@@ -186,13 +176,8 @@ if (jsonLd) {
             ]
         };
 
-    } catch (e) {
-        console.error("Ошибка loadVideo:", e);
-    }
-}
-
         /* ============================
-           ВСТАВЛЯЕМ ТЕКСТ НА СТРАНИЦУ
+           ТЕКСТ НА СТРАНИЦЕ
         ============================ */
 
         const titleEl = document.getElementById("video-title");
@@ -225,14 +210,13 @@ if (jsonLd) {
     }
 }
 
+
 /* ============================
    ПОДЕЛИТЬСЯ В СОЦСЕТЯХ
 ============================ */
 function initShare(videoId, title) {
-    // Берём реальный URL страницы, а не собираем вручную
     const url = window.location.href;
 
-    // Функция безопасного назначения href
     function safeSetHref(id, href) {
         const el = document.getElementById(id);
         if (el) el.href = href;
@@ -253,14 +237,12 @@ function initShare(videoId, title) {
     safeSetHref("okShare",
         `https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=${encodeURIComponent(url)}`);
 
-    // Instagram — нет прямого шаринга, копируем ссылку
     const ig = document.getElementById("igShare");
     if (ig) ig.onclick = () => {
         navigator.clipboard.writeText(url);
         alert("Ссылка скопирована! Вставьте её в Instagram.");
     };
 
-    // TikTok — тоже нет прямого шаринга
     const tt = document.getElementById("ttShare");
     if (tt) tt.onclick = () => {
         navigator.clipboard.writeText(url);
@@ -268,21 +250,8 @@ function initShare(videoId, title) {
     };
 }
 
-
 /* ============================
-   АВТОЗАПУСК initShare()
-============================ */
-document.addEventListener("DOMContentLoaded", () => {
-    const params  = new URLSearchParams(window.location.search);
-    const videoId = params.get("id");
-    const title   = document.title;
-
-    initShare(videoId, title);
-});
-
-
-/* ============================
-   ПОХОЖИЕ ВИДЕО — СЛУЧАЙНЫЕ
+   ПОХОЖИЕ ВИДЕО
 ============================ */
 async function loadRelatedVideos(currentId) {
     try {
@@ -360,6 +329,14 @@ async function loadRelatedVideos(currentId) {
         console.error("Ошибка loadRelatedVideos:", e);
     }
 }
+
+/* ============================
+   АВТОЗАПУСК
+============================ */
+document.addEventListener("DOMContentLoaded", () => {
+    loadVideo();
+    loadHeaderPreview();
+});
 
 /* ============================
    ПЕРЕХОД В КОММЕНТАРИИ
