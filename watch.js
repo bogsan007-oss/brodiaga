@@ -121,33 +121,6 @@ async function loadVideo() {
 
         const video = data.items[0];
 
-        // Обновляем OG-теги
-        updateOG(videoId, video.snippet.title);
-
-        // Кнопки поделиться
-        initShare(videoId, video.snippet.title);
-
-        const player = new Plyr('#player', {
-            youtube: { noCookie: true }
-        });
-
-        player.source = {
-            type: 'video',
-            sources: [
-                {
-                    src: videoId,
-                    provider: 'youtube'
-                }
-            ]
-        };
-
-    } catch (e) {
-        console.error("Ошибка loadVideo:", e);
-    }
-}
-
-
-
         /* ============================
            ВСТАВЛЯЕМ SEO-МЕТАТЕГИ
         ============================ */
@@ -192,6 +165,31 @@ async function loadVideo() {
             };
             jsonLd.textContent = JSON.stringify(jsonData);
         }
+
+        // Обновляем OG-теги
+        updateOG(videoId, video.snippet.title);
+
+        // Кнопки поделиться
+        initShare(videoId, video.snippet.title);
+
+        const player = new Plyr('#player', {
+            youtube: { noCookie: true }
+        });
+
+        player.source = {
+            type: 'video',
+            sources: [
+                {
+                    src: videoId,
+                    provider: 'youtube'
+                }
+            ]
+        };
+
+    } catch (e) {
+        console.error("Ошибка loadVideo:", e);
+    }
+}
 
         /* ============================
            ВСТАВЛЯЕМ ТЕКСТ НА СТРАНИЦУ
