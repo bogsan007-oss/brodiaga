@@ -12,27 +12,35 @@ let playlistId = window.playlistId;
 function updateOG(videoId, title) {
     const url = window.location.href;
     const thumbnail = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
-
     const fallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
+    const ogImage = document.getElementById("og-image");
+    const twImage = document.getElementById("tw-image");
+    const ogTitle = document.getElementById("og-title");
+    const twTitle = document.getElementById("tw-title");
+    const ogDesc = document.getElementById("og-description");
+    const twDesc = document.getElementById("tw-description");
+    const ogUrl = document.getElementById("og-url");
+
+    // Проверка доступности maxresdefault
     const img = new Image();
     img.onload = () => {
-        document.getElementById("og-image").content = thumbnail;
-        document.getElementById("tw-image").content = thumbnail;
+        if (ogImage) ogImage.content = thumbnail;
+        if (twImage) twImage.content = thumbnail;
     };
     img.onerror = () => {
-        document.getElementById("og-image").content = fallback;
-        document.getElementById("tw-image").content = fallback;
+        if (ogImage) ogImage.content = fallback;
+        if (twImage) twImage.content = fallback;
     };
     img.src = thumbnail;
 
-    document.getElementById("og-title").content = title;
-    document.getElementById("tw-title").content = title;
+    if (ogTitle) ogTitle.content = title;
+    if (twTitle) twTitle.content = title;
 
-    document.getElementById("og-description").content = "Смотрите видео на Radio Brodiaga";
-    document.getElementById("tw-description").content = "Смотрите видео на Radio Brodiaga";
+    if (ogDesc) ogDesc.content = "Смотрите видео на Radio Brodiaga";
+    if (twDesc) twDesc.content = "Смотрите видео на Radio Brodiaga";
 
-    document.getElementById("og-url").content = url;
+    if (ogUrl) ogUrl.content = url;
 }
 
 /* ============================
@@ -92,7 +100,6 @@ async function loadHeaderPreview() {
 /* ============================
    ЗАГРУЗКА ОСНОВНОГО ВИДЕО
 ============================ */
-
 async function loadVideo() {
     try {
         const urlParams = new URLSearchParams(window.location.search);
@@ -114,7 +121,7 @@ async function loadVideo() {
 
         const video = data.items[0];
 
-        // 🔥 Обновляем OG-теги (вставлено)
+        // Обновляем OG-теги
         updateOG(videoId, video.snippet.title);
 
         // Кнопки поделиться
@@ -138,6 +145,7 @@ async function loadVideo() {
         console.error("Ошибка loadVideo:", e);
     }
 }
+
 
 
         /* ============================
