@@ -2,7 +2,7 @@
    ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
 ============================ */
 let allVideos = [];
-let videosPerPage = 14; // 14 видео + реклама = 15 элементов
+let videosPerPage = 15; // 15 видео + реклама = 16 элементов
 let currentIndex = 0;
 
 let apiKey = window.apiKey;
