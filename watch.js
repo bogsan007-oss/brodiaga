@@ -1,45 +1,66 @@
-console.log("watch.js загружен");
+console.log("watch.js загружен (v3)");
 
 /* ============================
-   КЛЮЧИ ИЗ ГЛОБАЛЬНЫХ ПЕРЕМЕННЫХ
+   КЛЮЧИ
 ============================ */
 let apiKey = window.apiKey;
 let playlistId = window.playlistId;
 
 /* ============================
-   ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+   ЗАПОЛНЕНИЕ SEO-МЕТАТЕГОВ
 ============================ */
-function updateOG(videoId, title) {
-    const url = window.location.href;
-    const thumbnail = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
-    const fallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+function updateAllMeta(videoId, video) {
+    const snippet = video.snippet;
+    const title = snippet.title;
+    const description = (snippet.description || "").substring(0, 160); // обрезаем до 160 символов
+    const published = snippet.publishedAt;
+    const thumbHigh = snippet.thumbnails?.high?.url || snippet.thumbnails?.medium?.url || "";
+    const canonicalUrl = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
 
-    const ogImage = document.getElementById("og-image");
-    const twImage = document.getElementById("tw-image");
+    // Title
+    document.title = title + " — Radio Brodiaga";
+
+    // Meta description
+    const metaDesc = document.getElementById("dynamic-description");
+    if (metaDesc) metaDesc.content = description;
+
+    // Canonical
+    const canonical = document.getElementById("canonical-link");
+    if (canonical) canonical.href = canonicalUrl;
+
+    // Open Graph
     const ogTitle = document.getElementById("og-title");
-    const twTitle = document.getElementById("tw-title");
-    const ogDesc = document.getElementById("og-description");
-    const twDesc = document.getElementById("tw-description");
-    const ogUrl = document.getElementById("og-url");
-
-    const img = new Image();
-    img.onload = () => {
-        if (ogImage) ogImage.content = thumbnail;
-        if (twImage) twImage.content = thumbnail;
-    };
-    img.onerror = () => {
-        if (ogImage) ogImage.content = fallback;
-        if (twImage) twImage.content = fallback;
-    };
-    img.src = thumbnail;
-
     if (ogTitle) ogTitle.content = title;
+    const ogDesc = document.getElementById("og-description");
+    if (ogDesc) ogDesc.content = description;
+    const ogUrl = document.getElementById("og-url");
+    if (ogUrl) ogUrl.content = canonicalUrl;
+    const ogImage = document.getElementById("og-image");
+    if (ogImage) ogImage.content = thumbHigh;
+
+    // Twitter
+    const twTitle = document.getElementById("tw-title");
     if (twTitle) twTitle.content = title;
+    const twDesc = document.getElementById("tw-description");
+    if (twDesc) twDesc.content = description;
+    const twImage = document.getElementById("tw-image");
+    if (twImage) twImage.content = thumbHigh;
 
-    if (ogDesc) ogDesc.content = "Смотрите видео на Radio Brodiaga";
-    if (twDesc) twDesc.content = "Смотрите видео на Radio Brodiaga";
-
-    if (ogUrl) ogUrl.content = url;
+    // JSON-LD
+    const jsonLd = document.getElementById("video-jsonld");
+    if (jsonLd) {
+        const jsonData = {
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": title,
+            "description": description,
+            "thumbnailUrl": thumbHigh,
+            "uploadDate": published,
+            "embedUrl": `https://www.youtube.com/embed/${videoId}`,
+            "contentUrl": canonicalUrl
+        };
+        jsonLd.textContent = JSON.stringify(jsonData);
+    }
 }
 
 /* ============================
@@ -97,7 +118,7 @@ async function loadHeaderPreview() {
 }
 
 /* ============================
-   ЗАГРУЗКА ОСНОВНОГО ВИДЕО
+   ОСНОВНОЕ ВИДЕО
 ============================ */
 async function loadVideo() {
     try {
@@ -120,48 +141,10 @@ async function loadVideo() {
 
         const video = data.items[0];
 
-        /* ============================
-           SEO-МЕТАТЕГИ
-        ============================ */
+        // ⭐ ВСЕ МЕТАТЕГИ — ОДНОЙ ФУНКЦИЕЙ
+        updateAllMeta(videoId, video);
 
-        document.title = video.snippet.title;
-
-        const metaDesc = document.getElementById("dynamic-description");
-        if (metaDesc) metaDesc.content = video.snippet.description;
-
-        const ogTitle = document.getElementById("og-title");
-        if (ogTitle) ogTitle.content = video.snippet.title;
-
-        const ogDesc = document.getElementById("og-description");
-        if (ogDesc) ogDesc.content = video.snippet.description;
-
-        const ogImg = document.getElementById("og-image");
-        if (ogImg) ogImg.content = video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url;
-
-        const canonical = document.getElementById("canonical-link");
-        if (canonical) canonical.href = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
-
-        /* ============================
-           JSON-LD VideoObject
-        ============================ */
-        const jsonLd = document.getElementById("video-jsonld");
-        if (jsonLd) {
-            const jsonData = {
-                "@context": "https://schema.org",
-                "@type": "VideoObject",
-                "name": video.snippet.title,
-                "description": video.snippet.description,
-                "thumbnailUrl": video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.medium?.url,
-                "uploadDate": video.snippet.publishedAt,
-                "embedUrl": `https://www.youtube.com/embed/${videoId}`,
-                "contentUrl": `https://radio.brodiaga.com/watch.html?id=${videoId}`
-            };
-            jsonLd.textContent = JSON.stringify(jsonData);
-        }
-
-        updateOG(videoId, video.snippet.title);
-        initShare(videoId, video.snippet.title);
-
+        // Плеер
         const player = new Plyr('#player', {
             youtube: { noCookie: true }
         });
@@ -176,10 +159,7 @@ async function loadVideo() {
             ]
         };
 
-        /* ============================
-           ТЕКСТ НА СТРАНИЦЕ
-        ============================ */
-
+        // Текст на странице
         const titleEl = document.getElementById("video-title");
         if (titleEl) titleEl.textContent = video.snippet.title;
 
@@ -208,46 +188,6 @@ async function loadVideo() {
         console.error("Ошибка loadVideo:", e);
         document.body.innerHTML = "<h2>Ошибка загрузки видео</h2>";
     }
-}
-
-
-/* ============================
-   ПОДЕЛИТЬСЯ В СОЦСЕТЯХ
-============================ */
-function initShare(videoId, title) {
-    const url = window.location.href;
-
-    function safeSetHref(id, href) {
-        const el = document.getElementById(id);
-        if (el) el.href = href;
-    }
-
-    safeSetHref("shareVK",
-        `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`);
-
-    safeSetHref("shareTG",
-        `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`);
-
-    safeSetHref("shareWA",
-        `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`);
-
-    safeSetHref("shareFB",
-        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
-
-    safeSetHref("okShare",
-        `https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=${encodeURIComponent(url)}`);
-
-    const ig = document.getElementById("igShare");
-    if (ig) ig.onclick = () => {
-        navigator.clipboard.writeText(url);
-        alert("Ссылка скопирована! Вставьте её в Instagram.");
-    };
-
-    const tt = document.getElementById("ttShare");
-    if (tt) tt.onclick = () => {
-        navigator.clipboard.writeText(url);
-        alert("Ссылка скопирована! TikTok не принимает ссылки напрямую.");
-    };
 }
 
 /* ============================
@@ -331,14 +271,6 @@ async function loadRelatedVideos(currentId) {
 }
 
 /* ============================
-   АВТОЗАПУСК
-============================ */
-document.addEventListener("DOMContentLoaded", () => {
-    loadVideo();
-    loadHeaderPreview();
-});
-
-/* ============================
    ПЕРЕХОД В КОММЕНТАРИИ
 ============================ */
 function goToComments() {
@@ -354,15 +286,12 @@ function goToComments() {
 }
 
 /* ============================
-   ПРИВЯЗКА КНОПКИ КОММЕНТАРИЕВ
-============================ */
-const commentsBtn = document.getElementById("comments-btn");
-if (commentsBtn) {
-    commentsBtn.onclick = goToComments;
-}
-
-/* ============================
    СТАРТ
 ============================ */
+document.addEventListener("DOMContentLoaded", () => {
+    loadVideo();
+    loadHeaderPreview();
+});
+
 loadHeaderPreview();
 loadVideo();
