@@ -1,0 +1,58 @@
+name: Generate Video Pages
+
+on:
+  # Запуск вручную (кнопка в Actions)
+  workflow_dispatch:
+
+  # Автоматический запуск по расписанию — каждый день в 3:00 UTC
+  schedule:
+    - cron: '0 3 * * *'
+
+# Разрешения для коммита в репозиторий
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate video pages
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          PLAYLIST_IDS: "PLFaaHMye1-yZBk5Z4EzxkzRf9j1m_NX-E,PLFaaHMye1-yapSv6zpzE2d3CzmigR-yGg,PLFaaHMye1-yakkCa3Un2YDFhoZjLt_qSI,PLFaaHMye1-yZbC7gtMl55N_Gv45wBjS2k,PLFaaHMye1-yZjsgMXCngGbqPKVLZfT8vR"
+          OUTPUT_DIR: "watch"
+        run: node generate-pages.js
+
+      - name: Check generated files
+        run: |
+          echo "📁 Содержимое папки watch/:"
+          ls -la watch/ | head -20
+          echo ""
+          echo "📊 Всего файлов:"
+          ls watch/*.html 2>/dev/null | wc -l
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add watch/
+          
+          if git diff --staged --quiet; then
+            echo "ℹ️  Нет изменений для коммита"
+          else
+            git commit -m "🤖 Auto-generate video pages ($(date +'%Y-%m-%d'))"
+            git push
+            echo "✅ Изменения закоммичены"
+          fi
