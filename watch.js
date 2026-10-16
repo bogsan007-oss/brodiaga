@@ -1,4 +1,4 @@
-console.log("watch.js загружен (v3)");
+console.log("watch.js загружен (v4)");
 
 /* ============================
    КЛЮЧИ
@@ -7,28 +7,40 @@ let apiKey = window.apiKey;
 let playlistId = window.playlistId;
 
 /* ============================
+   УНИВЕРСАЛЬНОЕ ОПРЕДЕЛЕНИЕ ID ВИДЕО
+============================ */
+function getVideoId() {
+    // 1. Пробуем из ?id= (старые ссылки watch.html?id=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const idFromQuery = urlParams.get("id");
+    if (idFromQuery) return idFromQuery;
+
+    // 2. Берём из пути (новые ссылки watch/-PSOErrbDM4.html)
+    const match = window.location.pathname.match(/\/watch\/([^\/]+)\.html$/);
+    if (match) return match[1];
+
+    return null;
+}
+
+/* ============================
    ЗАПОЛНЕНИЕ SEO-МЕТАТЕГОВ
 ============================ */
 function updateAllMeta(videoId, video) {
     const snippet = video.snippet;
     const title = snippet.title;
-    const description = (snippet.description || "").substring(0, 160); // обрезаем до 160 символов
+    const description = (snippet.description || "").substring(0, 160);
     const published = snippet.publishedAt;
     const thumbHigh = snippet.thumbnails?.high?.url || snippet.thumbnails?.medium?.url || "";
-    const canonicalUrl = `https://radio.brodiaga.com/watch.html?id=${videoId}`;
+    const canonicalUrl = `https://radio.brodiaga.com/watch/${videoId}.html`;
 
-    // Title
     document.title = title + " — Radio Brodiaga";
 
-    // Meta description
     const metaDesc = document.getElementById("dynamic-description");
     if (metaDesc) metaDesc.content = description;
 
-    // Canonical
     const canonical = document.getElementById("canonical-link");
     if (canonical) canonical.href = canonicalUrl;
 
-    // Open Graph
     const ogTitle = document.getElementById("og-title");
     if (ogTitle) ogTitle.content = title;
     const ogDesc = document.getElementById("og-description");
@@ -38,7 +50,6 @@ function updateAllMeta(videoId, video) {
     const ogImage = document.getElementById("og-image");
     if (ogImage) ogImage.content = thumbHigh;
 
-    // Twitter
     const twTitle = document.getElementById("tw-title");
     if (twTitle) twTitle.content = title;
     const twDesc = document.getElementById("tw-description");
@@ -46,7 +57,6 @@ function updateAllMeta(videoId, video) {
     const twImage = document.getElementById("tw-image");
     if (twImage) twImage.content = thumbHigh;
 
-    // JSON-LD
     const jsonLd = document.getElementById("video-jsonld");
     if (jsonLd) {
         const jsonData = {
@@ -108,7 +118,7 @@ async function loadHeaderPreview() {
         if (titleEl) titleEl.textContent = title;
         if (boxEl) {
             boxEl.onclick = () => {
-                window.location.href = `watch.html?id=${videoId}`;
+                window.location.href = `/watch/${videoId}.html`;
             };
         }
 
@@ -122,8 +132,7 @@ async function loadHeaderPreview() {
 ============================ */
 async function loadVideo() {
     try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const videoId = urlParams.get("id");
+        const videoId = getVideoId();
 
         if (!videoId) {
             document.body.innerHTML = "<h2>Видео не найдено</h2>";
@@ -141,10 +150,8 @@ async function loadVideo() {
 
         const video = data.items[0];
 
-        // ⭐ ВСЕ МЕТАТЕГИ — ОДНОЙ ФУНКЦИЕЙ
         updateAllMeta(videoId, video);
 
-        // Плеер
         const player = new Plyr('#player', {
             youtube: { noCookie: true }
         });
@@ -159,7 +166,6 @@ async function loadVideo() {
             ]
         };
 
-        // Текст на странице
         const titleEl = document.getElementById("video-title");
         if (titleEl) titleEl.textContent = video.snippet.title;
 
@@ -254,7 +260,7 @@ async function loadRelatedVideos(currentId) {
             const card = document.createElement("div");
             card.className = "related-card";
             card.onclick = () => {
-                window.location.href = `watch.html?id=${videoId}`;
+                window.location.href = `/watch/${videoId}.html`;
             };
 
             card.innerHTML = `
@@ -274,15 +280,14 @@ async function loadRelatedVideos(currentId) {
    ПЕРЕХОД В КОММЕНТАРИИ
 ============================ */
 function goToComments() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const videoId = urlParams.get("id");
+    const videoId = getVideoId();
 
     if (!videoId) {
         alert("Ошибка: ID видео не найден");
         return;
     }
 
-    window.location.href = "pages/comments.html?video=" + videoId;
+    window.location.href = "/pages/comments.html?video=" + videoId;
 }
 
 /* ============================
