@@ -46,6 +46,20 @@ jobs:
           cp robots.txt site/
           cp manifest.json site/ || true
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Generate RSS feed
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          PLAYLIST_IDS: "PLFaaHMye1-yZBk5Z4EzxkzRf9j1m_NX-E,PLFaaHMye1-yapSv6zpzE2d3CzmigR-yGg,PLFaaHMye1-yakkCa3Un2YDFhoZjLt_qSI,PLFaaHMye1-yZbC7gtMl55N_Gv45wBjS2k,PLFaaHMye1-yZjsgMXCngGbqPKVLZfT8vR"
+        run: node generate-rss.js
+
+      - name: Copy RSS to site
+        run: cp rss.xml site/rss.xml
+
       - name: Install jq
         run: |
           sudo apt-get update
