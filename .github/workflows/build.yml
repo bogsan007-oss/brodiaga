@@ -41,6 +41,7 @@ jobs:
           cp -r assets site/ || true
           cp -r pages site/ || true
           cp -r posts site/ || true
+          cp -r watch site/ || true
 
           cp robots.txt site/
           cp manifest.json site/ || true
