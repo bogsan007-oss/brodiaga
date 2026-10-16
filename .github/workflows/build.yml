@@ -58,7 +58,9 @@ jobs:
         run: node generate-rss.js
 
       - name: Copy RSS to site
-        run: cp rss.xml site/rss.xml
+        run: |
+          cp rss.xml site/rss.xml
+          cp rss-js.js site/rss-js.js
 
       - name: Install jq
         run: |
