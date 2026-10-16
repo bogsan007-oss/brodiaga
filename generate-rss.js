@@ -1,7 +1,9 @@
 /**
  * generate-rss.js
  * 
- * Генерирует RSS 2.0 ленту с последними видео.
+ * Генерирует:
+ *   1. rss.xml    — стандартная RSS 2.0 лента
+ *   2. rss-js.js  — JSONP-обёртка для виджета (без CORS)
  * 
  * Запуск:
  *   node generate-rss.js
@@ -18,7 +20,8 @@ const fs = require('fs');
 // ============================
 const API_KEY = process.env.API_KEY;
 const PLAYLISTS = (process.env.PLAYLIST_IDS || '').split(',').map(p => p.trim()).filter(Boolean);
-const OUTPUT_FILE = 'rss.xml';
+const OUTPUT_XML = 'rss.xml';
+const OUTPUT_JS  = 'rss-js.js';
 const BASE_URL = 'https://radio.brodiaga.com';
 const CHANNEL_TITLE = 'Radio Brodiaga';
 const CHANNEL_DESCRIPTION = 'Музыка, клипы, авторские песни и атмосферные видео.';
@@ -40,10 +43,6 @@ if (!PLAYLISTS.length) {
 // ============================
 // ВСПОМОГАТЕЛЬНЫЕ
 // ============================
-
-/**
- * Экранирование XML
- */
 function escapeXml(text) {
     if (!text) return '';
     return String(text)
@@ -54,17 +53,20 @@ function escapeXml(text) {
         .replace(/'/g, '&apos;');
 }
 
-/**
- * Формат даты для RSS (RFC 822)
- */
+function escapeJs(text) {
+    if (!text) return '';
+    return String(text)
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, ' ')
+        .replace(/\r/g, ' ');
+}
+
 function formatRssDate(isoDate) {
     const d = new Date(isoDate);
     return d.toUTCString();
 }
 
-/**
- * Получить последние видео из плейлиста
- */
 async function fetchPlaylistVideos(playlistId, maxResults = 50) {
     const url = new URL('https://www.googleapis.com/youtube/v3/playlistItems');
     url.searchParams.set('key', API_KEY);
@@ -95,41 +97,9 @@ async function fetchPlaylistVideos(playlistId, maxResults = 50) {
 }
 
 // ============================
-// ОСНОВНАЯ ФУНКЦИЯ
+// ГЕНЕРАЦИЯ RSS (XML)
 // ============================
-async function main() {
-    console.log('');
-    console.log('========================================');
-    console.log('📡 Генерация RSS-ленты');
-    console.log('========================================');
-
-    const allVideos = [];
-
-    // Загружаем видео из всех плейлистов
-    for (let i = 0; i < PLAYLISTS.length; i++) {
-        console.log(`[${i + 1}/${PLAYLISTS.length}] ${PLAYLISTS[i]}`);
-        const videos = await fetchPlaylistVideos(PLAYLISTS[i]);
-        console.log(`   → ${videos.length} видео`);
-        allVideos.push(...videos);
-    }
-
-    // Удаляем дубликаты по ID
-    const uniqueMap = new Map();
-    for (const v of allVideos) {
-        if (!uniqueMap.has(v.id)) uniqueMap.set(v.id, v);
-    }
-
-    // Сортируем по дате (свежие — первые) и берём MAX_ITEMS
-    const sortedVideos = [...uniqueMap.values()]
-        .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-        .slice(0, MAX_ITEMS);
-
-    console.log('');
-    console.log(`📊 Всего уникальных: ${uniqueMap.size}`);
-    console.log(`📋 В RSS: ${sortedVideos.length}`);
-    console.log('');
-
-    // Формируем XML
+function buildRssXml(videos) {
     const buildDate = new Date().toUTCString();
 
     let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -142,7 +112,7 @@ async function main() {
     xml += `    <lastBuildDate>${buildDate}</lastBuildDate>\n`;
     xml += `    <atom:link href="${BASE_URL}/rss.xml" rel="self" type="application/rss+xml" />\n`;
 
-    for (const video of sortedVideos) {
+    for (const video of videos) {
         const link = `${BASE_URL}/watch/${video.id}.html`;
         const pubDate = formatRssDate(video.publishedAt);
 
@@ -161,9 +131,69 @@ async function main() {
 
     xml += '  </channel>\n';
     xml += '</rss>\n';
+    return xml;
+}
 
-    fs.writeFileSync(OUTPUT_FILE, xml, 'utf8');
-    console.log(`✅ RSS сохранён: ${OUTPUT_FILE}`);
+// ============================
+// ГЕНЕРАЦИЯ JSONP (JS)
+// ============================
+function buildRssJs(videos) {
+    // Формируем объект для виджета
+    const items = videos.map(v => ({
+        title: v.title,
+        link: `${BASE_URL}/watch/${v.id}.html`,
+        thumbnail: v.thumbnail,
+        pubDate: v.publishedAt
+    }));
+
+    const json = JSON.stringify({ items: items }, null, 0);
+
+    // Оборачиваем в вызов функции
+    return `showRadioVideos(${json});\n`;
+}
+
+// ============================
+// ОСНОВНАЯ ФУНКЦИЯ
+// ============================
+async function main() {
+    console.log('');
+    console.log('========================================');
+    console.log('📡 Генерация RSS-ленты + JS-виджета');
+    console.log('========================================');
+
+    const allVideos = [];
+
+    for (let i = 0; i < PLAYLISTS.length; i++) {
+        console.log(`[${i + 1}/${PLAYLISTS.length}] ${PLAYLISTS[i]}`);
+        const videos = await fetchPlaylistVideos(PLAYLISTS[i]);
+        console.log(`   → ${videos.length} видео`);
+        allVideos.push(...videos);
+    }
+
+    const uniqueMap = new Map();
+    for (const v of allVideos) {
+        if (!uniqueMap.has(v.id)) uniqueMap.set(v.id, v);
+    }
+
+    const sortedVideos = [...uniqueMap.values()]
+        .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+        .slice(0, MAX_ITEMS);
+
+    console.log('');
+    console.log(`📊 Всего уникальных: ${uniqueMap.size}`);
+    console.log(`📋 В ленте: ${sortedVideos.length}`);
+    console.log('');
+
+    // === rss.xml ===
+    const xml = buildRssXml(sortedVideos);
+    fs.writeFileSync(OUTPUT_XML, xml, 'utf8');
+    console.log(`✅ XML сохранён: ${OUTPUT_XML}`);
+
+    // === rss-js.js ===
+    const js = buildRssJs(sortedVideos);
+    fs.writeFileSync(OUTPUT_JS, js, 'utf8');
+    console.log(`✅ JS сохранён: ${OUTPUT_JS}`);
+
     console.log('========================================');
 }
 
