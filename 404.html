@@ -75,14 +75,6 @@ function tryPlay() {
 
 tryPlay();
 </script>
-  <script>
-  const audio = document.querySelector("audio");
-  function tryPlay() {
-    audio.play().catch(() => {
-      setTimeout(tryPlay, 300);
-    });
-  }
-  tryPlay();
-  </script>
+
 </body>
 </html>
