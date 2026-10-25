@@ -297,6 +297,3 @@ document.addEventListener("DOMContentLoaded", () => {
     loadVideo();
     loadHeaderPreview();
 });
-
-loadHeaderPreview();
-loadVideo();
