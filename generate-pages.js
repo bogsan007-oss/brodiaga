@@ -2,14 +2,6 @@
  * generate-pages.js
  * 
  * Генерирует статические HTML-страницы для каждого видео YouTube.
- * 
- * Запуск:
- *   node generate-pages.js
- * 
- * Переменные окружения:
- *   API_KEY      — YouTube Data API v3 key
- *   PLAYLIST_IDS — список плейлистов через запятую
- *   OUTPUT_DIR   — папка для генерации (по умолчанию: watch)
  */
 
 const fs = require('fs');
@@ -59,10 +51,6 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 // ============================
 // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
 // ============================
-
-/**
- * Экранирование HTML
- */
 function escapeHtml(text) {
     if (!text) return '';
     return String(text)
@@ -73,9 +61,6 @@ function escapeHtml(text) {
         .replace(/'/g, '&#39;');
 }
 
-/**
- * Обрезка текста до N символов
- */
 function truncate(text, maxLength = 160) {
     if (!text) return '';
     const clean = text.replace(/\s+/g, ' ').trim();
@@ -83,9 +68,6 @@ function truncate(text, maxLength = 160) {
     return clean.substring(0, maxLength - 1).trim() + '…';
 }
 
-/**
- * Получить список видео из одного плейлиста (с пагинацией)
- */
 async function fetchPlaylistVideos(playlistId) {
     const videos = [];
     let pageToken = '';
@@ -99,9 +81,11 @@ async function fetchPlaylistVideos(playlistId) {
         if (pageToken) url.searchParams.set('pageToken', pageToken);
 
         const res = await fetch(url.toString());
+        
+        // ИСПРАВЛЕНО: теперь скрипт упадет с ошибкой, если API не ответил
         if (!res.ok) {
-            console.error(`❌ Ошибка запроса плейлиста ${playlistId}: ${res.status}`);
-            break;
+            const errorText = await res.text();
+            throw new Error(`Ошибка API ${res.status} для плейлиста ${playlistId}: ${errorText}`);
         }
 
         const data = await res.json();
@@ -131,9 +115,6 @@ async function fetchPlaylistVideos(playlistId) {
     return videos;
 }
 
-/**
- * Генерация HTML для одного видео
- */
 function generatePage(video) {
     const canonicalUrl = `${BASE_URL}/${OUTPUT_DIR}/${video.id}.html`;
     const shortDescription = truncate(video.description, 160);
@@ -141,7 +122,6 @@ function generatePage(video) {
         ? new Date(video.publishedAt).toISOString().split('T')[0]
         : new Date().toISOString().split('T')[0];
 
-    // Замены плейсхолдеров
     let html = template
         .replace(/\{\{VIDEO_ID\}\}/g, escapeHtml(video.id))
         .replace(/\{\{VIDEO_TITLE\}\}/g, escapeHtml(video.title))
@@ -159,7 +139,6 @@ function generatePage(video) {
 // ОСНОВНАЯ ФУНКЦИЯ
 // ============================
 async function main() {
-    console.log('');
     console.log('========================================');
     console.log('🚀 Генерация страниц для видео');
     console.log('========================================');
@@ -167,11 +146,8 @@ async function main() {
     console.log(`📋 Плейлистов: ${PLAYLISTS.length}`);
     console.log('');
 
-    const allVideos = new Map(); // используем Map для автоматического удаления дубликатов
+    const allVideos = new Map();
 
-    // ============================
-    // ЗАГРУЗКА ВИДЕО ИЗ ВСЕХ ПЛЕЙЛИСТОВ
-    // ============================
     for (let i = 0; i < PLAYLISTS.length; i++) {
         const playlistId = PLAYLISTS[i];
         console.log(`[${i + 1}/${PLAYLISTS.length}] Загрузка плейлиста: ${playlistId}`);
@@ -190,15 +166,12 @@ async function main() {
     console.log(`📊 Уникальных видео: ${allVideos.size}`);
     console.log('');
 
-    // ============================
-    // ГЕНЕРАЦИЯ СТРАНИЦ
-    // ============================
     let created = 0;
     let errors = 0;
 
     for (const video of allVideos.values()) {
         try {
-            const filePath = generatePage(video);
+            generatePage(video);
             created++;
             if (created % 20 === 0 || created === allVideos.size) {
                 console.log(`   ✅ Создано: ${created} / ${allVideos.size}`);
@@ -209,9 +182,6 @@ async function main() {
         }
     }
 
-    // ============================
-    // ИТОГИ
-    // ============================
     console.log('');
     console.log('========================================');
     console.log(`✅ Готово!`);
@@ -221,9 +191,6 @@ async function main() {
     console.log('========================================');
 }
 
-// ============================
-// ЗАПУСК
-// ============================
 main().catch(err => {
     console.error('❌ Критическая ошибка:', err);
     process.exit(1);
