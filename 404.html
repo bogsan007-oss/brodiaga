@@ -6,6 +6,17 @@
   <link rel="canonical" href="https://radio.brodiaga.com/404.html">
   <meta name="description" content="Страница 404 на Radio Brodiaga — музыка, танцор и ссылки для перехода.">
   <meta name="robots" content="noindex,follow">
+  <!-- ↓↓↓ ДОБАВЛЕНО: fallback для /watch/{id}.html, если файла ещё нет ↓↓↓ -->
+  <script>
+    (function(){
+      var m = location.pathname.match(/^\/watch\/([A-Za-z0-9_-]{11})\.html$/);
+      if (m) {
+        // Страница видео ещё не сгенерирована — открываем через старую динамическую
+        location.replace('/watch.html?id=' + m[1]);
+      }
+    })();
+  </script>
+  <!-- ↑↑↑ конец добавленного блока ↑↑↑ -->
 </head>
 <body style="background:#ffffff; text-align:center; font-family:Arial, sans-serif;">
 
@@ -64,6 +75,14 @@ function tryPlay() {
 
 tryPlay();
 </script>
-
+  <script>
+  const audio = document.querySelector("audio");
+  function tryPlay() {
+    audio.play().catch(() => {
+      setTimeout(tryPlay, 300);
+    });
+  }
+  tryPlay();
+  </script>
 </body>
 </html>
