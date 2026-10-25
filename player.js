@@ -66,7 +66,8 @@ async function loadLeastViewedVideo() {
 
         if (boxEl) {
             boxEl.onclick = () => {
-                window.location.href = `watch.html?id=${videoId}`;
+                // ИСПРАВЛЕНО: ведем на реальную HTML-страницу
+                window.location.href = `/watch/${videoId}.html`;
             };
         }
 
@@ -123,6 +124,7 @@ function cleanDescription(text) {
         .replace(/\s+/g, " ")
         .trim();
 }
+
 function renderMoreVideos() {
     const container = document.getElementById("video-list");
     if (!container) return;
@@ -171,7 +173,8 @@ function renderMoreVideos() {
             const card = document.createElement("div");
             card.className = "video-card";
             card.onclick = () => {
-                window.location.href = `watch.html?id=${videoId}`;
+                // ИСПРАВЛЕНО: ведем на реальную HTML-страницу
+                window.location.href = `/watch/${videoId}.html`;
             };
 
             /* ⭐ ОБОРАЧИВАЕМ КАРТИНКУ В КОНТЕЙНЕР + СКРЫТОЕ ОПИСАНИЕ */
